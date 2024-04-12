@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Class to manage the player's score and name in the LootLocker database. Implements the singleton pattern.
+/// </summary>
 public class LootLockerPlayermanager : MonoBehaviour
 {
     public static LootLockerPlayermanager Instance;
