@@ -1,0 +1,45 @@
+{
+    "name": "MainControls",
+    "maps": [
+        {
+            "name": "movement",
+            "id": "1cefe657-f41d-4fd9-9abb-bbf67e363404",
+            "actions": [
+                {
+                    "name": "basic",
+                    "type": "Value",
+                    "id": "69e5b276-842b-4beb-bd0f-7aa4a80d1fa5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "002a089e-3446-4878-b545-f2782870e9a8",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "basic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "49caadfe-f6c2-4381-8437-42bbe847a4a9",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "basic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
