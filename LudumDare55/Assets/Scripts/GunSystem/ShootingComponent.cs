@@ -120,7 +120,9 @@ public class ShootingComponent : MonoBehaviour
             for (int i = 0; i < bulletAmt; i++)
             {
                 _canShoot = false;
-                GameObject p = Instantiate(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity);
+
+                //GameObject p = Instantiate(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity);
+                GameObject p = ObjectPoolManager.Instance.SpawnObject(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.EnemyBullet);
                 p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.BulletKnockback, currentGun.Range, currentGun.BulletSize,currentGun.BulletHealth);
                 p.transform.forward = _shootDir;
                 float acc = (100 - currentGun.Accuracy) / 2;

@@ -46,6 +46,11 @@ public class EnemyController : MonoBehaviour
         navMeshAgent.speed = enemyConfig.walkingSpeed;
     }
 
+    public void Initialize()
+    {
+        enemyConfig.healthPoints = 100;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -63,6 +68,12 @@ public class EnemyController : MonoBehaviour
         enemyConfig.healthPoints -= 1;
         
         navMeshAgent.SetDestination(player.transform.position);
+    }
+
+    public void Die()
+    {
+        ObjectPoolManager.Instance.DespawnObject(this.gameObject);
+        EnemySpawner.Instance.OnEnemyDied();
     }
 
     void OnCollisionEnter(Collision collision)

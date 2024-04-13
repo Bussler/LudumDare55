@@ -188,4 +188,17 @@ public class LootLockerPlayermanager : MonoBehaviour
 
         yield return new WaitWhile(() => done == false);
     }
+
+    /// <summary>
+    /// Start Coroutine to upload the player's score to the leaderboard.
+    /// </summary>
+    public void UploadScore()
+    {
+        StartCoroutine(LootLockerScoreUpload());
+    }
+
+    public void OnApplicationQuit()
+    {
+        UploadScore();
+    }
 }
