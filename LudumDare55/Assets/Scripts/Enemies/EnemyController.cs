@@ -24,9 +24,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Fire rate: " + enemyConfig.fireRate);
-        Debug.Log("Walking speed: " + enemyConfig.walkingSpeed);
-        Debug.Log("Health points: " + enemyConfig.healthPoints);
+        Initialize();
         player = GameObject.FindWithTag("Player");
         if (navMeshAgent.enabled)
         {

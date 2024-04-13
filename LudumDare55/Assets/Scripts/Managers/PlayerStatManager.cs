@@ -22,7 +22,7 @@ public class PlayerStatManager : MonoBehaviour
     private int _currentHealth;
     public int CurrentHealth
     {
-        get => CurrentHealth;
+        get => _currentHealth;
         set
         {
             if (value <= 0)
