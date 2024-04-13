@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -67,5 +64,4 @@ public class BasicMovement : MonoBehaviour
     {
         this.useForceToApply = !value;
     }
-
 }
