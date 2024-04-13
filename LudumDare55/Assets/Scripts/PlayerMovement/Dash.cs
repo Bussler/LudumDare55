@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using System.Collections;
+using System.Collections.Generic;
 /// <summary>
 /// Script that enables dashing with an IEnumerator that sets a rigidbody velocity for dashingTime.
 /// </summary>
