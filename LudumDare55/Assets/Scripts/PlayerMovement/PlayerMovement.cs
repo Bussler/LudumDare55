@@ -26,13 +26,17 @@ public class PlayerMovement : BasicMovement
     private void OnEnable()
     {
         input.Enable();
-        input.movement.basic.performed += OnBasicActionPerformed;
+        input.movement.dash.performed += OnBasicActionPerformed;
+        input.movement.movement.performed += OnMovementPerformed;
+        input.movement.movement.canceled += OnMovementCancelled;
     }
 
     private void OnDisable()
     {
         input.Disable();
-        input.movement.basic.performed -= OnBasicActionPerformed;
+        input.movement.dash.performed -= OnBasicActionPerformed;
+        input.movement.movement.performed -= OnMovementPerformed;
+        input.movement.movement.canceled -= OnMovementCancelled;
     }
 
     private void FixedUpdate()
@@ -40,11 +44,23 @@ public class PlayerMovement : BasicMovement
         Move(movementVector);
     }
 
+    private void OnMovementPerformed(InputAction.CallbackContext value)
+    {
+        Vector3 inputMovementVector = value.ReadValue<Vector2>();
+        movementVector = new Vector3(inputMovementVector.y, 0, -inputMovementVector.x);
+        Debug.Log("Movement performed: " + movementVector);
+    }
+
+    private void OnMovementCancelled(InputAction.CallbackContext value)
+    {
+        movementVector = Vector3.zero;
+    }
+
     private void OnBasicActionPerformed(InputAction.CallbackContext value)
     {
         if (value.performed)
         {
-            Debug.Log("Basic action performed");
+            Debug.Log("Dash performed");
             // TODO
         }
     }

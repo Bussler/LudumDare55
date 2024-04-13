@@ -9,9 +9,17 @@ using UnityEngine;
 public class BasicMovement : MonoBehaviour
 {
     // TODO maybe put stat manager here?
+    [SerializeField]
+    private int moveSpeed = 5; // Speed at which the player moves
 
     protected Rigidbody rb = null; // Rigidbody component through which we apply force
     private bool canMove = true; // Flag to check if the player can move
+
+    // Knockback variables
+    public Vector3 forceToApply = Vector3.zero; // used for knockback if a projectile hits the player
+    [SerializeField]
+    private float forceDamping = 1.2f; // damping factor for knockback
+    private bool useForceToApply = true; // flag to check if we should get knocked back
 
     protected virtual void Start()
     {
@@ -30,12 +38,28 @@ public class BasicMovement : MonoBehaviour
             return;
         }
 
-        // TODO
+        Vector3 moveForce = movementVector.normalized * moveSpeed;
+
+        if (useForceToApply)
+            moveForce += forceToApply;
+
+        forceToApply /= forceDamping;
+        if (Mathf.Abs(forceToApply.x) <= 0.01f && Mathf.Abs(forceToApply.z) <= 0.01f)
+        {
+            forceToApply = Vector3.zero;
+        }
+
+        rb.velocity = moveForce;
     }
 
     public void setCanMove(bool value)
     {
         this.canMove = !value;
+    }
+
+    public void setUseForceToApply(bool value)
+    {
+        this.useForceToApply = !value;
     }
 
 }
