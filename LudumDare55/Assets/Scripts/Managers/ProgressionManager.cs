@@ -81,4 +81,12 @@ public class ProgressionManager : MonoBehaviour
         return (storyFlags & allFlags) == allFlags;
     }
 
+    /// <summary>
+    /// Call this method, when the game ends.
+    /// E.g. when the player dies or wins.
+    /// </summary>
+    public void EndGame()
+    {
+        LootLockerPlayermanager.Instance.UploadScore(); // TODO when game ends, spawn boss!
+    }
 }

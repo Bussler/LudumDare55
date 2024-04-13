@@ -10,8 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public static EnemySpawner Instance;
 
     public List<EnemyWave> waves; // List of waves to spawn
-
-    // TODO Implement Boss wave
+    public EnemyWave bossWave; // Boss wave to spawn at the end
 
     [Header("Spawner Attributes")]
     [SerializeField]
@@ -85,7 +84,7 @@ public class EnemySpawner : MonoBehaviour
         if (spawnTimer >= waves[currentWaveIndex].spawnInterval)
         {
             spawnTimer = 0;
-            SpawnWave();
+            SpawnWave(waves[currentWaveIndex]);
         }
 
     }
@@ -109,9 +108,8 @@ public class EnemySpawner : MonoBehaviour
     /// <summary>
     /// Spawn enemies from current wave: Go through each enemy group and spawn enemies
     /// </summary>
-    private void SpawnWave()
+    private void SpawnWave(EnemyWave currentWave)
     {
-        EnemyWave currentWave = waves[currentWaveIndex];
         if (currentWave.spawnCount < currentWave.waveQuota)
         {
             foreach (EnemyGroup enemyGroup in currentWave.enemyGroups)
@@ -187,10 +185,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnBoss()
     {
-        Debug.Log("Spawning Boss");
-        //LootLockerPlayermanager.Instance.UploadScore();
-        
-        // TODO
+        if (bossWave == null)
+            Debug.Log("No boss wave to spawn");
+            return;
+
+        SpawnWave(bossWave);
     }
 
     public void OnEnemyDied()
@@ -198,7 +197,7 @@ public class EnemySpawner : MonoBehaviour
         enemiesAlive--;
         enemiesKilled++;
 
-        if (enemiesKilled >= neededEnemyQuota)
+        if (enemiesKilled >= neededEnemyQuota) // TODO impelement some other method to spawn boss
             SpawnBoss();
     }
 }
