@@ -213,6 +213,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "shoot",
+            "id": "a5c0844d-178e-44aa-abc8-60f02ed1e750",
+            "actions": [
+                {
+                    "name": "shoot",
+                    "type": "Value",
+                    "id": "d0e00aaf-a1ea-4723-9048-7f04952cb7a7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ca2f511d-4219-4dcf-a309-9e726ba42cb8",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
