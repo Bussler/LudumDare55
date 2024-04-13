@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0805e59bd8cc246498455d9e4ff7f45a, type: 3}
-  m_Name: Pistol
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
-  type: 0
+  type: 3
   Damage: 0
-  FireRate: 5
-  Accuracy: 97.4
+  FireRate: 2
+  Accuracy: 83.6
   TimeLimit: 2
-  Range: 5
-  BulletAmount: 1
+  Range: 3
+  BulletAmount: 5
   BulletSpeed: 20
   BulletSize: 1
   BulletKnockback: 0.5
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
-  Effects: 00000000
+  Effects: 

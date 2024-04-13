@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -95,4 +96,35 @@ public class EnemyController : MonoBehaviour
         Debug.Log("Stationary shooting to player");
         //TODO: Implement StationaryShootingToPlayer behavior
     }
+
+    public void ApplyKnockback(Vector3 knockback)
+    {
+        IEnumerator c = ApplyKnockbackCoroutine(knockback);
+        StartCoroutine(c);
+    }
+
+    private IEnumerator ApplyKnockbackCoroutine(Vector3 knockback)
+    {
+        yield return null;
+
+        navMeshAgent.enabled = false;
+        this.GetComponent<Rigidbody>().isKinematic = false;
+        this.GetComponent<Rigidbody>().AddForce(knockback, ForceMode.Force);
+        yield return new WaitForFixedUpdate();
+        float knockbackTime = Time.time;
+        yield return new WaitUntil(
+            () => this.GetComponent<Rigidbody>().velocity.magnitude < 0.1f || Time.time > knockbackTime + 1
+            ) ;
+        yield return new WaitForSeconds(0.25f);
+
+        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        this.GetComponent<Rigidbody>().angularVelocity= Vector3.zero;
+        this.GetComponent<Rigidbody>().isKinematic= true;
+        navMeshAgent.Warp(transform.position);
+        navMeshAgent.enabled= true;
+        yield return null;
+
+    }
+
+
 }
