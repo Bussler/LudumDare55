@@ -226,6 +226,7 @@ public class EnemyController : MonoBehaviour
             if (!Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, enemyConfig.playerDistanceRecognition) || hit.transform == player.transform)
             {
                 turnTowardsPlayer(directionToPlayer, enemyConfig.stationaryRotationSpeed);
+                shootingComponent.Shoot(directionToPlayer);
             }
         }
     }
