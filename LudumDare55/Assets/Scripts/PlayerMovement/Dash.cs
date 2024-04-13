@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Script that enables dashing with an IEnumerator that sets a rigidbody velocity for dashingTime.
+/// </summary>
 public class Dash : MonoBehaviour
 {
     public bool canDash = true;
