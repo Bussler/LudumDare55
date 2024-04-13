@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 35
   walkingSpeed: 2.15
-  healthPoints: 10
+  healthPoints: 24
+  enemyBehaviour: 0
