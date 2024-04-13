@@ -9,12 +9,10 @@ using UnityEngine;
 public class BasicMovement : MonoBehaviour
 {
     public Vector3 ForceToApply { get => forceToApply; set => forceToApply = value; }
-    public bool UseForceToApply { get => useForceToApply; set => useForceToApply = value; }
-    public bool CanMove { get => canMove; set => canMove = value; }
 
     // TODO maybe put stat manager here?
     [SerializeField]
-    private int moveSpeed = 12; // Speed at which the player moves
+    private int moveSpeed = 7; // Speed at which the player moves
 
     protected Rigidbody rb = null; // Rigidbody component through which we apply force
     private bool canMove = true; // Flag to check if the player can move
@@ -35,6 +33,10 @@ public class BasicMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method to move the player. Is called in FixedUpdate by PlayerMovement.
+    /// </summary>
+    /// <param name="movementVector"></param>
     protected void Move(Vector3 movementVector)
     {
         if (!canMove || rb == null)
@@ -56,6 +58,14 @@ public class BasicMovement : MonoBehaviour
         rb.velocity = moveForce;
     }
 
-       
+    public void setCanMove(bool value)
+    {
+        this.canMove = !value;
+    }
+
+    public void setUseForceToApply(bool value)
+    {
+        this.useForceToApply = !value;
+    }
 
 }
