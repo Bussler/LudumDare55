@@ -22,7 +22,7 @@ public class SplineIntersectionSensor : MonoBehaviour
             .DistinctUntilChanged()
             .Where(x => !(x < 0));
 
-        SplineIntersection.Subscribe(x => Debug.Log(">> " + x)).AddTo(this);
+        // SplineIntersection.Subscribe(x => Debug.Log("Found spline intersection: " + x)).AddTo(this);
     }
     
     private int RunIntersectionTest() {
@@ -38,7 +38,7 @@ public class SplineIntersectionSensor : MonoBehaviour
         var p1 = knots[knotsN - 1];
         var p2 = knots[knotsN - 2];
 
-        for (int i = 1; i < knotsN - 1; i++) {
+        for (int i = 1; i < knotsN - 2; i++) {
             var p3 = knots[i];
             var p4 = knots[i - 1];
             
