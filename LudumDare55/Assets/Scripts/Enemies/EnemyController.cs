@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-
+using System.Collections;
 public class EnemyController : MonoBehaviour
 {
 
@@ -15,6 +15,10 @@ public class EnemyController : MonoBehaviour
 
     private Action enemyBehavior;
 
+    private ChargingStates currentChagingState = ChargingStates.notCharging;
+
+    private float waitedTime = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +26,10 @@ public class EnemyController : MonoBehaviour
         Debug.Log("Walking speed: " + enemyConfig.walkingSpeed);
         Debug.Log("Health points: " + enemyConfig.healthPoints);
         player = GameObject.FindWithTag("Player");
-        navMeshAgent.SetDestination(player.transform.position);
+        if (navMeshAgent.enabled)
+        {
+            navMeshAgent.SetDestination(player.transform.position);
+        }
 
 
         enemyBehavior = enemyConfig.enemyBehaviour switch
@@ -33,23 +40,19 @@ public class EnemyController : MonoBehaviour
             EnemyBehaviour.StationaryShootingToPlayer => StationaryShootingToPlayerBehavior,
             _ => throw new ArgumentOutOfRangeException()
         };
+
+        navMeshAgent.speed = enemyConfig.walkingSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         enemyBehavior.Invoke();
-        if (enemyConfig.healthPoints > 0)
+        if (navMeshAgent.enabled && currentChagingState.Equals(ChargingStates.notCharging))
         {
-            // Debug.Log("Enemy is walking");
-            enemyBehavior.Invoke();
+            navMeshAgent.SetDestination(player.transform.position);
         }
-        else if (enemyConfig.healthPoints <= 0)
-        {
-            // Debug.Log("Enemy is dead");
-        }
-        enemyConfig.healthPoints -= 1;
-        navMeshAgent.SetDestination(player.transform.position);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -71,8 +74,8 @@ public class EnemyController : MonoBehaviour
     public void CloseCombatToPlayerBehavior()
     {
         // Implement CloseCombatToPlayer behavior here
-        Debug.Log("Close combat to player");
-        //TODO: Implement CloseCombatToPlayer behavior
+        //Debug.Log("Close combat to player");
+        //TODO: Check  if we need any additional behavior other than running towards the player
     }
 
     public void ShootingToPlayerBehavior()
@@ -85,16 +88,103 @@ public class EnemyController : MonoBehaviour
 
     public void ChargingToPlayersLastPositionBehavior()
     {
-        // Implement ChargingToPlayersLastPosition behavior here
-        Debug.Log("Charging to player's last position");
-        //TODO: Implement ChargingToPlayersLastPosition behavior
+        if (currentChagingState.Equals(ChargingStates.charging))
+        {
+            // Once enemy is close enough to player location stop charging
+            if (CalculateDistanceToLocation(navMeshAgent.destination) < 1)
+            {
+                currentChagingState = ChargingStates.coolingDown;
+                navMeshAgent.speed = enemyConfig.walkingSpeed;
+            }
+        } else if(currentChagingState.Equals(ChargingStates.coolingDown)) {
+            // TODO verify if we should enable here that the enemy can still slide forward from the movement or not (without this state was possible)
+            if (isFinishedCoolingDown())
+            {
+                currentChagingState = ChargingStates.notCharging;
+                waitedTime = 0f;
+            }
+        }
+        else
+        {
+            // only start charging once we are close to the player and see the player
+            Vector3 directionToPlayer = CalculateDirectionToPlayer();
+
+            if (
+                currentChagingState.Equals(ChargingStates.preparingToCharge) ||
+                (CalculateDistanceToPlayer() < enemyConfig.playerChargingDistance &&
+                (
+                    !Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, enemyConfig.playerDistanceRecognition) ||
+                    hit.transform == player.transform
+                ))
+            )
+            {
+                if (isFinishedCharging())
+                {
+                    // Charge once we are close to the player
+                    navMeshAgent.enabled = true;
+                    Debug.Log("Charging to player's last position");
+                    navMeshAgent.speed = enemyConfig.chargingSpeed;
+                    navMeshAgent.acceleration = enemyConfig.chargingAcceleration;
+                    currentChagingState = ChargingStates.charging;
+                    navMeshAgent.SetDestination(player.transform.position);
+                    waitedTime = 0f;
+                } else {
+                    currentChagingState = ChargingStates.preparingToCharge;
+                    navMeshAgent.enabled = false;
+                    turnTowardsPLayer(CalculateDirectionToPlayer(), navMeshAgent.angularSpeed);
+                }
+            }
+        }
+    }
+
+    bool isFinishedCharging()
+    {
+        waitedTime += Time.deltaTime;
+        return waitedTime > enemyConfig.playerChargingPreparationSeconds;
+    }
+
+    bool isFinishedCoolingDown()
+    {
+        waitedTime += Time.deltaTime;
+        return waitedTime > enemyConfig.playerChargingCooldownSeconds;
     }
 
     public void StationaryShootingToPlayerBehavior()
     {
-        // Implement StationaryShootingToPlayer behavior here
-        Debug.Log("Stationary shooting to player");
-        //TODO: Implement StationaryShootingToPlayer behavior
+        if (CalculateDistanceToPlayer() < enemyConfig.playerDistanceRecognition)
+        {
+            Vector3 directionToPlayer = CalculateDirectionToPlayer();
+
+            // only rotate if the player is not in sight
+            if (!Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, enemyConfig.playerDistanceRecognition) || hit.transform == player.transform)
+            {
+                turnTowardsPLayer(directionToPlayer, enemyConfig.stationaryRotationSpeed);
+            }
+        }
+    }
+
+    void turnTowardsPLayer(Vector3 directionToPlayer, float rotationSpeed)
+    {
+        Quaternion rotation = Quaternion.LookRotation(directionToPlayer);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, enemyConfig.stationaryRotationSpeed * Time.deltaTime);
+        Debug.Log("Rotating towards player");
+    }
+
+    float CalculateDistanceToPlayer()
+    {
+        return CalculateDistanceToLocation(player.transform.position);
+    }
+
+    float CalculateDistanceToLocation(Vector3 location)
+    {
+        return Vector3.Distance(transform.position, location);
+    }
+
+    Vector3 CalculateDirectionToPlayer()
+    {
+        Vector3 direction = player.transform.position - transform.position;
+        direction.y = 0;
+        return direction;
     }
 
     public void ApplyKnockback(Vector3 knockback)
@@ -127,4 +217,12 @@ public class EnemyController : MonoBehaviour
     }
 
 
+}
+
+public enum ChargingStates
+{
+    notCharging,
+    preparingToCharge,
+    charging,
+    coolingDown
 }
