@@ -16,7 +16,10 @@ MonoBehaviour:
   walkingSpeed: 2.6129897
   stationaryRotationSpeed: 0
   chargingSpeed: 15
+  chargingAcceleration: 5
   playerChargingDistance: 0
+  playerChargingPreparationSeconds: 0
+  playerChargingCooldownSeconds: 0
   playerDistanceRecognition: 0
   healthPoints: 0
   enemyBehaviour: 0

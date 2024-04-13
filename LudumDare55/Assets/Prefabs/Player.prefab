@@ -149,6 +149,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87566aceb44c69445a5c660a7ed28b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _movementSpeed: 7
+  _dashingPower: 15
+  _dashingTime: 0.3
+  _dashingCooldown: 1
 --- !u!114 &5953332601603695480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,9 +180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDash: 1
-  dashingPower: 15
-  dashingTime: 0.3
-  dashingCooldown: 1
 --- !u!114 &149116090736456346
 MonoBehaviour:
   m_ObjectHideFlags: 0

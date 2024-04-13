@@ -7,8 +7,6 @@ public class BasicMovement : MonoBehaviour
 {
     public Vector3 ForceToApply { get => forceToApply; set => forceToApply = value; }
 
-    private PlayerStatManager statManager = null;
-
     protected Rigidbody rb = null; // Rigidbody component through which we apply force
     private bool canMove = true; // Flag to check if the player can move
 
@@ -26,7 +24,6 @@ public class BasicMovement : MonoBehaviour
         {
             Debug.Log("No Rigidbody component found on " + this.gameObject.name);
         }
-        statManager = PlayerStatManager.instance;
     }
 
     /// <summary>
@@ -35,12 +32,12 @@ public class BasicMovement : MonoBehaviour
     /// <param name="movementVector"></param>
     protected void Move(Vector3 movementVector)
     {
-        if (!canMove || rb == null || statManager == null)
+        if (!canMove || rb == null || PlayerStatManager.Instance == null)
         {
             return;
         }
 
-        Vector3 moveForce = movementVector.normalized * statManager.MovementSpeed;
+        Vector3 moveForce = movementVector.normalized * PlayerStatManager.Instance.MovementSpeed;
 
         if (useForceToApply)
             moveForce += forceToApply;

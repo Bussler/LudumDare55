@@ -24,9 +24,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Fire rate: " + enemyConfig.fireRate);
-        Debug.Log("Walking speed: " + enemyConfig.walkingSpeed);
-        Debug.Log("Health points: " + enemyConfig.healthPoints);
+        Initialize();
         player = GameObject.FindWithTag("Player");
         if (navMeshAgent.enabled)
         {
@@ -46,6 +44,11 @@ public class EnemyController : MonoBehaviour
         navMeshAgent.speed = enemyConfig.walkingSpeed;
     }
 
+    public void Initialize()
+    {
+        enemyConfig.healthPoints = 100;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -63,6 +66,12 @@ public class EnemyController : MonoBehaviour
         enemyConfig.healthPoints -= 1;
         
         navMeshAgent.SetDestination(player.transform.position);
+    }
+
+    public void Die()
+    {
+        ObjectPoolManager.Instance.DespawnObject(this.gameObject);
+        EnemySpawner.Instance.OnEnemyDied();
     }
 
     void OnCollisionEnter(Collision collision)

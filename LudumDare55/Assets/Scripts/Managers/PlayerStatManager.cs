@@ -5,8 +5,13 @@ using UnityEngine;
 public class PlayerStatManager : MonoBehaviour
 {
 
-    public static PlayerStatManager instance;
+    public static PlayerStatManager Instance;
 
+    private bool _isTargetable = true;
+    public bool IsTargetable { get => _isTargetable; set => _isTargetable = value; }
+
+    [Header("Health")]
+    [SerializeField]
     private int _maxHealth;
     public int MaxHealth
     {
@@ -14,14 +19,23 @@ public class PlayerStatManager : MonoBehaviour
         set => _maxHealth = value;
     }
 
-
     private int _currentHealth;
     public int CurrentHealth
     {
         get => _currentHealth;
-        set => _currentHealth = value;
+        set
+        {
+            if (value <= 0)
+                _currentHealth = 0;
+            else if (value >= _maxHealth)
+                _currentHealth = _maxHealth;
+            else
+                _currentHealth = value;
+        }
     }
 
+    [Header("Movement")]
+    [SerializeField]
     private float _movementSpeed;
     public float MovementSpeed
     {
@@ -29,26 +43,45 @@ public class PlayerStatManager : MonoBehaviour
         set => _movementSpeed = value;
     }
 
+    [SerializeField]
+    private int _dashingPower = 15; // Speed at which the player dashes
+    public int DashingPower { get => _dashingPower; set => _dashingPower = value; }
+
+    [SerializeField]
+    private float _dashingTime = 0.3f; // How long the player dashes
+    public float DashingTime { get => _dashingTime; set => _dashingTime = value; }
+
+    [SerializeField]
+    private float _dashingCooldown = 1.0f; // Cooldown between dashes
+    public float DashingCooldown { get => _dashingCooldown; set => _dashingCooldown = value; }
+
     // Start is called before the first frame update
     void Awake()
     {
-        if(instance== null)
+        if(Instance == null)
         {
-            instance = this;
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
         }
 
-        CurrentHealth = MaxHealth;
+        Initilize();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Initilize()
     {
-        
+        CurrentHealth = MaxHealth;
     }
 
     public void TakeDamage(int amount)
     {
-        CurrentHealth = Mathf.Max(CurrentHealth-amount, 0);
+        if (!IsTargetable)
+        {
+            return;
+        }
+        CurrentHealth -= amount;
 
         if(CurrentHealth <= 0)
         {
@@ -69,6 +102,7 @@ public class PlayerStatManager : MonoBehaviour
     public void Die()
     {
         Debug.Log("YOU DED");
+        ProgressionManager.Instance.EndGame();
     }
 
 

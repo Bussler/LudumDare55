@@ -115,7 +115,7 @@ public class Gun : ScriptableObject
 
         return newGun;
 
-}
+    }
 
 
 
