@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -63,6 +64,21 @@ public class ProgressionManager : MonoBehaviour
     public bool CheckStoryFlag(StoryFlags flag)
     {
         return (storyFlags & flag) == flag;
+    }
+
+    /// <summary>
+    /// Check if all flags are set in the progression.
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckAllStoryFlags()
+    {
+        StoryFlags allFlags = StoryFlags.None;
+        foreach (StoryFlags value in Enum.GetValues(typeof(StoryFlags)))
+        {
+            allFlags |= value;
+        }
+
+        return (storyFlags & allFlags) == allFlags;
     }
 
 }
