@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 279c37d2aeeccbb4c84f340897d83b43, type: 3}
-  m_Name: ChargingEnemy
+  m_Name: ShootingEnemy
   m_EditorClassIdentifier: 
-  walkingSpeed: 3.22
-  stationaryRotationSpeed: 2.41
-  chargingSpeed: 21.55
-  chargingAcceleration: 13.66
-  playerChargingDistance: 22.1
-  playerChargingPreparationSeconds: 4.58
-  playerChargingCooldownSeconds: 3.06
+  walkingSpeed: 2.6129897
+  stationaryRotationSpeed: 4.06
+  chargingSpeed: 15
+  chargingAcceleration: 5
+  playerChargingDistance: 0
+  playerChargingPreparationSeconds: 0
+  playerChargingCooldownSeconds: 0
   playerDistanceRecognition: 0
-  playerDistanceToKeepForShooting: 7
-  playerDistanceToStartShooting: 5
-  healthPoints: 0
-  enemyBehaviour: 2
+  playerDistanceToKeepForShooting: 13.59
+  playerDistanceToStartShooting: 16.3
+  healthPoints: -12754
+  enemyBehaviour: 1

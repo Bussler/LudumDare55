@@ -12,8 +12,6 @@ public enum EnemyBehaviour
 [CreateAssetMenu(fileName = "EnemyConfiguration", menuName = "ScriptableObjects/EnemyConfiguration", order = 1)]
 public class EnemyConfiguration : ScriptableObject
 {
-    [Range(0, 100)]
-    public int fireRate;
 
     [Range(0, 5)]
     public float walkingSpeed;
@@ -42,6 +40,12 @@ public class EnemyConfiguration : ScriptableObject
     // When the enemy is this close and sees the player, it will start shooting
     [Range(0, 20)]
     public float playerDistanceRecognition;
+
+    [Range(7, 20)]
+    public float playerDistanceToKeepForShooting;
+
+    [Range(5, 20)]
+    public float playerDistanceToStartShooting;
 
     [Range(0, 100)]
     public int healthPoints;

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Projectile : MonoBehaviour
 {
@@ -12,6 +9,8 @@ public class Projectile : MonoBehaviour
     private float _knockBack;
     private int  _health;
 
+    [SerializeField]
+    private string destinationCollisionTag = "Enemy";
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +49,7 @@ public class Projectile : MonoBehaviour
 
     public void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" && destinationCollisionTag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyController>().ApplyKnockback(_knockBack * transform.forward);
 
@@ -59,6 +58,11 @@ public class Projectile : MonoBehaviour
             {
                 DestroyProjectile();
             }
+        } else if (collision.gameObject.tag == "Player" && destinationCollisionTag == "Player")
+        {
+            //collision.gameObject.GetComponent<PlayerStatManager>().ApplyKnockback(_knockBack * transform.forward);
+            collision.gameObject.GetComponent<PlayerStatManager>().TakeDamage(_damage);
+            DestroyProjectile();
         }
     }
 
@@ -70,4 +74,8 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void SetCollisionTag(string tag)
+    {
+        destinationCollisionTag = tag;
+    }
 }
