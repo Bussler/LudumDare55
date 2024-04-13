@@ -17,10 +17,11 @@ MonoBehaviour:
   FireRate: 5
   Accuracy: 97.4
   TimeLimit: 2
-  Range: 5
+  Range: 50
   BulletAmount: 1
   BulletSpeed: 20
-  BulletSize: 1
-  BulletKnockback: 0.5
+  BulletSize: 0.1
+  BulletKnockback: 10
+  BulletHealth: 3
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
-  Effects: 00000000
+  Effects: 

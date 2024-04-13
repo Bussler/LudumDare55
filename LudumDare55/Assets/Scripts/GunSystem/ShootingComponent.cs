@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class ShootingComponent : MonoBehaviour
 {
 
-    private PlayerStatManager statManager = PlayerStatManager.instance;
+    private PlayerStatManager  _statManager;
 
     public List<Gun> gunTemplates;
 
@@ -48,7 +48,11 @@ public class ShootingComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EquipGun();
+        List<Gun.GunEffect> list= new List<Gun.GunEffect>();
+        Gun.GunEffect g = Gun.GunEffect.lifegive;
+        list.Add(g);
+        EquipGun(list);
+        _statManager = PlayerStatManager.instance;
     }
 
     // Update is called once per frame
@@ -64,9 +68,9 @@ public class ShootingComponent : MonoBehaviour
         }
 
         _shootDir = ShootTargetPos - player.transform.position;
-        Vector3 lookDir = _shootDir;
-        lookDir.y = 0;
-        this.transform.forward = lookDir;
+        _shootDir.y=0;
+        
+        this.transform.forward = _shootDir;
     }
 
 
@@ -79,10 +83,9 @@ public class ShootingComponent : MonoBehaviour
     private void OnShootingCanceled(InputAction.CallbackContext context)
     {
         _isShooting = false;
-      //  CancelInvoke();
     }
 
-    public void EquipGun(IEnumerator<Gun.GunEffect> effects = null)
+    public void EquipGun(IEnumerable<Gun.GunEffect> effects = null)
     {
         GenerateNewGun(effects);
         Invoke("DequipGun", currentGun.TimeLimit);
@@ -91,38 +94,64 @@ public class ShootingComponent : MonoBehaviour
     public void DequipGun()
     {
         currentGun = null;
-        EquipGun(); //TODO remove
+        List<Gun.GunEffect> list = new List<Gun.GunEffect>();
+        Gun.GunEffect g = Gun.GunEffect.lifegive;
+        list.Add(g);
+        EquipGun(list); //TODO remove
     }
 
-    private void GenerateNewGun(IEnumerator<Gun.GunEffect> effects= null)
+    private void GenerateNewGun(IEnumerable<Gun.GunEffect> effects= null)
     {
-        currentGun = gunTemplates[Random.Range(0,gunTemplates.Count)];
+        currentGun = gunTemplates[Random.Range(0,gunTemplates.Count)].CopyThis();
 
         while(currentGun.type == lastGunType)
         {
-            currentGun = gunTemplates[Random.Range(0, gunTemplates.Count)];
+            currentGun = gunTemplates[Random.Range(0, gunTemplates.Count)].CopyThis();
         }
-
+        currentGun.ApplyEffects(effects);
+        
         lastGunType = currentGun.type;
     }
 
     private void Shoot()
     {
         int bulletAmt = currentGun.BulletAmount;
-        if(currentGun != null&&_isShooting){
+        if(currentGun != null&&_isShooting&&_canShoot){
             for (int i = 0; i < bulletAmt; i++)
             {
+                _canShoot = false;
                 GameObject p = Instantiate(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity);
-                p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.BulletKnockback, currentGun.Range, currentGun.BulletSize);
+                p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.BulletKnockback, currentGun.Range, currentGun.BulletSize,currentGun.BulletHealth);
                 p.transform.forward = _shootDir;
                 float acc = (100 - currentGun.Accuracy) / 2;
                 p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
+
+
+                //Apply effects 
+                foreach (Gun.GunEffect effect in currentGun.Effects) 
+                { 
+                    if(effect == Gun.GunEffect.lifesteal)
+                    {
+                        _statManager.Heal(GunEffectConfig.LifeStealPerEffect);
+                    }
+                    if (effect == Gun.GunEffect.lifegive)
+                    {
+                        _statManager.TakeDamage(GunEffectConfig.LifeGivePerEffect);
+                    }
+
+                }
+                Invoke("SetCanShoot",1/currentGun.FireRate);
             }
             if (_isShooting)
             {
                 Invoke("Shoot", 1 / currentGun.FireRate);
             }
         }
+    }
+
+    public void SetCanShoot()
+    {
+        _canShoot = true;
     }
 
 }

@@ -10,12 +10,13 @@ public class Projectile : MonoBehaviour
     private int _damage;
     private float _range;
     private float _knockBack;
+    private int  _health;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.transform.localScale.Set(_size, _size, _size);
     }
 
     // Update is called once per frame
@@ -25,12 +26,14 @@ public class Projectile : MonoBehaviour
     }
 
 
-    public void InitProjectile(int damage, float speed,float knockback, float range, float size)
+    public void InitProjectile(int damage, float speed,float knockback, float range, float size, int health =1)
     {
         _damage = damage;
         _speed = speed;
         _range = range;
         _size = size;
+        _health = health;
+        _knockBack = knockback;
     }
 
     public void MoveForward()
@@ -45,11 +48,17 @@ public class Projectile : MonoBehaviour
     }
 
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyController>().ApplyKnockback(_knockBack * transform.TransformDirection(transform.forward));
+            collision.gameObject.GetComponent<EnemyController>().ApplyKnockback(_knockBack * transform.forward);
+
+            _health--;
+            if (_health <= 0)
+            {
+                DestroyProjectile();
+            }
         }
     }
 
