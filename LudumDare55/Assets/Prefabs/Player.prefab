@@ -195,6 +195,7 @@ MonoBehaviour:
   gunTemplates:
   - {fileID: 11400000, guid: e3991a550a39c3a44be5af0b4233e62b, type: 2}
   - {fileID: 11400000, guid: a328da35b73848d4aa9fd0536288241b, type: 2}
+  - {fileID: 11400000, guid: 8d1aba8d361e3eb4088631b68956365f, type: 2}
   currentGun: {fileID: 0}
   ShootingStartPoint: {fileID: 8159753034501066789}
   player: {fileID: 8641840486735640069}

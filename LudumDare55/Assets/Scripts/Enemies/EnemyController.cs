@@ -26,7 +26,6 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         Initialize();
-        Debug.Log("Health points: " + enemyConfig.healthPoints);
         player = GameObject.FindWithTag("Player");
         if (navMeshAgent.enabled)
         {
@@ -62,31 +61,36 @@ public class EnemyController : MonoBehaviour
             navMeshAgent.SetDestination(player.transform.position);
         }
 
-        else if (enemyConfig.healthPoints <= 0)
+        else if (enemyConfig.healthPoints <= 0) // TODO: Do we really need this check here?
         {
-            // Debug.Log("Enemy is dead");
+            Die();
         }
-        enemyConfig.healthPoints -= 1;
     }
 
-    public void Die()
+    private void Die()
     {
         ObjectPoolManager.Instance.DespawnObject(this.gameObject);
         EnemySpawner.Instance.OnEnemyDied();
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void TakeDamage(int damage)
     {
-        // Check if the enemy has collided with a player's bullet
-        if (collision.gameObject.tag == "PlayerBullet")
+        Debug.Log("Enemy took damage: " + damage);
+        enemyConfig.healthPoints -= damage;
+        if (enemyConfig.healthPoints <= 0)
         {
-            // Reduce the enemy's health
-            //enemyConfig.healthPoints -= collision.gameObject.GetComponent<Bullet>().damage;
+            Die();
+        }
+    }
 
-            // If the enemy's health is 0 or less, destroy the enemy
-            if (enemyConfig.healthPoints <= 0)
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if(PlayerStatManager.Instance != null)
             {
-                Destroy(gameObject);
+                PlayerStatManager.Instance.TakeDamage(enemyConfig.collisionDamage);
+                Die();
             }
         }
     }
@@ -235,7 +239,7 @@ public class EnemyController : MonoBehaviour
     {
         Quaternion rotation = Quaternion.LookRotation(directionToPlayer);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
-        Debug.Log("Rotating towards player");
+        //Debug.Log("Rotating towards player");
     }
 
     float CalculateDistanceToPlayer()

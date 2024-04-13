@@ -9,9 +9,6 @@ public class Projectile : MonoBehaviour
     private float _knockBack;
     private int  _health;
 
-    [SerializeField]
-    private string destinationCollisionTag = "Enemy";
-
     // Start is called before the first frame update
     void Start()
     {
@@ -46,36 +43,56 @@ public class Projectile : MonoBehaviour
         }
     }
 
-
-    public void OnTriggerEnter(Collider collision)
+    public void TakeDamage(int damage)
     {
-        if (collision.gameObject.tag == "Enemy" && destinationCollisionTag == "Enemy")
+        _health-= damage;
+        if (_health <= 0)
         {
-            collision.gameObject.GetComponent<EnemyController>().ApplyKnockback(_knockBack * transform.forward);
+            DestroyProjectile();
+        }
+    }
 
-            _health--;
-            if (_health <= 0)
-            {
-                DestroyProjectile();
-            }
-        } else if (collision.gameObject.tag == "Player" && destinationCollisionTag == "Player")
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Wall")
         {
-            //collision.gameObject.GetComponent<PlayerStatManager>().ApplyKnockback(_knockBack * transform.forward);
-            collision.gameObject.GetComponent<PlayerStatManager>().TakeDamage(_damage);
+            DestroyProjectile();
+        }
+
+        if (collision.gameObject.tag == "Projectile")
+        {
+            TakeDamage(1);
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(_damage);
+                // TODO Knockback on enemies can knock them off the navmesh
+                //enemy.ApplyKnockback(_knockBack * transform.forward);
+            }
+
+            TakeDamage(1);
+        } 
+        else if (collision.gameObject.tag == "Player")
+        {
+            if (PlayerStatManager.Instance != null)
+            {
+                PlayerStatManager.Instance.TakeDamage(_damage);
+                BasicMovement player_movement = collision.gameObject.GetComponent<BasicMovement>();
+                if (player_movement != null)
+                    player_movement.ForceToApply = _knockBack * transform.forward;
+            }
             DestroyProjectile();
         }
     }
 
     private void DestroyProjectile()
     {
-        //TODO
-        //Destroy?
-        //Fall off?
-        Destroy(gameObject);
-    }
-
-    public void SetCollisionTag(string tag)
-    {
-        destinationCollisionTag = tag;
+        // TODO Fall off?
+        ObjectPoolManager.Instance.DespawnObject(this.gameObject);
     }
 }

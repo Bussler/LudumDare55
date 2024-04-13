@@ -47,6 +47,10 @@ public class EnemyConfiguration : ScriptableObject
     [Range(5, 20)]
     public float playerDistanceToStartShooting;
 
+
+    [Range(0, 100)]
+    public int collisionDamage;
+
     [Range(0, 100)]
     public int healthPoints;
 

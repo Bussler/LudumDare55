@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   type: 3
-  Damage: 0
+  Damage: 30
   FireRate: 2
   Accuracy: 83.6
   TimeLimit: 2
@@ -22,6 +22,6 @@ MonoBehaviour:
   BulletSpeed: 20
   BulletSize: 0.1
   BulletKnockback: 10
-  BulletHealth: 3
+  BulletHealth: 1
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: 

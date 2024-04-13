@@ -121,9 +121,9 @@ public class ShootingComponent : MonoBehaviour
             {
                 _canShoot = false;
 
-                //GameObject p = Instantiate(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity);
-                GameObject p = ObjectPoolManager.Instance.SpawnObject(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.EnemyBullet);
+                GameObject p = ObjectPoolManager.Instance.SpawnObject(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Bullet);
                 p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.BulletKnockback, currentGun.Range, currentGun.BulletSize,currentGun.BulletHealth);
+                p.layer = LayerMask.NameToLayer("PlayerProjectile");
                 p.transform.forward = _shootDir;
                 float acc = (100 - currentGun.Accuracy) / 2;
                 p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));

@@ -137,12 +137,18 @@ public class ObjectPoolManager : MonoBehaviour
     /// <param name="objectToDespawn"></param>
     public void DespawnObject(GameObject objectToDespawn)
     {
+        if (objectToDespawn.name.Length <= 7)
+        {
+            Debug.Log("Object was not spawned with ObjectPoolManager " + objectToDespawn.name);
+            return;
+        }
+
         string goName = objectToDespawn.name.Substring(0, objectToDespawn.name.Length - 7); // remove "(Clone)" from the name
         PooledObject currentPool = ObjectPools.Find(pool => pool.name == goName);
 
         if (currentPool == null)
         {
-            Debug.LogError("Object pool not found for " + objectToDespawn.name);
+            Debug.Log("Object pool not found for " + objectToDespawn.name);
             return;
         }
 

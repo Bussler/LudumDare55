@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 89056165}
   m_Layer: 0
   m_Name: Walls (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 96800615}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -479,6 +479,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stationary Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 160984804706276348, guid: b237df4284ba13e4282a27d9eaefe1ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4203996576459595303, guid: b237df4284ba13e4282a27d9eaefe1ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.08
@@ -538,7 +542,7 @@ GameObject:
   - component: {fileID: 499111441}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -643,7 +647,7 @@ GameObject:
   - component: {fileID: 583457118}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -900,6 +904,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 9075474562275055246, guid: 0ca784cedc365ae44b0659311f4c7f22, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1039,7 +1047,7 @@ GameObject:
   - component: {fileID: 1711112749}
   m_Layer: 0
   m_Name: Walls (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1144,7 +1152,7 @@ GameObject:
   - component: {fileID: 1713528520}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1287,6 +1295,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shooting Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2951005199357228338, guid: 20e0e3873969e3a4ca1e88b8f0aaa9fb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1300,14 +1312,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 149116090736456346, guid: 2aeb1a2242ea07a4fa7b19ac614f0e50, type: 3}
-      propertyPath: gunTemplates.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 149116090736456346, guid: 2aeb1a2242ea07a4fa7b19ac614f0e50, type: 3}
-      propertyPath: gunTemplates.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 8d1aba8d361e3eb4088631b68956365f, type: 2}
     - target: {fileID: 8159753034501066789, guid: 2aeb1a2242ea07a4fa7b19ac614f0e50, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.96
@@ -1371,7 +1375,7 @@ GameObject:
   - component: {fileID: 1910881267}
   m_Layer: 0
   m_Name: Walls (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1581,7 +1585,7 @@ GameObject:
   - component: {fileID: 2038643205}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
