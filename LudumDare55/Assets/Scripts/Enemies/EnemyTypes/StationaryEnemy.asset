@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StationaryEnemy
   m_EditorClassIdentifier: 
   walkingSpeed: 0
-  stationaryRotationSpeed: 0
+  stationaryRotationSpeed: 3.36
   chargingSpeed: 15
   chargingAcceleration: 5
   playerChargingDistance: 0
@@ -22,5 +22,5 @@ MonoBehaviour:
   playerDistanceRecognition: 10
   playerDistanceToKeepForShooting: 7
   playerDistanceToStartShooting: 5
-  healthPoints: 0
+  healthPoints: -5819
   enemyBehaviour: 3
