@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sniper
   m_EditorClassIdentifier: 
   type: 2
-  Damage: 0
+  Damage: 80
   FireRate: 1
   Accuracy: 100
   TimeLimit: 3
@@ -22,6 +22,6 @@ MonoBehaviour:
   BulletSpeed: 30
   BulletSize: 0.1
   BulletKnockback: 10
-  BulletHealth: 4
+  BulletHealth: 2
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: 

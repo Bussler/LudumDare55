@@ -9,15 +9,16 @@ public class EnemyShootingComponent : MonoBehaviour
     public Gun equippedGun;
 
     public Transform ShootingStartPoint;
-    private Projectile _projectile;
+    private Projectile _projectile; // TODO do we need this gloabally?
     private bool _canShoot = true;
 
     // Start is called before the first frame update
     void Start()
     {
         GenerateNewGun();
-        _projectile = equippedGun.Projectile.GetComponent<Projectile>();
-        _projectile.SetCollisionTag("Player");
+        //_projectile = equippedGun.Projectile.GetComponent<Projectile>();
+        //if (_projectile != null)
+        //    _projectile.SetCollisionTag("Player");
     }
 
     private void GenerateNewGun(IEnumerable<Gun.GunEffect> effects = null)
@@ -33,8 +34,9 @@ public class EnemyShootingComponent : MonoBehaviour
             for (int i = 0; i < bulletAmt; i++)
             {
                 _canShoot = false;
-                GameObject p = Instantiate(equippedGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity);
+                GameObject p = ObjectPoolManager.Instance.SpawnObject(equippedGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.EnemyBullet);
                 p.GetComponent<Projectile>().InitProjectile(equippedGun.Damage, equippedGun.BulletSpeed, equippedGun.BulletKnockback, equippedGun.Range, equippedGun.BulletSize, equippedGun.BulletHealth);
+                p.layer = LayerMask.NameToLayer("EnemyProjectile");
                 p.transform.forward = transform.forward;
                 float acc = (100 - equippedGun.Accuracy) / 2;
                 p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
