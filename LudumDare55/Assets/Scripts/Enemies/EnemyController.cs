@@ -36,6 +36,8 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Enemy is dead");
         }
         enemyConfig.healthPoints -= 1;
+        navMeshAgent.SetDestination(player.transform.position);
+        Debug.Log("Player position" + player.transform.position);
     }
 
     void OnCollisionEnter(Collision collision)
