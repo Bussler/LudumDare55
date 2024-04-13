@@ -87,7 +87,8 @@ public class ProgressionManager : MonoBehaviour
     /// </summary>
     public void EndGame()
     {
-        LootLockerPlayermanager.Instance.UploadScore(); 
+        if (LootLockerPlayermanager.Instance != null)
+            LootLockerPlayermanager.Instance.UploadScore(); 
         // TODO do more stuff when game ends
     }
 }

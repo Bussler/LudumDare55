@@ -19,7 +19,6 @@ public class PlayerStatManager : MonoBehaviour
         set => _maxHealth = value;
     }
 
-    [SerializeField]
     private int _currentHealth;
     public int CurrentHealth
     {
