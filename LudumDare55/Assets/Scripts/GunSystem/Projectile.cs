@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Projectile : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Projectile : MonoBehaviour
     private float _speed;
     private int _damage;
     private float _range;
+    private float _knockBack;
 
 
     // Start is called before the first frame update
@@ -23,7 +25,7 @@ public class Projectile : MonoBehaviour
     }
 
 
-    public void InitProjectile(int damage, float speed, float range, float size)
+    public void InitProjectile(int damage, float speed,float knockback, float range, float size)
     {
         _damage = damage;
         _speed = speed;
@@ -39,6 +41,15 @@ public class Projectile : MonoBehaviour
         if( _range <= 0)
         {
             DestroyProjectile();
+        }
+    }
+
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EnemyController>().ApplyKnockback(_knockBack * transform.TransformDirection(transform.forward));
         }
     }
 

@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 7676590873468136718}
   - component: {fileID: 5953332601603695480}
   - component: {fileID: 9001523561072851922}
-  m_Layer: 6
+  - component: {fileID: 149116090736456346}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -148,11 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87566aceb44c69445a5c660a7ed28b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _movementSpeed: 7
-  _dashingPower: 15
-  _dashingTime: 0.3
-  _dashingCooldown: 1
 --- !u!114 &5953332601603695480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,3 +175,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDash: 1
+  dashingPower: 15
+  dashingTime: 0.3
+  dashingCooldown: 1
+--- !u!114 &149116090736456346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641840486735640069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2dd96113246825419d03d4fb13908ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunTemplates:
+  - {fileID: 11400000, guid: e3991a550a39c3a44be5af0b4233e62b, type: 2}
+  - {fileID: 11400000, guid: a328da35b73848d4aa9fd0536288241b, type: 2}
+  currentGun: {fileID: 0}
+  ShootingStartPoint: {fileID: 8159753034501066789}
+  player: {fileID: 8641840486735640069}

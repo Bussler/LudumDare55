@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+
 /// <summary>
 /// Script that enables dashing with an IEnumerator that sets a rigidbody velocity for dashingTime.
 /// </summary>
@@ -11,7 +9,15 @@ public class Dash : MonoBehaviour
     public bool canDash = true;
     private Rigidbody rb = null;
 
-    private PlayerStatManager statManager = null;
+    // TODO: search for statmanager here
+    [SerializeField]
+    private int dashingPower = 15; // Speed at which the player dashes
+
+    [SerializeField]
+    private float dashingTime = 0.3f; // How long the player dashes
+
+    [SerializeField]
+    private float dashingCooldown = 1.0f; // Cooldown between dashes
 
     private bool _isDashing;
     public delegate void IsDashingChangedHandler(bool _isDashing);
@@ -37,7 +43,6 @@ public class Dash : MonoBehaviour
         {
             Debug.Log("No Rigidbody component found on " + this.gameObject.name);
         }
-        statManager = PlayerStatManager.instance;
     }
 
     /// <summary>
@@ -45,9 +50,9 @@ public class Dash : MonoBehaviour
     /// </summary>
     private void setUntargetable()
     {
-        if (this.gameObject.tag == "Player")
+        if (this.gameObject.tag == "Player") // TODO: change this to a better solution; should enemies also be untargetable?
         {
-            statManager.IsTargetable = !statManager.IsTargetable;
+            // TODO set untatgetable, e.g. in player stat manager
         }
     }
 
@@ -58,7 +63,7 @@ public class Dash : MonoBehaviour
     /// <returns></returns>
     public IEnumerator DoDash(Vector3 direction)
     {
-        if (!canDash || rb == null || statManager == null)
+        if (!canDash || rb == null)
         {
             yield break;
         }
@@ -67,11 +72,11 @@ public class Dash : MonoBehaviour
         isDashing = true;
         setUntargetable();
 
-        rb.velocity = direction.normalized * statManager.DashingPower;
-        yield return new WaitForSeconds(statManager.DashingTime);
+        rb.velocity = direction.normalized * dashingPower;
+        yield return new WaitForSeconds(dashingTime);
         setUntargetable();
         isDashing = false;
-        yield return new WaitForSeconds(statManager.DashingCooldown);
+        yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
 }

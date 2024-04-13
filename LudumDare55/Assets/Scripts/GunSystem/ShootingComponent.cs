@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ShootingComponent : MonoBehaviour
 {
 
-    private PlayerStatManager statManager;
+    private PlayerStatManager statManager = PlayerStatManager.instance;
+
+    public List<Gun> gunTemplates;
 
     public Gun currentGun;
 
@@ -20,6 +23,8 @@ public class ShootingComponent : MonoBehaviour
     private bool _canShoot = true;
 
     private bool _isShooting = false;
+
+    private Gun.GunType lastGunType;
 
     private void Awake()
     {
@@ -43,7 +48,7 @@ public class ShootingComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        statManager = PlayerStatManager.instance;
+        EquipGun();
     }
 
     // Update is called once per frame
@@ -59,6 +64,9 @@ public class ShootingComponent : MonoBehaviour
         }
 
         _shootDir = ShootTargetPos - player.transform.position;
+        Vector3 lookDir = _shootDir;
+        lookDir.y = 0;
+        this.transform.forward = lookDir;
     }
 
 
@@ -71,24 +79,49 @@ public class ShootingComponent : MonoBehaviour
     private void OnShootingCanceled(InputAction.CallbackContext context)
     {
         _isShooting = false;
-        CancelInvoke();
+      //  CancelInvoke();
+    }
+
+    public void EquipGun(IEnumerator<Gun.GunEffect> effects = null)
+    {
+        GenerateNewGun(effects);
+        Invoke("DequipGun", currentGun.TimeLimit);
+    }
+
+    public void DequipGun()
+    {
+        currentGun = null;
+        EquipGun(); //TODO remove
+    }
+
+    private void GenerateNewGun(IEnumerator<Gun.GunEffect> effects= null)
+    {
+        currentGun = gunTemplates[Random.Range(0,gunTemplates.Count)];
+
+        while(currentGun.type == lastGunType)
+        {
+            currentGun = gunTemplates[Random.Range(0, gunTemplates.Count)];
+        }
+
+        lastGunType = currentGun.type;
     }
 
     private void Shoot()
     {
         int bulletAmt = currentGun.BulletAmount;
-
-        for (int i = 0; i < bulletAmt; i++)
-        {
-            GameObject p = Instantiate(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity);
-            p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.Range, currentGun.BulletSize);
-            p.transform.forward = _shootDir;
-            float acc = (100 - currentGun.Accuracy) / 2;
-            p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
-        }
-        if (_isShooting)
-        {
-            Invoke("Shoot", 1 / currentGun.FireRate);
+        if(currentGun != null&&_isShooting){
+            for (int i = 0; i < bulletAmt; i++)
+            {
+                GameObject p = Instantiate(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity);
+                p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.BulletKnockback, currentGun.Range, currentGun.BulletSize);
+                p.transform.forward = _shootDir;
+                float acc = (100 - currentGun.Accuracy) / 2;
+                p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
+            }
+            if (_isShooting)
+            {
+                Invoke("Shoot", 1 / currentGun.FireRate);
+            }
         }
     }
 

@@ -5,6 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GunType", menuName = "GunType/Gun", order = 1)]
 public class Gun : ScriptableObject
 {
+    public enum GunType
+    {
+        pistol,
+        assaultRifle,
+        sniper,
+        shotgun,
+        gatlingGun,
+        rocketLauncher,
+        flameThrower,
+        lazerGun
+    }
+
+    public GunType type;   
 
     public int Damage;
 
@@ -23,24 +36,32 @@ public class Gun : ScriptableObject
 
     public float BulletSize;
 
+    public float BulletKnockback;
+
 
     public GameObject Projectile;
 
 
-    public enum GunEffects
+
+
+    public enum GunEffect
     {
         piercing,
         lifesteal,
         slowness,
         lifegive,
         extraDamage,
-        extraFireRate
+        extraFireRate,
+        extraRange,
+
     }
 
-    public List<GunEffects> Effects;
+    public List<GunEffect> Effects;
 
-    private void GenerateGun(List<GunEffects> Effects)
+    public void ApplyEffects(IEnumerable<GunEffect> effects=null)
     {
+
+
 
     }
 
