@@ -8,6 +8,10 @@ using UnityEngine;
 /// </summary>
 public class BasicMovement : MonoBehaviour
 {
+    public Vector3 ForceToApply { get => forceToApply; set => forceToApply = value; }
+    public bool UseForceToApply { get => useForceToApply; set => useForceToApply = value; }
+    public bool CanMove { get => canMove; set => canMove = value; }
+
     // TODO maybe put stat manager here?
     [SerializeField]
     private int moveSpeed = 12; // Speed at which the player moves
@@ -16,7 +20,7 @@ public class BasicMovement : MonoBehaviour
     private bool canMove = true; // Flag to check if the player can move
 
     // Knockback variables
-    public Vector3 forceToApply = Vector3.zero; // used for knockback if a projectile hits the player
+    private Vector3 forceToApply = Vector3.zero; // used for knockback if a projectile hits the player
     [SerializeField]
     private float forceDamping = 1.2f; // damping factor for knockback
     private bool useForceToApply = true; // flag to check if we should get knocked back
@@ -52,14 +56,6 @@ public class BasicMovement : MonoBehaviour
         rb.velocity = moveForce;
     }
 
-    public void setCanMove(bool value)
-    {
-        this.canMove = !value;
-    }
-
-    public void setUseForceToApply(bool value)
-    {
-        this.useForceToApply = !value;
-    }
+       
 
 }
