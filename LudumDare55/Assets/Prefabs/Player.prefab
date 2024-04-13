@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5572078858163452548}
   - component: {fileID: 8281508660067608106}
   - component: {fileID: 1731444807883694397}
+  - component: {fileID: 7676590873468136718}
   - component: {fileID: 5953332601603695480}
   - component: {fileID: 9001523561072851922}
   m_Layer: 0
@@ -135,6 +136,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &7676590873468136718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8641840486735640069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87566aceb44c69445a5c660a7ed28b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _movementSpeed: 7
+  _dashingPower: 15
+  _dashingTime: 0.3
+  _dashingCooldown: 1
 --- !u!114 &5953332601603695480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e7bd23a2db81954b8024a4909ef13ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
   forceDamping: 1.2
 --- !u!114 &9001523561072851922
 MonoBehaviour:
@@ -162,6 +179,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canDash: 1
-  dashingPower: 15
-  dashingTime: 0.3
-  dashingCooldown: 1
