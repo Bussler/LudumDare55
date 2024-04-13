@@ -26,7 +26,6 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         Initialize();
-        Debug.Log("Health points: " + enemyConfig.healthPoints);
         player = GameObject.FindWithTag("Player");
         if (navMeshAgent.enabled)
         {
@@ -81,6 +80,18 @@ public class EnemyController : MonoBehaviour
         if (enemyConfig.healthPoints <= 0)
         {
             Die();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if(PlayerStatManager.Instance != null)
+            {
+                PlayerStatManager.Instance.TakeDamage(enemyConfig.collisionDamage);
+                Die();
+            }
         }
     }
 

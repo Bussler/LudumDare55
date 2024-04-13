@@ -22,5 +22,6 @@ MonoBehaviour:
   playerDistanceRecognition: 10
   playerDistanceToKeepForShooting: 7
   playerDistanceToStartShooting: 5
-  healthPoints: -5819
+  collisionDamage: 50
+  healthPoints: 0
   enemyBehaviour: 3

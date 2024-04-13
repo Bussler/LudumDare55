@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279c37d2aeeccbb4c84f340897d83b43, type: 3}
   m_Name: BasicEnemy
   m_EditorClassIdentifier: 
-  fireRate: 35
   walkingSpeed: 2.6129897
   stationaryRotationSpeed: 0
   chargingSpeed: 15
@@ -21,5 +20,8 @@ MonoBehaviour:
   playerChargingPreparationSeconds: 0
   playerChargingCooldownSeconds: 0
   playerDistanceRecognition: 0
-  healthPoints: 0
+  playerDistanceToKeepForShooting: 7
+  playerDistanceToStartShooting: 5
+  collisionDamage: 30
+  healthPoints: 100
   enemyBehaviour: 0
