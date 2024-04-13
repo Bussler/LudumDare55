@@ -10,7 +10,7 @@ public class BasicMovement : MonoBehaviour
 {
     // TODO maybe put stat manager here?
     [SerializeField]
-    private int moveSpeed = 5; // Speed at which the player moves
+    private int moveSpeed = 12; // Speed at which the player moves
 
     protected Rigidbody rb = null; // Rigidbody component through which we apply force
     private bool canMove = true; // Flag to check if the player can move

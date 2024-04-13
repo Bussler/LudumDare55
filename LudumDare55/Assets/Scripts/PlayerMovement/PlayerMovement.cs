@@ -48,7 +48,6 @@ public class PlayerMovement : BasicMovement
     {
         Vector3 inputMovementVector = value.ReadValue<Vector2>();
         movementVector = new Vector3(inputMovementVector.y, 0, -inputMovementVector.x);
-        Debug.Log("Movement performed: " + movementVector);
     }
 
     private void OnMovementCancelled(InputAction.CallbackContext value)
