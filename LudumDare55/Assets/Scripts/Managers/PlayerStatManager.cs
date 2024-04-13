@@ -55,7 +55,7 @@ public class PlayerStatManager : MonoBehaviour
     private float _dashingCooldown = 1.0f; // Cooldown between dashes
     public float DashingCooldown { get => _dashingCooldown; set => _dashingCooldown = value; }
 
-    void Start()
+    void Awake()
     {
         if(instance == null)
         {
