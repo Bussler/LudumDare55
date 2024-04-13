@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -27,7 +24,14 @@ public class EnemyController : MonoBehaviour
         navMeshAgent.SetDestination(player.transform.position);
 
 
-        enemyBehavior = () => ChargingToPlayersLastPositionBehavior();
+        enemyBehavior = enemyConfig.enemyBehaviour switch
+        {
+            EnemyBehaviour.CloseCombatToPlayer => CloseCombatToPlayerBehavior,
+            EnemyBehaviour.ShootingToPlayer => ShootingToPlayerBehavior,
+            EnemyBehaviour.ChargingToPlayersLastPosition => ChargingToPlayersLastPositionBehavior,
+            EnemyBehaviour.StationaryShootingToPlayer => StationaryShootingToPlayerBehavior,
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 
     // Update is called once per frame
@@ -66,21 +70,29 @@ public class EnemyController : MonoBehaviour
     public void CloseCombatToPlayerBehavior()
     {
         // Implement CloseCombatToPlayer behavior here
+        Debug.Log("Close combat to player");
+        //TODO: Implement CloseCombatToPlayer behavior
     }
 
     public void ShootingToPlayerBehavior()
     {
         // Implement ShootingToPlayer behavior here
+        Debug.Log("Shooting to player");
+        //TODO: Implement ShootingToPlayer behavior
+
     }
 
     public void ChargingToPlayersLastPositionBehavior()
     {
         // Implement ChargingToPlayersLastPosition behavior here
         Debug.Log("Charging to player's last position");
+        //TODO: Implement ChargingToPlayersLastPosition behavior
     }
 
     public void StationaryShootingToPlayerBehavior()
     {
         // Implement StationaryShootingToPlayer behavior here
+        Debug.Log("Stationary shooting to player");
+        //TODO: Implement StationaryShootingToPlayer behavior
     }
 }
