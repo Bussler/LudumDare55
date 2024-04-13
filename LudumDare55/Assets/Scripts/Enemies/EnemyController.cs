@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using System.Collections;
 using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
@@ -11,9 +10,11 @@ public class EnemyController : MonoBehaviour
     private EnemyConfiguration enemyConfig;
 
     [SerializeField]
-    private UnityEngine.AI.NavMeshAgent navMeshAgent;
+    private NavMeshAgent navMeshAgent;
 
     private GameObject player;
+
+    private EnemyShootingComponent shootingComponent;
 
     private Action enemyBehavior;
 
@@ -25,6 +26,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         Initialize();
+        Debug.Log("Health points: " + enemyConfig.healthPoints);
         player = GameObject.FindWithTag("Player");
         if (navMeshAgent.enabled)
         {
@@ -42,6 +44,7 @@ public class EnemyController : MonoBehaviour
         };
 
         navMeshAgent.speed = enemyConfig.walkingSpeed;
+        shootingComponent = GetComponent<EnemyShootingComponent>();
     }
 
     public void Initialize()
@@ -64,8 +67,6 @@ public class EnemyController : MonoBehaviour
             // Debug.Log("Enemy is dead");
         }
         enemyConfig.healthPoints -= 1;
-        
-        navMeshAgent.SetDestination(player.transform.position);
     }
 
     public void Die()
@@ -100,60 +101,107 @@ public class EnemyController : MonoBehaviour
     public void ShootingToPlayerBehavior()
     {
         // Implement ShootingToPlayer behavior here
-        Debug.Log("Shooting to player");
+        navMeshAgent.stoppingDistance = enemyConfig.playerDistanceToKeepForShooting;
         //TODO: Implement ShootingToPlayer behavior
+        Vector3 directionToPlayer = CalculateDirectionToPlayer();
+
+        if (CalculateDistanceToPlayer() < enemyConfig.playerDistanceToStartShooting &&
+            (!Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, enemyConfig.playerDistanceRecognition) || hit.transform == player.transform))
+        {
+            shootingComponent.Shoot(directionToPlayer);
+        }
+
+        // If the enemy is close enough to the player, stop moving and rotate towards the player so we do not get overwhelmed by the player too easily
+        if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
+        {
+            navMeshAgent.updateRotation = false;
+            //insert your rotation code here
+            turnTowardsPlayer(CalculateDirectionToPlayer(), enemyConfig.stationaryRotationSpeed);
+        }
+        else
+        {
+            navMeshAgent.updateRotation = true;
+        }
 
     }
 
     public void ChargingToPlayersLastPositionBehavior()
     {
-        if (currentChagingState.Equals(ChargingStates.charging))
+
+        switch (currentChagingState)
         {
-            // Once enemy is close enough to player location stop charging
-            if (CalculateDistanceToLocation(navMeshAgent.destination) < 1)
-            {
-                currentChagingState = ChargingStates.coolingDown;
-                navMeshAgent.speed = enemyConfig.walkingSpeed;
-            }
-        } else if(currentChagingState.Equals(ChargingStates.coolingDown)) {
-            // TODO verify if we should enable here that the enemy can still slide forward from the movement or not (without this state was possible)
-            if (isFinishedCoolingDown())
-            {
-                currentChagingState = ChargingStates.notCharging;
-                waitedTime = 0f;
-            }
+            case ChargingStates.notCharging:
+                performNotCharging();
+                break;
+            case ChargingStates.preparingToCharge:
+                performPrepareCharging();
+                break;
+            case ChargingStates.charging:
+                performCharging();
+                break;
+            case ChargingStates.coolingDown:
+                performCollingDown();
+                break;
+        }
+    }
+
+    private void performNotCharging()
+    {
+        if (isCloseEnoughForCharging() && canSeeThePlayer(CalculateDirectionToPlayer()))
+        {
+            currentChagingState = ChargingStates.preparingToCharge;
+            navMeshAgent.enabled = false;
+            turnTowardsPlayer(CalculateDirectionToPlayer(), enemyConfig.stationaryRotationSpeed);
+        }
+    }
+
+    private void performPrepareCharging()
+    {
+        if (isFinishedCharging())
+        {
+            // Charge once we are close to the player
+            navMeshAgent.enabled = true;
+            Debug.Log("Charging to player's last position");
+            navMeshAgent.speed = enemyConfig.chargingSpeed;
+            navMeshAgent.acceleration = enemyConfig.chargingAcceleration;
+            currentChagingState = ChargingStates.charging;
+            navMeshAgent.SetDestination(player.transform.position);
+            waitedTime = 0f;
         }
         else
         {
-            // only start charging once we are close to the player and see the player
-            Vector3 directionToPlayer = CalculateDirectionToPlayer();
-
-            if (
-                currentChagingState.Equals(ChargingStates.preparingToCharge) ||
-                (CalculateDistanceToPlayer() < enemyConfig.playerChargingDistance &&
-                (
-                    !Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, enemyConfig.playerDistanceRecognition) ||
-                    hit.transform == player.transform
-                ))
-            )
-            {
-                if (isFinishedCharging())
-                {
-                    // Charge once we are close to the player
-                    navMeshAgent.enabled = true;
-                    Debug.Log("Charging to player's last position");
-                    navMeshAgent.speed = enemyConfig.chargingSpeed;
-                    navMeshAgent.acceleration = enemyConfig.chargingAcceleration;
-                    currentChagingState = ChargingStates.charging;
-                    navMeshAgent.SetDestination(player.transform.position);
-                    waitedTime = 0f;
-                } else {
-                    currentChagingState = ChargingStates.preparingToCharge;
-                    navMeshAgent.enabled = false;
-                    turnTowardsPLayer(CalculateDirectionToPlayer(), navMeshAgent.angularSpeed);
-                }
-            }
+            turnTowardsPlayer(CalculateDirectionToPlayer(), enemyConfig.stationaryRotationSpeed);
         }
+    }
+
+    private void performCharging()
+    {
+        // Once enemy is close enough to player location stop charging
+        if (CalculateDistanceToLocation(navMeshAgent.destination) < 1)
+        {
+            currentChagingState = ChargingStates.coolingDown;
+            navMeshAgent.speed = enemyConfig.walkingSpeed;
+        }
+    }
+
+    private void performCollingDown()
+    {
+        // TODO verify if we should enable here that the enemy can still slide forward from the movement or not (without this state was possible)
+        if (isFinishedCoolingDown())
+        {
+            currentChagingState = ChargingStates.notCharging;
+            waitedTime = 0f;
+        }
+    }
+
+    bool isCloseEnoughForCharging()
+    {
+        return CalculateDistanceToPlayer() < enemyConfig.playerChargingDistance;
+    }
+
+    bool canSeeThePlayer(Vector3 directionToPlayer)
+    {
+        return !Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, enemyConfig.playerDistanceRecognition) || hit.transform == player.transform;
     }
 
     bool isFinishedCharging()
@@ -177,15 +225,15 @@ public class EnemyController : MonoBehaviour
             // only rotate if the player is not in sight
             if (!Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, enemyConfig.playerDistanceRecognition) || hit.transform == player.transform)
             {
-                turnTowardsPLayer(directionToPlayer, enemyConfig.stationaryRotationSpeed);
+                turnTowardsPlayer(directionToPlayer, enemyConfig.stationaryRotationSpeed);
             }
         }
     }
 
-    void turnTowardsPLayer(Vector3 directionToPlayer, float rotationSpeed)
+    void turnTowardsPlayer(Vector3 directionToPlayer, float rotationSpeed)
     {
         Quaternion rotation = Quaternion.LookRotation(directionToPlayer);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, enemyConfig.stationaryRotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed * Time.deltaTime);
         Debug.Log("Rotating towards player");
     }
 
@@ -222,14 +270,14 @@ public class EnemyController : MonoBehaviour
         float knockbackTime = Time.time;
         yield return new WaitUntil(
             () => this.GetComponent<Rigidbody>().velocity.magnitude < 0.25f || Time.time > knockbackTime + 0.015f
-            ) ;
+            );
         yield return new WaitForSeconds(0.015f);
 
         this.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        this.GetComponent<Rigidbody>().angularVelocity= Vector3.zero;
-        this.GetComponent<Rigidbody>().isKinematic= true;
+        this.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        this.GetComponent<Rigidbody>().isKinematic = true;
         navMeshAgent.Warp(transform.position);
-        navMeshAgent.enabled= true;
+        navMeshAgent.enabled = true;
         yield return null;
 
     }
