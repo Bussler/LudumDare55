@@ -322,8 +322,6 @@ GameObject:
   - component: {fileID: 1250401701}
   - component: {fileID: 1250401700}
   - component: {fileID: 1250401699}
-  - component: {fileID: 1250401698}
-  - component: {fileID: 1250401697}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Untagged
@@ -331,59 +329,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1250401697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250401696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be8a7a8242b342f4d8d975bd63142628, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spline: {fileID: 1250401698}
---- !u!114 &1250401698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250401696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_EditModeType: 1
-    m_Knots: []
-    m_MetaData: []
-    m_Closed: 0
-    m_IntData:
-      m_Data: []
-    m_FloatData:
-      m_Data: []
-    m_Float4Data:
-      m_Data: []
-    m_ObjectData:
-      m_Data: []
-  m_Splines:
-  - m_EditModeType: 1
-    m_Knots: []
-    m_MetaData: []
-    m_Closed: 0
-    m_IntData:
-      m_Data: []
-    m_FloatData:
-      m_Data: []
-    m_Float4Data:
-      m_Data: []
-    m_ObjectData:
-      m_Data: []
-  m_Knots:
-    m_KnotsLink: []
 --- !u!114 &1250401699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +341,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35839ea884af1042ba54c4bdcb80cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spline: {fileID: 1942089640}
+  origin: {fileID: 1250401703}
+  originOffset: {x: 0, y: 0, z: 0}
+  splineKnotInterval: 1
 --- !u!136 &1250401700
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -478,7 +427,7 @@ Transform:
   m_GameObject: {fileID: 1250401696}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.16, z: 0}
+  m_LocalPosition: {x: 1.58, y: 6.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -869,7 +818,7 @@ Transform:
   m_GameObject: {fileID: 1942089638}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: -0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
