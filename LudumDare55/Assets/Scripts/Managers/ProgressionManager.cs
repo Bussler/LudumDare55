@@ -44,10 +44,6 @@ public class ProgressionManager : MonoBehaviour
     private void Start()
     {
         storyFlags = StoryFlags.None;
-
-        SetStoryFlag(StoryFlags.Flag1);
-        SetStoryFlag(StoryFlags.Flag3);
-        var is_set = CheckStoryFlag(StoryFlags.Flag2);
     }
 
     /// <summary>
