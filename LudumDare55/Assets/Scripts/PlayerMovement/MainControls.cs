@@ -235,6 +235,34 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""shoot"",
+            ""id"": ""a5c0844d-178e-44aa-abc8-60f02ed1e750"",
+            ""actions"": [
+                {
+                    ""name"": ""shoot"",
+                    ""type"": ""Value"",
+                    ""id"": ""91b7ef7b-39df-4784-ba65-6720d27a6341"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""361e61ad-0bea-40fc-94fc-a044b0cae677"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -243,6 +271,9 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
         m_movement = asset.FindActionMap("movement", throwIfNotFound: true);
         m_movement_dash = m_movement.FindAction("dash", throwIfNotFound: true);
         m_movement_movement = m_movement.FindAction("movement", throwIfNotFound: true);
+        // shoot
+        m_shoot = asset.FindActionMap("shoot", throwIfNotFound: true);
+        m_shoot_shoot = m_shoot.FindAction("shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -354,9 +385,59 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
         }
     }
     public MovementActions @movement => new MovementActions(this);
+
+    // shoot
+    private readonly InputActionMap m_shoot;
+    private List<IShootActions> m_ShootActionsCallbackInterfaces = new List<IShootActions>();
+    private readonly InputAction m_shoot_shoot;
+    public struct ShootActions
+    {
+        private @MainControls m_Wrapper;
+        public ShootActions(@MainControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @shoot => m_Wrapper.m_shoot_shoot;
+        public InputActionMap Get() { return m_Wrapper.m_shoot; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ShootActions set) { return set.Get(); }
+        public void AddCallbacks(IShootActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ShootActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ShootActionsCallbackInterfaces.Add(instance);
+            @shoot.started += instance.OnShoot;
+            @shoot.performed += instance.OnShoot;
+            @shoot.canceled += instance.OnShoot;
+        }
+
+        private void UnregisterCallbacks(IShootActions instance)
+        {
+            @shoot.started -= instance.OnShoot;
+            @shoot.performed -= instance.OnShoot;
+            @shoot.canceled -= instance.OnShoot;
+        }
+
+        public void RemoveCallbacks(IShootActions instance)
+        {
+            if (m_Wrapper.m_ShootActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IShootActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ShootActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ShootActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ShootActions @shoot => new ShootActions(this);
     public interface IMovementActions
     {
         void OnDash(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface IShootActions
+    {
+        void OnShoot(InputAction.CallbackContext context);
     }
 }
