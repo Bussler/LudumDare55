@@ -10,6 +10,8 @@ public class PlayerMovement : BasicMovement
     private Vector3 movementVector = Vector3.zero; // Movement input
     private MainControls input = null; // Input system
 
+    private Dash dashScript = null;
+
     private void Awake()
     {
         input = new MainControls();
@@ -18,6 +20,12 @@ public class PlayerMovement : BasicMovement
     protected override void Start()
     {
         base.Start();
+        dashScript = GetComponent<Dash>();
+        if (dashScript != null)
+        {
+            dashScript.OnDashingChanged += setCanMove;
+            dashScript.OnDashingChanged += setUseForceToApply;
+        }
     }
 
     // Subscribe to events of input system
@@ -57,8 +65,10 @@ public class PlayerMovement : BasicMovement
     {
         if (value.performed)
         {
-            Debug.Log("Dash performed");
-            // TODO
+            if (dashScript != null)
+            {
+                StartCoroutine(dashScript.DoDash(movementVector));
+            }
         }
     }
 }
