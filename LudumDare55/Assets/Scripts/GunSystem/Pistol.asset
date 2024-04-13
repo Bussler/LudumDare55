@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   Damage: 0
-  FireRate: 30
-  Accuracy: 100
+  FireRate: 3
+  Accuracy: 76.1
   TimeLimit: 0
-  Range: 0
+  Range: 5
   BulletAmount: 1
-  BulletSpeed: 2
+  BulletSpeed: 6
   BulletSize: 1
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: 

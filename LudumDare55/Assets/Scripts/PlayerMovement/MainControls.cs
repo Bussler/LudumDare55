@@ -35,15 +35,6 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""shoot"",
-                    ""type"": ""Value"",
-                    ""id"": ""c5f67003-7042-4003-9a4d-65033afb3549"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -68,17 +59,6 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
                     ""action"": ""basic"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6b515982-b700-4bc1-bc4d-2dcd9ec10cec"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -92,7 +72,7 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
                     ""id"": ""8699d5ae-0dee-453c-8d3f-dfe9d5ae8e55"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""SlowTap"",
+                    ""interactions"": """",
                     ""initialStateCheck"": true
                 }
             ],
@@ -116,7 +96,6 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
         // movement
         m_movement = asset.FindActionMap("movement", throwIfNotFound: true);
         m_movement_basic = m_movement.FindAction("basic", throwIfNotFound: true);
-        m_movement_shoot = m_movement.FindAction("shoot", throwIfNotFound: true);
         // shoot
         m_shoot = asset.FindActionMap("shoot", throwIfNotFound: true);
         m_shoot_shoot = m_shoot.FindAction("shoot", throwIfNotFound: true);
@@ -182,13 +161,11 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_movement;
     private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
     private readonly InputAction m_movement_basic;
-    private readonly InputAction m_movement_shoot;
     public struct MovementActions
     {
         private @MainControls m_Wrapper;
         public MovementActions(@MainControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @basic => m_Wrapper.m_movement_basic;
-        public InputAction @shoot => m_Wrapper.m_movement_shoot;
         public InputActionMap Get() { return m_Wrapper.m_movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -201,9 +178,6 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
             @basic.started += instance.OnBasic;
             @basic.performed += instance.OnBasic;
             @basic.canceled += instance.OnBasic;
-            @shoot.started += instance.OnShoot;
-            @shoot.performed += instance.OnShoot;
-            @shoot.canceled += instance.OnShoot;
         }
 
         private void UnregisterCallbacks(IMovementActions instance)
@@ -211,9 +185,6 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
             @basic.started -= instance.OnBasic;
             @basic.performed -= instance.OnBasic;
             @basic.canceled -= instance.OnBasic;
-            @shoot.started -= instance.OnShoot;
-            @shoot.performed -= instance.OnShoot;
-            @shoot.canceled -= instance.OnShoot;
         }
 
         public void RemoveCallbacks(IMovementActions instance)
@@ -280,7 +251,6 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
     public interface IMovementActions
     {
         void OnBasic(InputAction.CallbackContext context);
-        void OnShoot(InputAction.CallbackContext context);
     }
     public interface IShootActions
     {

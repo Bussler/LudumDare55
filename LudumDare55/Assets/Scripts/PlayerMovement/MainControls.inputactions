@@ -13,15 +13,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "shoot",
-                    "type": "Value",
-                    "id": "c5f67003-7042-4003-9a4d-65033afb3549",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -46,17 +37,6 @@
                     "action": "basic",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6b515982-b700-4bc1-bc4d-2dcd9ec10cec",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -70,7 +50,7 @@
                     "id": "8699d5ae-0dee-453c-8d3f-dfe9d5ae8e55",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "SlowTap",
+                    "interactions": "",
                     "initialStateCheck": true
                 }
             ],
