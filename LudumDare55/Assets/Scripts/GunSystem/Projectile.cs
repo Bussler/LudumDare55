@@ -33,10 +33,10 @@ public class Projectile : MonoBehaviour
 
     public void MoveForward()
     {
-        this.transform.Translate(Vector3.forward*Time.fixedDeltaTime, Space.Self);
+        this.transform.Translate(Vector3.forward*Time.fixedDeltaTime*_speed, Space.Self);
         _range -= Time.fixedDeltaTime;
 
-        if( _range < 0)
+        if( _range <= 0)
         {
             DestroyProjectile();
         }
@@ -47,6 +47,7 @@ public class Projectile : MonoBehaviour
         //TODO
         //Destroy?
         //Fall off?
+        Destroy(gameObject);
     }
 
 }

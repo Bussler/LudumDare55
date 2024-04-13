@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class ShootingComponent : MonoBehaviour
 {
 
-    private PlayerStatManager statManager= PlayerStatManager.instance;
+    private PlayerStatManager statManager = PlayerStatManager.instance;
 
     public Gun currentGun;
 
@@ -17,7 +17,9 @@ public class ShootingComponent : MonoBehaviour
 
     private MainControls _input = null;
 
-    private bool _canShoot= true;
+    private bool _canShoot = true;
+
+    private bool _isShooting = false;
 
     private void Awake()
     {
@@ -27,19 +29,21 @@ public class ShootingComponent : MonoBehaviour
     private void OnEnable()
     {
         _input.Enable();
-        _input.shoot.shoot.performed += OnShoot;
+        _input.shoot.shoot.started += OnShootingStarted;
+        _input.shoot.shoot.canceled += OnShootingCanceled;
     }
 
     private void OnDisable()
     {
         _input.Disable();
-       // _input.shoot.shoot.performed -= OnShoot;
+        _input.shoot.shoot.started -= OnShootingStarted;
+        _input.shoot.shoot.canceled -= OnShootingCanceled;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-       
+
     }
 
     // Update is called once per frame
@@ -54,65 +58,38 @@ public class ShootingComponent : MonoBehaviour
             ShootTargetPos.y = 0;
         }
 
-        _shootDir = ShootTargetPos-player.transform.position;
+        _shootDir = ShootTargetPos - player.transform.position;
     }
 
 
-    private void OnShoot(InputAction.CallbackContext context)
+    private void OnShootingStarted(InputAction.CallbackContext context)
     {
-       
-            Debug.Log("TEST SHOOT");
-            if (_canShoot)
-            {
-                int bulletAmt = currentGun.BulletAmount;
-                _canShoot = false;
-                for (int i = 0; i < bulletAmt; i++)
-                {
-                    GameObject p = Instantiate(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity);
-                    p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.Range, currentGun.BulletSize);
-                    p.transform.forward = _shootDir;
-                    p.transform.RotateAround(Vector3.up, Random.Range(-(100 - currentGun.Accuracy), 100 - currentGun.Accuracy));
-                }
-                Invoke("SetCanShoot", 1 / currentGun.FireRate);
-            }
-       
+        _isShooting = true;
+        Shoot();
     }
 
-
-    public void ClickHoldRelease(InputAction.CallbackContext context)
+    private void OnShootingCanceled(InputAction.CallbackContext context)
     {
-        System.Type vector2Type = Vector2.zero.GetType();
-
-        string buttonControlPath = "/Mouse/leftButton";
-        //string deltaControlPath = "/Mouse/delta";
-
-        Debug.Log(context.control.path);
-        //Debug.Log(context.valueType);
-
-        if (context.started)
-        {
-            
-                Debug.Log("Button Pressed Down Event - called once when button pressed");
-            
-        }
-        else if (context.performed)
-        {
-           
-                Debug.Log("Button Hold Down - called continously till the button is pressed");
-            
-        }
-        else if (context.canceled)
-        {
-            
-                Debug.Log("Button released");
-            
-        }
+        _isShooting = false;
+        CancelInvoke();
     }
 
-    private void SetCanShoot()
+    private void Shoot()
     {
-        Debug.Log("TEST canShoot");
-        _canShoot = true;
+        int bulletAmt = currentGun.BulletAmount;
+
+        for (int i = 0; i < bulletAmt; i++)
+        {
+            GameObject p = Instantiate(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity);
+            p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.Range, currentGun.BulletSize);
+            p.transform.forward = _shootDir;
+            float acc = (100 - currentGun.Accuracy) / 2;
+            p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
+        }
+        if (_isShooting)
+        {
+            Invoke("Shoot", 1 / currentGun.FireRate);
+        }
     }
 
 }
