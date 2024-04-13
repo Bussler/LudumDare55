@@ -9,16 +9,6 @@ public class Dash : MonoBehaviour
     public bool canDash = true;
     private Rigidbody rb = null;
 
-    // TODO: search for statmanager here
-    [SerializeField]
-    private int dashingPower = 15; // Speed at which the player dashes
-
-    [SerializeField]
-    private float dashingTime = 0.3f; // How long the player dashes
-
-    [SerializeField]
-    private float dashingCooldown = 1.0f; // Cooldown between dashes
-
     private bool _isDashing;
     public delegate void IsDashingChangedHandler(bool _isDashing);
     public event IsDashingChangedHandler OnDashingChanged;
@@ -50,9 +40,9 @@ public class Dash : MonoBehaviour
     /// </summary>
     private void setUntargetable()
     {
-        if (this.gameObject.tag == "Player") // TODO: change this to a better solution; should enemies also be untargetable?
+        if (this.gameObject.tag == "Player")
         {
-            // TODO set untatgetable, e.g. in player stat manager
+            PlayerStatManager.Instance.IsTargetable = !PlayerStatManager.Instance.IsTargetable;
         }
     }
 
@@ -63,7 +53,7 @@ public class Dash : MonoBehaviour
     /// <returns></returns>
     public IEnumerator DoDash(Vector3 direction)
     {
-        if (!canDash || rb == null)
+        if (!canDash || rb == null || PlayerStatManager.Instance == null)
         {
             yield break;
         }
@@ -71,12 +61,11 @@ public class Dash : MonoBehaviour
         canDash = false;
         isDashing = true;
         setUntargetable();
-
-        rb.velocity = direction.normalized * dashingPower;
-        yield return new WaitForSeconds(dashingTime);
+        rb.velocity = direction.normalized * PlayerStatManager.Instance.DashingPower;
+        yield return new WaitForSeconds(PlayerStatManager.Instance.DashingTime);
         setUntargetable();
         isDashing = false;
-        yield return new WaitForSeconds(dashingCooldown);
+        yield return new WaitForSeconds(PlayerStatManager.Instance.DashingCooldown);
         canDash = true;
     }
 }

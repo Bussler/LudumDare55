@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fcb698249fa93d44b9ac6fc3ce2e78f, type: 3}
   m_Name: testWave
   m_EditorClassIdentifier: 
-  name: 
   enemyGroups:
   - enemyCount: 3
     spawnIntensity: 3
     enemyPrefab: {fileID: 5112027007212064104, guid: 393a6e66b78113249a3e784598a01fc5, type: 3}
   spawnPoints:
   - spawnPoint: {x: -3, y: 0, z: -3}
-    spawnRadoius: 2
+    spawnRadius: 2
   spawnInterval: 1

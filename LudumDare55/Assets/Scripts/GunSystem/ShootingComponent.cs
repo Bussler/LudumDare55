@@ -52,7 +52,7 @@ public class ShootingComponent : MonoBehaviour
         Gun.GunEffect g = Gun.GunEffect.lifegive;
         list.Add(g);
         EquipGun(list);
-        _statManager = PlayerStatManager.instance;
+        _statManager = PlayerStatManager.Instance;
     }
 
     // Update is called once per frame
