@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
+
 public class EnemyController : MonoBehaviour
 {
 
@@ -53,6 +55,14 @@ public class EnemyController : MonoBehaviour
         {
             navMeshAgent.SetDestination(player.transform.position);
         }
+
+        else if (enemyConfig.healthPoints <= 0)
+        {
+            // Debug.Log("Enemy is dead");
+        }
+        enemyConfig.healthPoints -= 1;
+        
+        navMeshAgent.SetDestination(player.transform.position);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -196,16 +206,15 @@ public class EnemyController : MonoBehaviour
     private IEnumerator ApplyKnockbackCoroutine(Vector3 knockback)
     {
         yield return null;
-
         navMeshAgent.enabled = false;
         this.GetComponent<Rigidbody>().isKinematic = false;
-        this.GetComponent<Rigidbody>().AddForce(knockback, ForceMode.Force);
+        this.GetComponent<Rigidbody>().AddForce(knockback, ForceMode.Impulse);
         yield return new WaitForFixedUpdate();
         float knockbackTime = Time.time;
         yield return new WaitUntil(
-            () => this.GetComponent<Rigidbody>().velocity.magnitude < 0.1f || Time.time > knockbackTime + 1
+            () => this.GetComponent<Rigidbody>().velocity.magnitude < 0.25f || Time.time > knockbackTime + 0.015f
             ) ;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.015f);
 
         this.GetComponent<Rigidbody>().velocity = Vector3.zero;
         this.GetComponent<Rigidbody>().angularVelocity= Vector3.zero;

@@ -15,12 +15,13 @@ MonoBehaviour:
   type: 2
   Damage: 0
   FireRate: 1
-  Accuracy: 50
+  Accuracy: 100
   TimeLimit: 3
-  Range: 10
+  Range: 59
   BulletAmount: 1
   BulletSpeed: 30
-  BulletSize: 2
-  BulletKnockback: 2
+  BulletSize: 0.1
+  BulletKnockback: 10
+  BulletHealth: 4
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: 
