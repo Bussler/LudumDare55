@@ -10,6 +10,8 @@ public class SplineTrailGenerator : MonoBehaviour
     [SerializeField] private Vector3 originOffset = Vector3.zero;
     [SerializeField] private float splineKnotInterval = 1.0f;
 
+    public SplineContainer Spline => spline;
+
     public void Awake() {
         Observable.EveryUpdate()
             .Select(x => origin.transform.position)

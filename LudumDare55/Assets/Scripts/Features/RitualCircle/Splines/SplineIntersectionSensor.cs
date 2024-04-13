@@ -15,6 +15,8 @@ public class SplineIntersectionSensor : MonoBehaviour
     // The spline
     [SerializeField] private SplineContainer spline;
 
+    public SplineContainer Spline => spline;
+
     public void Awake() {
         SensorInterval = Observable.EveryUpdate().Select(_ => Unit.Default);
         splineIntersection = SensorInterval
@@ -27,7 +29,7 @@ public class SplineIntersectionSensor : MonoBehaviour
     
     private int RunIntersectionTest() {
 
-        if (spline.Spline.Count == 0) {
+        if (spline.Spline.Count < 3) {
             return -1;
         }
 
