@@ -9,6 +9,7 @@ public class SplineTrailGenerator : MonoBehaviour
     [SerializeField] private Transform origin;
     [SerializeField] private Vector3 originOffset = Vector3.zero;
     [SerializeField] private float splineKnotInterval = 1.0f;
+    [SerializeField] private int maxKnots = 32;
 
     public SplineContainer Spline => spline;
 
@@ -30,6 +31,9 @@ public class SplineTrailGenerator : MonoBehaviour
 
     private void OnNewKnot() {
         spline.Spline.Add(new BezierKnot(origin.transform.position + originOffset));
+        if (spline.Spline.Count > maxKnots) {
+            spline.Spline.RemoveAt(0);
+        }
     }
     
 }

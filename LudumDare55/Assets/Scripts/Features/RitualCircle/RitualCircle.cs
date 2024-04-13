@@ -15,23 +15,29 @@ public class RitualCircle : MonoBehaviour
 
     [SerializeField] private GameObject unitSphere;
 
-    IObservable<float3> RitualCircleCompleted => ritualCircleCompleted;
+    IObservable<Tuple<Vector3, float>> RitualCircleCompleted => ritualCircleCompleted;
 
-    private IObservable<float3> ritualCircleCompleted;
+    private IObservable<Tuple<Vector3, float>> ritualCircleCompleted;
 
-    void Start() {
+    public void InitMeFirstPlease() {
         ritualCircleCompleted = splineIntersectionSensor.SplineIntersection
             .Select(intersection => {
                 Spline spline = splineTrailGenerator.Spline.Spline;
                 var circleKnots = spline.Knots.TakeLast(spline.Count - intersection).Select(x => x.Position).ToArray();
-                return CalculateCenter(circleKnots);
+                var center = CalculateCenter(circleKnots);
+                Vector3 v = (spline.Knots.First().Position - center);
+                return new Tuple<Vector3, float>(center, v.magnitude);
             });
         
         ritualCircleCompleted.Subscribe(OnRitualCircleCompleted).AddTo(this);
     }
 
-    private void OnRitualCircleCompleted(float3 center) {
-        unitSphere.transform.position = center;
+    void Start() {
+        InitMeFirstPlease();
+    }
+
+    private void OnRitualCircleCompleted(Tuple<Vector3, float> circle) {
+        unitSphere.transform.position = circle.Item1;
         splineTrailGenerator.ResetSpline();
     }
 
