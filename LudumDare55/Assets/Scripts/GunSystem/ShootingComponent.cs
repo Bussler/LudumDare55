@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class ShootingComponent : MonoBehaviour
 {
 
-    private PlayerStatManager statManager = PlayerStatManager.instance;
+    private PlayerStatManager statManager;
 
     public Gun currentGun;
 
@@ -43,7 +43,7 @@ public class ShootingComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        statManager = PlayerStatManager.instance;
     }
 
     // Update is called once per frame

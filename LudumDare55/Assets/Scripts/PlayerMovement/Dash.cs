@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,15 +11,7 @@ public class Dash : MonoBehaviour
     public bool canDash = true;
     private Rigidbody rb = null;
 
-    // TODO: search for statmanager here
-    [SerializeField]
-    private int dashingPower = 15; // Speed at which the player dashes
-
-    [SerializeField]
-    private float dashingTime = 0.3f; // How long the player dashes
-
-    [SerializeField]
-    private float dashingCooldown = 1.0f; // Cooldown between dashes
+    private PlayerStatManager statManager = null;
 
     private bool _isDashing;
     public delegate void IsDashingChangedHandler(bool _isDashing);
@@ -43,6 +37,7 @@ public class Dash : MonoBehaviour
         {
             Debug.Log("No Rigidbody component found on " + this.gameObject.name);
         }
+        statManager = PlayerStatManager.instance;
     }
 
     /// <summary>
@@ -50,9 +45,9 @@ public class Dash : MonoBehaviour
     /// </summary>
     private void setUntargetable()
     {
-        if (this.gameObject.tag == "Player") // TODO: change this to a better solution; should enemies also be untargetable?
+        if (this.gameObject.tag == "Player")
         {
-            // TODO set untatgetable, e.g. in player stat manager
+            statManager.IsTargetable = !statManager.IsTargetable;
         }
     }
 
@@ -63,7 +58,7 @@ public class Dash : MonoBehaviour
     /// <returns></returns>
     public IEnumerator DoDash(Vector3 direction)
     {
-        if (!canDash || rb == null)
+        if (!canDash || rb == null || statManager == null)
         {
             yield break;
         }
@@ -72,11 +67,11 @@ public class Dash : MonoBehaviour
         isDashing = true;
         setUntargetable();
 
-        rb.velocity = direction.normalized * dashingPower;
-        yield return new WaitForSeconds(dashingTime);
+        rb.velocity = direction.normalized * statManager.DashingPower;
+        yield return new WaitForSeconds(statManager.DashingTime);
         setUntargetable();
         isDashing = false;
-        yield return new WaitForSeconds(dashingCooldown);
+        yield return new WaitForSeconds(statManager.DashingCooldown);
         canDash = true;
     }
 }
