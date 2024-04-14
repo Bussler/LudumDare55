@@ -452,6 +452,7 @@ MonoBehaviour:
   originOffset: {x: 0, y: 0, z: 0}
   splineKnotInterval: 1
   maxKnots: 32
+  statManager: {fileID: 0}
 --- !u!136 &1250401700
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -556,6 +557,10 @@ MonoBehaviour:
   splineTrailGenerator: {fileID: 1250401699}
   unitSphere: {fileID: 39456357}
   minCircleSurface: 30
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  shootingComponent: {fileID: 0}
 --- !u!1 &1342662066
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,6 +666,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1871763850
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5991409109578901503, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -21.598255
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991409109578901503, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -15.172395
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991409109578901503, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 25.039509
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991409109578901503, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991409109578901503, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991409109578901503, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991409109578901503, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991409109578901503, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991409109578901503, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991409109578901503, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6088901256051133712, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_Name
+      value: EndGameMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721305802995358855, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7703ee18869b926b2a11a02c657dda56, type: 3}
 --- !u!1 &1942089638
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,3 +823,4 @@ SceneRoots:
   - {fileID: 1942089641}
   - {fileID: 1250401703}
   - {fileID: 39456361}
+  - {fileID: 1871763850}
