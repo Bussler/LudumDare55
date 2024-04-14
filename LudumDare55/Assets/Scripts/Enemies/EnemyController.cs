@@ -122,7 +122,7 @@ public class EnemyController : MonoBehaviour
         {
             navMeshAgent.updateRotation = false;
             //insert your rotation code here
-            turnTowardsPlayer(CalculateDirectionToPlayer(), enemyConfig.stationaryRotationSpeed);
+            turnTowardsPlayer(CalculateDirectionToPlayer(), enemyConfig.enemyRotationSpeed);
         }
         else
         {
@@ -157,7 +157,7 @@ public class EnemyController : MonoBehaviour
         {
             currentChagingState = ChargingStates.preparingToCharge;
             navMeshAgent.enabled = false;
-            turnTowardsPlayer(CalculateDirectionToPlayer(), enemyConfig.stationaryRotationSpeed);
+            turnTowardsPlayer(CalculateDirectionToPlayer(), enemyConfig.enemyRotationSpeed);
         }
     }
 
@@ -177,7 +177,7 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            turnTowardsPlayer(CalculateDirectionToPlayer(), enemyConfig.stationaryRotationSpeed);
+            turnTowardsPlayer(CalculateDirectionToPlayer(), enemyConfig.enemyRotationSpeed);
         }
     }
 
@@ -233,7 +233,7 @@ public class EnemyController : MonoBehaviour
             // only rotate if the player is not in sight
             if (!Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, enemyConfig.playerDistanceRecognition) || hit.transform == player.transform)
             {
-                turnTowardsPlayer(directionToPlayer, enemyConfig.stationaryRotationSpeed);
+                turnTowardsPlayer(directionToPlayer, enemyConfig.enemyRotationSpeed);
                 shootingComponent.Shoot(directionToPlayer);
             }
         }

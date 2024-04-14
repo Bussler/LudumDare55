@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: BasicEnemy
   m_EditorClassIdentifier: 
   walkingSpeed: 2.6129897
-  stationaryRotationSpeed: 0
+  enemyRotationSpeed: 0
+  collisionDamage: 30
+  healthPoints: 100
+  dropsBlood: 1
+  amountBloodDropped: 24
+  enemyBehaviour: 0
   chargingSpeed: 15
   chargingAcceleration: 5
   playerChargingDistance: 0
@@ -22,6 +27,3 @@ MonoBehaviour:
   playerDistanceRecognition: 0
   playerDistanceToKeepForShooting: 7
   playerDistanceToStartShooting: 5
-  collisionDamage: 30
-  healthPoints: 100
-  enemyBehaviour: 0
