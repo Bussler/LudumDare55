@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6153485687002304555}
   - component: {fileID: 238445684952489485}
   - component: {fileID: 1373919378703851792}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4cf1c49dfc48da4d9c9c7b6e0f77237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyConfig: {fileID: 0}
+  enemyConfig: {fileID: 11400000, guid: 95e98ee7722c40744bbfc16ec111ac6d, type: 2}
   phases:
   - {fileID: 11400000, guid: 80203356e134dca488dbfc66e09f2013, type: 2}
   - {fileID: 11400000, guid: 5666abf4d0763234b81fcde6f6e06450, type: 2}
