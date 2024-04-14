@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fcb698249fa93d44b9ac6fc3ce2e78f, type: 3}
+  m_Name: BossWave
+  m_EditorClassIdentifier: 
+  enemyGroups:
+  - enemyCount: 1
+    spawnIntensity: 1
+    enemyPrefab: {fileID: 1446359128506931495, guid: 3f338e4dfd37aa74693cf3c36371b677, type: 3}
+  spawnPoints:
+  - spawnPoint: {x: 0, y: 0, z: 0}
+    spawnRadius: 1
+  spawnInterval: 1
