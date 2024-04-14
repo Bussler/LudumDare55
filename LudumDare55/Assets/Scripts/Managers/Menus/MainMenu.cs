@@ -22,12 +22,11 @@ public class MenuManager : MonoBehaviour
         startMenu = GameObject.Find("StartMenu").GetComponent<Canvas>();
 
         startMenu.enabled = true;
-        optionsMenu.enabled = false;
     }
 
     public void StartGame()
     {
-        SceneManager.LoadScene("TestMap");
+        SceneManager.LoadScene("GameScene");
         startMenu.enabled = false;
     }
 

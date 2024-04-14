@@ -28,6 +28,8 @@ public class EnemyController : MonoBehaviour
 
     public ReadOnlyReactiveProperty<bool> IsAlive => isAlive.ToReadOnlyReactiveProperty();
 
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +52,7 @@ public class EnemyController : MonoBehaviour
 
         navMeshAgent.speed = enemyConfig.walkingSpeed;
         shootingComponent = GetComponent<EnemyShootingComponent>();
+        animator = GetComponent<Animator>();
     }
 
     public void Initialize()
@@ -192,9 +195,11 @@ public class EnemyController : MonoBehaviour
             navMeshAgent.SetDestination(player.transform.position);
             waitedTime = 0f;
             isKnockbackable = false;
+            animator.enabled = true;
         }
         else
         {
+            animator.enabled = false;
             turnTowardsPlayer(CalculateDirectionToPlayer(), enemyConfig.enemyRotationSpeed);
         }
     }
