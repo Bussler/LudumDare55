@@ -16,9 +16,13 @@ public class BasicMovement : MonoBehaviour
     private float forceDamping = 1.2f; // damping factor for knockback
     private bool useForceToApply = true; // flag to check if we should get knocked back
 
+    private Animator animator;
+
     protected virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        animator = GetComponent<Animator>();
 
         if (rb == null)
         {
@@ -41,6 +45,13 @@ public class BasicMovement : MonoBehaviour
 
         if (useForceToApply)
             moveForce += forceToApply;
+
+
+        animator.SetFloat("Speed", 1);
+        if (Mathf.Abs(moveForce.x) <= 0.01f && Mathf.Abs(moveForce.z) <= 0.01f)
+        {
+            animator.SetFloat("Speed", 0);
+        }
 
         forceToApply /= forceDamping;
         if (Mathf.Abs(forceToApply.x) <= 0.01f && Mathf.Abs(forceToApply.z) <= 0.01f)

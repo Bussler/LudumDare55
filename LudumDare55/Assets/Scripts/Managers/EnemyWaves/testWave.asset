@@ -17,6 +17,6 @@ MonoBehaviour:
     spawnIntensity: 3
     enemyPrefab: {fileID: 5112027007212064104, guid: 393a6e66b78113249a3e784598a01fc5, type: 3}
   spawnPoints:
-  - spawnPoint: {x: -3, y: 0, z: -3}
+  - spawnPoint: {x: -3, y: 1, z: -3}
     spawnRadius: 2
   spawnInterval: 1
