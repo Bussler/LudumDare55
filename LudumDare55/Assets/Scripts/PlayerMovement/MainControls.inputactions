@@ -241,6 +241,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "draw",
+            "id": "97bfaccc-c2a9-460f-8fee-96d36a1f1890",
+            "actions": [
+                {
+                    "name": "draw",
+                    "type": "Value",
+                    "id": "5901df73-dd80-463b-b40c-170f35c4227a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1edff2f0-d474-48b7-ba5b-d80061a082d8",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "draw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

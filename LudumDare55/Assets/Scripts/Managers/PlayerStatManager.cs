@@ -70,6 +70,17 @@ public class PlayerStatManager : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private int _bloodDrain;
+    public int BloodDrain
+    {
+        get => _bloodDrain;
+        set
+        {
+           _bloodDrain = value;
+        }
+    }
+
     [Header("Movement")]
     [SerializeField]
     private float _movementSpeed;
@@ -109,7 +120,7 @@ public class PlayerStatManager : MonoBehaviour
     public void Initialize()
     {
         CurrentHealth = MaxHealth;
-        CurrentBlood = 0;
+        CurrentBlood = MaxBlood;
     }
 
     public void TakeDamage(int amount)

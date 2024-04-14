@@ -151,6 +151,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4c9424fe18551144c9a4f88c6bdd2665, type: 2}
   - {fileID: 11400000, guid: c43de0da03211f44a916e8c604cde8a8, type: 2}
   - {fileID: 11400000, guid: ceb511257025c7444830c6db6f202d5f, type: 2}
+  RandomOrderedEffects: []
 --- !u!1 &480789630
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,6 +597,18 @@ PrefabInstance:
       propertyPath: basicGun
       value: 
       objectReference: {fileID: 11400000, guid: f598474b0df4a56418e3fb3b87a85057, type: 2}
+    - target: {fileID: 7676590873468136718, guid: 2aeb1a2242ea07a4fa7b19ac614f0e50, type: 3}
+      propertyPath: _maxBlood
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676590873468136718, guid: 2aeb1a2242ea07a4fa7b19ac614f0e50, type: 3}
+      propertyPath: _bloodDrain
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676590873468136718, guid: 2aeb1a2242ea07a4fa7b19ac614f0e50, type: 3}
+      propertyPath: _currentBlood
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8159753034501066789, guid: 2aeb1a2242ea07a4fa7b19ac614f0e50, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.96
@@ -676,6 +689,7 @@ MonoBehaviour:
   originOffset: {x: 0, y: 0, z: 0}
   splineKnotInterval: 1
   maxKnots: 32
+  statManager: {fileID: 0}
 --- !u!114 &535132589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2055,7 +2069,7 @@ MonoBehaviour:
     Probability: 0
   m_Method: 1
   m_Space: 0
-  m_Spacing: {x: 1, y: 1}
+  m_Spacing: {x: 0.1, y: 0.1}
   m_Up: 1
   m_Forward: 2
   m_PositionOffset:
