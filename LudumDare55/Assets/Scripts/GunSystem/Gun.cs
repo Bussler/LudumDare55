@@ -98,7 +98,7 @@ public class Gun : ScriptableObject
 
     public Gun CopyThis()
     {
-        Gun newGun = new Gun();
+        Gun newGun = (Gun)ScriptableObject.CreateInstance("Gun");
         newGun.type= type;
         newGun.Damage= Damage;
         newGun.FireRate = FireRate;  

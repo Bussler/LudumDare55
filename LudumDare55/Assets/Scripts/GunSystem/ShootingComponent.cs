@@ -97,7 +97,6 @@ public class ShootingComponent : MonoBehaviour
         List<Gun.GunEffect> list = new List<Gun.GunEffect>();
         Gun.GunEffect g = Gun.GunEffect.lifegive;
         list.Add(g);
-        EquipGun(list); //TODO remove
     }
 
     private void GenerateNewGun(IEnumerable<Gun.GunEffect> effects= null)
@@ -115,8 +114,8 @@ public class ShootingComponent : MonoBehaviour
 
     private void Shoot()
     {
-        int bulletAmt = currentGun.BulletAmount;
         if(currentGun != null&&_isShooting&&_canShoot){
+            int bulletAmt = currentGun.BulletAmount;
             for (int i = 0; i < bulletAmt; i++)
             {
                 _canShoot = false;

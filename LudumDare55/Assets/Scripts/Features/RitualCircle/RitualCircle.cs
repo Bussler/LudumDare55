@@ -15,6 +15,10 @@ public class RitualCircle : MonoBehaviour
 
     [SerializeField] private GameObject unitSphere;
 
+    [SerializeField] private LayerMask ItemMask;
+
+    [SerializeField] private ShootingComponent shootingComponent;
+
     IObservable<Tuple<Vector3, float>> RitualCircleCompleted => ritualCircleCompleted;
 
     private IObservable<Tuple<Vector3, float>> ritualCircleCompleted;
@@ -38,6 +42,23 @@ public class RitualCircle : MonoBehaviour
 
     private void OnRitualCircleCompleted(Tuple<Vector3, float> circle) {
         unitSphere.transform.position = circle.Item1;
+
+        RaycastHit[] itemHit = Physics.SphereCastAll(circle.Item1, circle.Item2 / 2, Vector3.up, ItemMask);
+
+        List<Gun.GunEffect> effects = new List<Gun.GunEffect>();
+
+        foreach (RaycastHit item in itemHit)
+        {
+            if (item.transform.gameObject.GetComponent<RitualItem>() != null)
+            {
+                effects.Add(item.transform.gameObject.GetComponent<RitualItem>().GunEffect);
+                Destroy(item.transform.gameObject);
+            }
+        }
+      
+        shootingComponent.EquipGun(effects);
+
+
         splineTrailGenerator.ResetSpline();
     }
 
