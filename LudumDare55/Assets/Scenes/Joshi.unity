@@ -123,6 +123,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &67564790 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4181843328959725774, guid: b779d117988357b4a9968bb61dad8161, type: 3}
+  m_PrefabInstance: {fileID: 2046990307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &67564795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67564790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0934142b2353b74fa8c4c171b1feaff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Effects:
+  - {fileID: 11400000, guid: e81c388d783749d4c9c41755ab399208, type: 2}
+  - {fileID: 11400000, guid: 41b828cf2fa2713488e77245f39f8946, type: 2}
+  - {fileID: 11400000, guid: c7bb9b482cee2634fad3d344a7af46b1, type: 2}
+  - {fileID: 11400000, guid: c95ec3883654ea645b1b1e4e7377ebef, type: 2}
+  - {fileID: 11400000, guid: a68f004747481e940b1ae25c0e050f1c, type: 2}
+  - {fileID: 11400000, guid: cfb7f41bbb932be41825b83400dae150, type: 2}
+  - {fileID: 11400000, guid: 9bd9ed22a349a0f4ba3f9fd455095bfc, type: 2}
+  - {fileID: 11400000, guid: 4c9424fe18551144c9a4f88c6bdd2665, type: 2}
+  - {fileID: 11400000, guid: c43de0da03211f44a916e8c604cde8a8, type: 2}
+  - {fileID: 11400000, guid: ceb511257025c7444830c6db6f202d5f, type: 2}
 --- !u!1 &480789630
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,6 +999,10 @@ PrefabInstance:
       propertyPath: Effect
       value: 
       objectReference: {fileID: 11400000, guid: a68f004747481e940b1ae25c0e050f1c, type: 2}
+    - target: {fileID: 6306519568566601633, guid: c0cde1f9f1a3bc74fb31c84c56f9a4c9, type: 3}
+      propertyPath: EffectTypeIndex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1032,6 +1064,10 @@ PrefabInstance:
       propertyPath: Effect
       value: 
       objectReference: {fileID: 11400000, guid: 4c9424fe18551144c9a4f88c6bdd2665, type: 2}
+    - target: {fileID: 6306519568566601633, guid: c0cde1f9f1a3bc74fb31c84c56f9a4c9, type: 3}
+      propertyPath: EffectTypeIndex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1374,6 +1410,10 @@ PrefabInstance:
       propertyPath: Effect
       value: 
       objectReference: {fileID: 11400000, guid: cfb7f41bbb932be41825b83400dae150, type: 2}
+    - target: {fileID: 6306519568566601633, guid: c0cde1f9f1a3bc74fb31c84c56f9a4c9, type: 3}
+      propertyPath: EffectTypeIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1435,6 +1475,10 @@ PrefabInstance:
       propertyPath: Effect
       value: 
       objectReference: {fileID: 11400000, guid: c43de0da03211f44a916e8c604cde8a8, type: 2}
+    - target: {fileID: 6306519568566601633, guid: c0cde1f9f1a3bc74fb31c84c56f9a4c9, type: 3}
+      propertyPath: EffectTypeIndex
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1496,6 +1540,10 @@ PrefabInstance:
       propertyPath: Effect
       value: 
       objectReference: {fileID: 11400000, guid: 3dc270c34008da24fb1f0ad27422b69f, type: 2}
+    - target: {fileID: 6306519568566601633, guid: c0cde1f9f1a3bc74fb31c84c56f9a4c9, type: 3}
+      propertyPath: EffectTypeIndex
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2092,7 +2140,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4181843328959725774, guid: b779d117988357b4a9968bb61dad8161, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 67564795}
   m_SourcePrefab: {fileID: 100100000, guid: b779d117988357b4a9968bb61dad8161, type: 3}
 --- !u!1 &2143230143
 GameObject:
@@ -2312,6 +2363,10 @@ PrefabInstance:
       propertyPath: Effect
       value: 
       objectReference: {fileID: 11400000, guid: 41b828cf2fa2713488e77245f39f8946, type: 2}
+    - target: {fileID: 6306519568566601633, guid: c0cde1f9f1a3bc74fb31c84c56f9a4c9, type: 3}
+      propertyPath: EffectTypeIndex
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
