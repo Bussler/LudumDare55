@@ -28,8 +28,11 @@ public class ProgressionManager : MonoBehaviour
     }
 
     private StoryFlags storyFlags = StoryFlags.None;
+    
+    private float runStartTime = 0f;
+    private int numberOfSummons = 0;
 
-    public StoryFlags StoryFlags1 { get => storyFlags; set => storyFlags = value; }
+    public int NumberOfSummons { get => numberOfSummons; set => numberOfSummons = value; }
 
     private void Awake()
     {
@@ -44,7 +47,36 @@ public class ProgressionManager : MonoBehaviour
 
     private void Start()
     {
+        ResetValues();
+    }
+    
+    /// <summary>
+    /// Reset all values in the progression.
+    /// This includes StoryFlags, runStartTime, numberOfSummons.
+    /// </summary>
+    public void ResetValues()
+    {
         storyFlags = StoryFlags.None;
+        runStartTime = Time.time;
+        numberOfSummons = 0;
+    }
+
+    /// <summary>
+    /// Increase the number of summons stat.
+    /// By default, it increases by 1.
+    /// </summary>
+    public void increaseSummonCounter(int counter = 1)
+    {
+        numberOfSummons += counter;
+    }
+
+    /// <summary>
+    /// Returns the time since the run started.
+    /// </summary>
+    /// <returns></returns>
+    public float GetRunTime()
+    {
+        return Time.time - runStartTime;
     }
 
     /// <summary>
