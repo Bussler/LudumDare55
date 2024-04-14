@@ -285,17 +285,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 296579983}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &194934795 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8438984924802441836, guid: b1d863309f916614983ce6b48eced155, type: 3}
-  m_PrefabInstance: {fileID: 2128695859}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a707ba3f8161b445a2f3dbb4c31228e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &202508075
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,10 +2548,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 2651319256383569600, guid: b1d863309f916614983ce6b48eced155, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6061469140327416962, guid: b1d863309f916614983ce6b48eced155, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.598255
@@ -2603,17 +2588,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6750511318110013751, guid: b1d863309f916614983ce6b48eced155, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 194934795}
-    - target: {fileID: 6750511318110013751, guid: b1d863309f916614983ce6b48eced155, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResumeGame
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 4447352809715092951, guid: b1d863309f916614983ce6b48eced155, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1d863309f916614983ce6b48eced155, type: 3}
