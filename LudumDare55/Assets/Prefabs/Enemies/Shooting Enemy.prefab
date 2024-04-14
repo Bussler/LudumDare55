@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2165359085686355411}
   - component: {fileID: 724814006009503874}
   - component: {fileID: 2183903128681570799}
+  - component: {fileID: 4143016245803261383}
   m_Layer: 7
   m_Name: Shooting Enemy
   m_TagString: Enemy
@@ -204,3 +205,16 @@ MonoBehaviour:
   _itemPrefabs:
   - {fileID: 5112027007212064104, guid: 393a6e66b78113249a3e784598a01fc5, type: 3}
   _dropChance: 0.5
+--- !u!114 &4143016245803261383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2951005199357228338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73869e451486cfe8ab98942db3a1e49c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}

@@ -15,6 +15,9 @@ public class EnemyConfiguration : ScriptableObject
 {
 
     [Header("General Settings")]
+    [Range(0, 100)]
+    public int highscore;
+
     [Range(0, 5)]
     public float walkingSpeed;
 

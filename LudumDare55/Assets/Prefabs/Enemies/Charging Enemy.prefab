@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 6164506318754474378}
   - component: {fileID: 6857750436092011950}
   - component: {fileID: 2749252794829825604}
-  m_Layer: 6
+  - component: {fileID: 9020930876781378161}
+  m_Layer: 7
   m_Name: Charging Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -187,3 +188,16 @@ MonoBehaviour:
   _itemPrefabs:
   - {fileID: 5112027007212064104, guid: 393a6e66b78113249a3e784598a01fc5, type: 3}
   _dropChance: 0.5
+--- !u!114 &9020930876781378161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119427498291745999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73869e451486cfe8ab98942db3a1e49c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
