@@ -15,6 +15,7 @@ public class Phase2 : BossPhase
 
     private int AttackCounter;
 
+
     public override void OnStartPhase(BossController bossController)
     {
         base.OnStartPhase(bossController);
