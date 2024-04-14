@@ -20,9 +20,12 @@ MonoBehaviour:
   Range: 2
   BulletAmount: 1
   BulletSpeed: 5
-  BulletSize: 1
+  BulletSize: 0.3
   BulletKnockback: 1
   BulletHealth: 1
   LifeSteal: 0
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: []
+  gunSize: {x: 10, y: 10, z: 10}
+  mesh: {fileID: 50404739200888968, guid: b4641dd7e04b0f54cb18a556ede0bc3f, type: 3}
+  material: {fileID: 2100000, guid: 7584f77fb0613f94f932f5dc64fc5cb6, type: 2}

@@ -8,6 +8,9 @@ public class EffectManager : MonoBehaviour
 {
     public static EffectManager instance;
     public List<ObjectEffect> Effects;
+
+    public List<GameObject> EffectsParticleSystems;
+
     public List<ObjectEffect> RandomOrderedEffects;
 
     public void Awake()

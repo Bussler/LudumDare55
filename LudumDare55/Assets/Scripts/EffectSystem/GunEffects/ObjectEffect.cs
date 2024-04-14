@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectEffect : ScriptableObject
 {
     public int Change;
-   
+    public GameObject ParticleSystem;
 
     public virtual void ApplyEffect(Object obj)
     {
