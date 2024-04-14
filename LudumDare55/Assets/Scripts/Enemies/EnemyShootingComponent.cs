@@ -34,10 +34,16 @@ public class EnemyShootingComponent : MonoBehaviour
             for (int i = 0; i < bulletAmt; i++)
             {
                 _canShoot = false;
-                GameObject p = ObjectPoolManager.Instance.SpawnObject(equippedGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.EnemyBullet);
+
+                // calculate quaternion to look at direction
+                float angle = Mathf.Atan2(shootingDirection.z, -shootingDirection.x) * Mathf.Rad2Deg;
+                Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.up);
+
+
+                GameObject p = ObjectPoolManager.Instance.SpawnObject(equippedGun.Projectile, ShootingStartPoint.transform.position, rotation, ObjectPoolManager.PoolType.EnemyBullet);
                 p.GetComponent<Projectile>().InitProjectile(equippedGun.Damage, equippedGun.BulletSpeed, equippedGun.BulletKnockback, equippedGun.Range, equippedGun.BulletSize, equippedGun.BulletHealth);
                 p.layer = LayerMask.NameToLayer("EnemyProjectile");
-                p.transform.forward = transform.forward;
+                //p.transform.forward = transform.forward;
                 float acc = (100 - equippedGun.Accuracy) / 2;
                 p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
 
