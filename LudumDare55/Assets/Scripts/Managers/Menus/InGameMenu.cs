@@ -38,6 +38,7 @@ public class InGameMenu : MonoBehaviour
 
     public void ResumeGame()
     {
+        Debug.Log("Resuming game");
         Time.timeScale = 1;
         menuPanel.SetActive(false);
         isPaused = false;
