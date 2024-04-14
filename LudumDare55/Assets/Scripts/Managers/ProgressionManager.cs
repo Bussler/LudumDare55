@@ -57,7 +57,7 @@ public class ProgressionManager : MonoBehaviour
     /// </summary>
     public void ResetValues()
     {
-        storyFlags = StoryFlags.None;
+        storyFlags = StoryFlags.Flag1;
         runStartTime = Time.time;
         numberOfSummons = 0;
     }

@@ -107,7 +107,6 @@ public class EnemySpawner : MonoBehaviour
         {
             currentWaveIndex++;
             SetProgressionFlag();
-            var t = ProgressionManager.Instance.GetRunTime();
             var t2 = ProgressionManager.Instance.CheckStoryFlag(ProgressionManager.StoryFlags.Flag1);
             var t3 = ProgressionManager.Instance.CheckStoryFlag(ProgressionManager.StoryFlags.Flag2);
             spawnTimer = wavesCopy[currentWaveIndex].spawnInterval; // Start spawning immediately
