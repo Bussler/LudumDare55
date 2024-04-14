@@ -1420,7 +1420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4732670840569666539, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
       propertyPath: m_Center.y
-      value: 2.48
+      value: 2.45
       objectReference: {fileID: 0}
     - target: {fileID: 5288269126688642131, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
       propertyPath: _bloodDrain
