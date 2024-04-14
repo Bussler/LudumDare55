@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfc122ee9c1e284bb58debb9d8e0b40, type: 3}
   m_Name: phase1
   m_EditorClassIdentifier: 
+  boss: {fileID: 0}
+  plantPrefab: {fileID: 4480243120516826527, guid: 5326c4fb958a6814a95a8f1244241226, type: 3}
+  rotationSpeed: 5
+  spawnRadius: 3

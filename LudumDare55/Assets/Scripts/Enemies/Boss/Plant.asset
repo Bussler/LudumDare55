@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 279c37d2aeeccbb4c84f340897d83b43, type: 3}
-  m_Name: StationaryEnemy
+  m_Name: Plant
   m_EditorClassIdentifier: 
-  highscore: 100
+  highscore: 0
   walkingSpeed: 0
-  enemyRotationSpeed: 4.58
-  collisionDamage: 50
+  enemyRotationSpeed: 0
+  collisionDamage: 0
   healthPoints: 100
-  dropsBlood: 1
-  amountBloodDropped: 14
-  enemyBehaviour: 4
+  dropsBlood: 0
+  amountBloodDropped: 30
+  enemyBehaviour: 0
   chargingSpeed: 15
   chargingAcceleration: 5
   playerChargingDistance: 0
   playerChargingPreparationSeconds: 0
   playerChargingCooldownSeconds: 0
-  playerDistanceRecognition: 10
+  playerDistanceRecognition: 0
   playerDistanceToKeepForShooting: 7
   playerDistanceToStartShooting: 5

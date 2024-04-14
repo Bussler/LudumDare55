@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum EnemyBehaviour
 {
+    Nothing,
     CloseCombatToPlayer,
     ShootingToPlayer,
     ChargingToPlayersLastPosition,
@@ -28,7 +29,7 @@ public class EnemyConfiguration : ScriptableObject
     [Range(0, 100)]
     public int collisionDamage;
 
-    [Range(0, 100)]
+    [Range(0, 1000)]
     public int healthPoints;
 
     public bool dropsBlood;
