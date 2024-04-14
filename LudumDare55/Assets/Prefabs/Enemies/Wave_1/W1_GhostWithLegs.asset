@@ -18,7 +18,7 @@ MonoBehaviour:
   collisionDamage: 40
   healthPoints: 40
   dropsBlood: 1
-  amountBloodDropped: 20
+  amountBloodDropped: 25
   collisionDamageCooldownInSeconds: 3
   enemyBehaviour: 1
   chargingSpeed: 15
