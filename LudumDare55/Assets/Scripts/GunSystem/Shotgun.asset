@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   type: 3
-  Damage: 30
+  Damage: 15
   FireRate: 2
   Accuracy: 83.6
   TimeLimit: 10
-  Range: 50
+  Range: 2
   BulletAmount: 5
   BulletSpeed: 20
   BulletSize: 0.3

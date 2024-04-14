@@ -45,6 +45,9 @@ public class PlayerStatManager : MonoBehaviour
     }
 
     [SerializeField]
+    private int _startBlood;
+
+    [SerializeField]
     private int _currentBlood;
     public int CurrentBlood
     { 
@@ -122,7 +125,7 @@ public class PlayerStatManager : MonoBehaviour
     public void Initialize()
     {
         CurrentHealth = MaxHealth;
-        CurrentBlood = 0;
+        CurrentBlood = _startBlood;
     }
 
     public void TakeDamage(int amount)

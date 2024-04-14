@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   Damage: 40
-  FireRate: 5
+  FireRate: 4
   Accuracy: 97.4
   TimeLimit: 10
-  Range: 50
+  Range: 6
   BulletAmount: 1
   BulletSpeed: 20
   BulletSize: 0.3

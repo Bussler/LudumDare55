@@ -10,20 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fcb698249fa93d44b9ac6fc3ce2e78f, type: 3}
-  m_Name: Wave_1
+  m_Name: Wave_3
   m_EditorClassIdentifier: 
   enemyGroups:
-  - enemyCount: 1
-    spawnIntensity: 1
+  - enemyCount: 6
+    spawnIntensity: 2
     enemyPrefab: {fileID: 274085355916890059, guid: 90d53ea90f22a2742b984eaa17825b95, type: 3}
-  - enemyCount: 1
-    spawnIntensity: 1
-    enemyPrefab: {fileID: 6196210936609137467, guid: b066fd70e2e878a4d810f941eafda14f, type: 3}
-  - enemyCount: 1
-    spawnIntensity: 1
-    enemyPrefab: {fileID: 58922782332299761, guid: 6e6d6e18b743d1247a846e243c0f23e3, type: 3}
-  - enemyCount: 1
-    spawnIntensity: 1
+  - enemyCount: 6
+    spawnIntensity: 2
     enemyPrefab: {fileID: 8231869313333585899, guid: 69e1c965704817e43acf0400d4efcd43, type: 3}
   spawnPoints:
   - spawnPoint: {x: -10.21, y: 1, z: 26}
@@ -32,4 +26,4 @@ MonoBehaviour:
     spawnRadius: 4.29
   - spawnPoint: {x: 17.5, y: 1, z: -13.7}
     spawnRadius: 4.41
-  spawnInterval: 1
+  spawnInterval: 3

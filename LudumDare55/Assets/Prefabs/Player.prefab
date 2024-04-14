@@ -981,10 +981,11 @@ MonoBehaviour:
   _maxHealth: 100
   _currentHealth: 75
   _maxBlood: 500
+  _startBlood: 15
   _currentBlood: 0
   _bloodDrain: 2
-  _movementSpeed: 8.04
-  _dashingPower: 15
+  _movementSpeed: 9
+  _dashingPower: 17
   _dashingTime: 0.3
   _dashingCooldown: 1
 --- !u!114 &1861403591991976984
