@@ -4,11 +4,12 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "GunType", menuName = "GunType/Gun", order = 1)]
+[CreateAssetMenu(fileName = "GunSystem", menuName = "GunSystem/Gun", order = 1)]
 public class Gun : ScriptableObject
 {
     public enum GunType
     {
+        basic,
         pistol,
         assaultRifle,
         sniper,
@@ -42,59 +43,15 @@ public class Gun : ScriptableObject
 
     public int BulletHealth;
 
+    public int LifeSteal;
+
 
     public GameObject Projectile;
 
 
+    public List<ObjectEffect> Effects;
 
-
-    public enum GunEffect
-    {
-        piercing,
-        lifesteal,
-        playerSlowness, //TODO
-        enemySlowness,  //TODO
-        lifegive,
-        extraDamage,
-        extraFireRate,
-        extraRange,
-        bulletSlowness,
-        extraKnockBack
-    }
-
-    public List<GunEffect> Effects;
-
-    public void ApplyEffects(IEnumerable<GunEffect> effects = null)
-    {
-
-        this.Effects = effects.ToList();
-
-        foreach (GunEffect effect in effects)
-        {
-            switch (effect)
-            {
-                case GunEffect.piercing:
-                    BulletHealth++;
-                    break;
-                case GunEffect.bulletSlowness:
-                    BulletSpeed -= GunEffectConfig.BulletSlownessperEffect;
-                    break;
-                case GunEffect.extraDamage:
-                    Damage += GunEffectConfig.ExtraDamagePerEffect;
-                    break;
-                case GunEffect.extraFireRate:
-                    Damage += GunEffectConfig.ExtraFireRatePerEffect;
-                    break;
-                case GunEffect.extraRange:
-                    Damage += GunEffectConfig.ExtraRangePerEffect;
-                    break;
-                case GunEffect.extraKnockBack:
-                    Damage += GunEffectConfig.ExtraKnockBackPerEffect;
-                    break;
-
-            }
-        }
-    }
+   
 
     public Gun CopyThis()
     {

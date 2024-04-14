@@ -21,7 +21,7 @@ public class EnemyShootingComponent : MonoBehaviour
         //    _projectile.SetCollisionTag("Player");
     }
 
-    private void GenerateNewGun(IEnumerable<Gun.GunEffect> effects = null)
+    private void GenerateNewGun(IEnumerable<ObjectEffect> effects = null)
     {
         equippedGun = gunTemplates[Random.Range(0, gunTemplates.Count)].CopyThis();
     }
