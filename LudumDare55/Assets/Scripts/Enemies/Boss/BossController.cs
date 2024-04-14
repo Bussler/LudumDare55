@@ -9,8 +9,11 @@ using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 public class BossController : MonoBehaviour
 {
     public EnemyConfiguration enemyConfig;
+    public List<Gun> gunTemplates;
 
     private GameObject player;
+
+    public Gun equippedGun;
 
     //private EnemyShootingComponent shootingComponent;
 
@@ -54,7 +57,7 @@ public class BossController : MonoBehaviour
         {
             if (CheckPhaseFlag(phase))
             {
-                phases[counter].ExecutePhase();
+                //phases[counter].ExecutePhase();
             }
             counter++;
         }
@@ -66,7 +69,13 @@ public class BossController : MonoBehaviour
     /// </summary>
     private void BasicShooting()
     {
-        // TODO implement basic shooting logic
+        EnemyShootingComponent shootingComponent = GetComponent<EnemyShootingComponent>();
+        if (shootingComponent != null)
+        {
+            var playerDirection = player.transform.position - transform.position;
+            playerDirection.y = 0;
+            shootingComponent.Shoot(playerDirection);
+        }
 
         // IDEA: Give boss multiple weapons, each with different shooting patterns.
     }

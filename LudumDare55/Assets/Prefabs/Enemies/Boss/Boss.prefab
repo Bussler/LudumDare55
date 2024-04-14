@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6153485687002304555}
   - component: {fileID: 238445684952489485}
   - component: {fileID: 1373919378703851792}
+  - component: {fileID: 7083847730847808363}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Enemy
@@ -119,6 +120,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyConfig: {fileID: 11400000, guid: 95e98ee7722c40744bbfc16ec111ac6d, type: 2}
+  gunTemplates: []
+  equippedGun: {fileID: 0}
   phases:
   - {fileID: 11400000, guid: 80203356e134dca488dbfc66e09f2013, type: 2}
   - {fileID: 11400000, guid: 5666abf4d0763234b81fcde6f6e06450, type: 2}
+--- !u!114 &7083847730847808363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446359128506931495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f4df0df2623be439168a6ad42b8dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunTemplates:
+  - {fileID: 11400000, guid: 2fef5e85fb781904d8ddc5f7310a6c71, type: 2}
+  equippedGun: {fileID: 0}
+  ShootingStartPoint: {fileID: 5486713456100721055}
