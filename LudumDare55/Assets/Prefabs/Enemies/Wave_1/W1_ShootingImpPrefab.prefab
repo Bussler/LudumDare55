@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemPrefabs:
-  - {fileID: 5112027007212064104, guid: 393a6e66b78113249a3e784598a01fc5, type: 3}
+  - {fileID: 2877145971201183682, guid: c0cde1f9f1a3bc74fb31c84c56f9a4c9, type: 3}
   _dropChance: 0.5
 --- !u!114 &7438633516105130482
 MonoBehaviour:

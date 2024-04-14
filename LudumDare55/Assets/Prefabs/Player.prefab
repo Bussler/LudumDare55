@@ -980,10 +980,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _currentHealth: 75
-  _maxBlood: 100
+  _maxBlood: 500
   _currentBlood: 0
-  _bloodDrain: 5
-  _movementSpeed: 7
+  _bloodDrain: 2
+  _movementSpeed: 8.04
   _dashingPower: 15
   _dashingTime: 0.3
   _dashingCooldown: 1

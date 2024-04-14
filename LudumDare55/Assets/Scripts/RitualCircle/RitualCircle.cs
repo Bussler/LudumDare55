@@ -61,7 +61,8 @@ public class RitualCircle : MonoBehaviour
             if (item.transform.gameObject.GetComponent<RitualComponent>() != null)
             {
                 effects.Add(item.transform.gameObject.GetComponent<RitualComponent>().Effect);
-                Destroy(item.transform.gameObject);
+                ObjectPoolManager.Instance.DespawnObject(item.transform.gameObject);
+                PlayerStatManager.Instance.commitUsedBlood();
             }
         }
         shootingComponent.EquipGun(effects);

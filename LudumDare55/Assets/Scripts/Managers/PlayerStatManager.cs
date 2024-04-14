@@ -77,6 +77,12 @@ public class PlayerStatManager : MonoBehaviour
         }
     }
 
+    private int _circleUsedBlood;
+    public int CircleUsedBlood
+    {
+        get => _circleUsedBlood;
+    }
+
     [Header("Movement")]
     [SerializeField]
     private float _movementSpeed;
@@ -157,7 +163,17 @@ public class PlayerStatManager : MonoBehaviour
 
     public void useBlood(int amount)
     {
-        CurrentBlood -= amount;
+        _circleUsedBlood += amount;
+    }
+
+    public void commitUsedBlood()
+    {
+        CurrentBlood -= _circleUsedBlood;
+    }
+
+    public void resetUsedBlood()
+    {
+        _circleUsedBlood = 0;
     }
 
     public void setMaxBlood()

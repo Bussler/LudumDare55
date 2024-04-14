@@ -7,7 +7,7 @@ using UnityEngine.Splines;
 
 public class SplineIntersectionSensor : MonoBehaviour
 {
-    public IObservable<int> SplineIn<tersection => splineIntersection;
+    public IObservable<int> SplineIntersection => splineIntersection;
     public IObservable<Unit> SensorInterval { set; get; }
 
     private IObservable<int> splineIntersection;

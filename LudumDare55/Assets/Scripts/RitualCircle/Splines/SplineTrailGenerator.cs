@@ -37,7 +37,7 @@ public class SplineTrailGenerator : MonoBehaviour
     }
 
     private void OnNewKnot() {
-        if (isPressing&&statManager.CurrentBlood>0)
+        if (isPressing&&statManager.CircleUsedBlood < statManager.CurrentBlood)
         {
             spline.Spline.Add(new BezierKnot(origin.transform.position + originOffset));
             if (spline.Spline.Count > maxKnots)
@@ -48,6 +48,7 @@ public class SplineTrailGenerator : MonoBehaviour
         }
         else
         {
+            statManager.resetUsedBlood();
             spline.Spline.Clear();
         }
     }
