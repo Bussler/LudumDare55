@@ -22,6 +22,8 @@ public class EnemyController : MonoBehaviour
 
     private float waitedTime = 0f;
 
+    private bool isKnockbackable=true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -171,6 +173,7 @@ public class EnemyController : MonoBehaviour
             currentChagingState = ChargingStates.charging;
             navMeshAgent.SetDestination(player.transform.position);
             waitedTime = 0f;
+            isKnockbackable = false;
         }
         else
         {
@@ -185,6 +188,7 @@ public class EnemyController : MonoBehaviour
         {
             currentChagingState = ChargingStates.coolingDown;
             navMeshAgent.speed = enemyConfig.walkingSpeed;
+            isKnockbackable = true;
         }
     }
 
@@ -267,24 +271,24 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator ApplyKnockbackCoroutine(Vector3 knockback)
     {
-        yield return null;
-        navMeshAgent.enabled = false;
-        this.GetComponent<Rigidbody>().isKinematic = false;
-        this.GetComponent<Rigidbody>().AddForce(knockback, ForceMode.Impulse);
-        yield return new WaitForFixedUpdate();
-        float knockbackTime = Time.time;
-        yield return new WaitUntil(
-            () => this.GetComponent<Rigidbody>().velocity.magnitude < 0.25f || Time.time > knockbackTime + 0.015f
-            );
-        yield return new WaitForSeconds(0.015f);
+        if (isKnockbackable)
+        {
+            yield return null;
+            float x = 0;
+            while (x < 0.3f)
+            {
+                navMeshAgent.Warp(transform.position + knockback * Time.deltaTime);
+                x += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+            yield return new WaitForFixedUpdate();
 
-        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        this.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        this.GetComponent<Rigidbody>().isKinematic = true;
-        navMeshAgent.Warp(transform.position);
-        navMeshAgent.enabled = true;
-        yield return null;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(transform.position, out hit, 15, 1);
+            navMeshAgent.Warp(hit.position);
 
+            yield return null;
+        }
     }
 
 

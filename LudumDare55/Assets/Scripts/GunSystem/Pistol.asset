@@ -21,7 +21,7 @@ MonoBehaviour:
   BulletAmount: 1
   BulletSpeed: 20
   BulletSize: 0.1
-  BulletKnockback: 10
+  BulletKnockback: 2
   BulletHealth: 1
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: 

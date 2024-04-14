@@ -72,7 +72,10 @@ public class Projectile : MonoBehaviour
             {
                 enemy.TakeDamage(_damage);
                 // TODO Knockback on enemies can knock them off the navmesh
-                //enemy.ApplyKnockback(_knockBack * transform.forward);
+                Vector3 knockBackVector = _knockBack * transform.forward;
+                knockBackVector.y = 0;
+
+                enemy.ApplyKnockback(knockBackVector);
             }
 
             TakeDamage(1);
