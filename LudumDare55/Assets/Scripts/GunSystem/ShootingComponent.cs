@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Progress;
 
 public class ShootingComponent : MonoBehaviour
 {
 
     private PlayerStatManager  _statManager;
 
+    public Gun basicGun;
     public List<Gun> gunTemplates;
 
     public Gun currentGun;
@@ -48,10 +51,7 @@ public class ShootingComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        List<Gun.GunEffect> list= new List<Gun.GunEffect>();
-        Gun.GunEffect g = Gun.GunEffect.lifegive;
-        list.Add(g);
-        EquipGun(list);
+        currentGun = basicGun;
         _statManager = PlayerStatManager.Instance;
     }
 
@@ -85,22 +85,49 @@ public class ShootingComponent : MonoBehaviour
         _isShooting = false;
     }
 
-    public void EquipGun(IEnumerable<Gun.GunEffect> effects = null)
+    public Gun EquipGun(IEnumerable<ObjectEffect> effects = null)
     {
-        GenerateNewGun(effects);
+        Gun g= GenerateNewGun(effects);
+
+        foreach (ObjectEffect effect in effects)
+        {
+            if (effect.GetType().IsSubclassOf(typeof(GunEffect)))
+            {
+                effect.ApplyEffect(g);
+            }
+
+            if (effect.GetType().IsSubclassOf(typeof(PlayerEffects)))
+            {
+                effect.ApplyEffect(_statManager);
+            }
+
+            //TODO add enemyEffects
+        }
         Invoke("DequipGun", currentGun.TimeLimit);
+        return g;
     }
 
     public void DequipGun()
     {
-        currentGun = null;
-        List<Gun.GunEffect> list = new List<Gun.GunEffect>();
-        Gun.GunEffect g = Gun.GunEffect.lifegive;
-        list.Add(g);
-        EquipGun(list); //TODO remove
+        foreach (ObjectEffect effect in currentGun.Effects)
+        {
+            if (effect.GetType().IsSubclassOf(typeof(GunEffect)))
+            {
+                effect.RemoveEffect(currentGun);
+            }
+
+            if (effect.GetType().IsSubclassOf(typeof(PlayerEffects)))
+            {
+                effect.RemoveEffect(_statManager);
+            }
+
+            //TODO add enemyEffects
+        }
+
+        currentGun = basicGun;
     }
 
-    private void GenerateNewGun(IEnumerable<Gun.GunEffect> effects= null)
+    private Gun GenerateNewGun(IEnumerable<ObjectEffect> effects= null)
     {
         currentGun = gunTemplates[Random.Range(0,gunTemplates.Count)].CopyThis();
 
@@ -108,15 +135,16 @@ public class ShootingComponent : MonoBehaviour
         {
             currentGun = gunTemplates[Random.Range(0, gunTemplates.Count)].CopyThis();
         }
-        currentGun.ApplyEffects(effects);
+        currentGun.Effects = effects.ToList();
         
         lastGunType = currentGun.type;
+        return currentGun;
     }
 
     private void Shoot()
     {
-        int bulletAmt = currentGun.BulletAmount;
         if(currentGun != null&&_isShooting&&_canShoot){
+            int bulletAmt = currentGun.BulletAmount;
             for (int i = 0; i < bulletAmt; i++)
             {
                 _canShoot = false;
@@ -128,20 +156,15 @@ public class ShootingComponent : MonoBehaviour
                 float acc = (100 - currentGun.Accuracy) / 2;
                 p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
 
-
-                //Apply effects 
-                foreach (Gun.GunEffect effect in currentGun.Effects) 
-                { 
-                    if(effect == Gun.GunEffect.lifesteal)
-                    {
-                        _statManager.Heal(GunEffectConfig.LifeStealPerEffect);
-                    }
-                    if (effect == Gun.GunEffect.lifegive)
-                    {
-                        _statManager.TakeDamage(GunEffectConfig.LifeGivePerEffect);
-                    }
-
+                if (currentGun.LifeSteal > 0)
+                {
+                    _statManager.Heal(currentGun.LifeSteal);
                 }
+                else if(currentGun.LifeSteal < 0)
+                {
+                    _statManager.TakeDamage(currentGun.LifeSteal);
+                }
+               
                 Invoke("SetCanShoot",1/currentGun.FireRate);
             }
             if (_isShooting)

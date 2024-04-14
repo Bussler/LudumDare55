@@ -21,6 +21,10 @@ public class RitualCircle : MonoBehaviour
 
     private IObservable<Tuple<Vector3, float>> ritualCircleCompleted;
 
+    [SerializeField] private LayerMask mask;
+    [SerializeField] private ShootingComponent shootingComponent;
+   
+
     public void InitMeFirstPlease() {
         ritualCircleCompleted = splineIntersectionSensor.SplineIntersection
             .Select(intersection => {
@@ -46,7 +50,22 @@ public class RitualCircle : MonoBehaviour
     }
 
     private void OnRitualCircleCompleted(Tuple<Vector3, float> circle) {
-        unitSphere.transform.position = circle.Item1;
+        // unitSphere.transform.position = circle.Item1;
+       
+        RaycastHit[] itemHit = Physics.SphereCastAll(circle.Item1, circle.Item2 / 2, Vector3.up, mask);
+
+        List<ObjectEffect> effects = new List<ObjectEffect>();
+      
+        foreach (RaycastHit item in itemHit)
+        {
+            if (item.transform.gameObject.GetComponent<RitualComponent>() != null)
+            {
+                effects.Add(item.transform.gameObject.GetComponent<RitualComponent>().Effect);
+                Destroy(item.transform.gameObject);
+            }
+        }
+        shootingComponent.EquipGun(effects);
+
         splineTrailGenerator.ResetSpline();
     }
 
@@ -67,7 +86,7 @@ public class RitualCircle : MonoBehaviour
             Vector3 nextPoint = points[(i + 1) % numPoints];
             area += Math.Abs(currentPoint.x * nextPoint.y - nextPoint.x * currentPoint.y);
         }
-
+        Debug.Log("TEST" + Mathf.Abs(area / 2f));
         // The absolute value of the sum divided by 2 is the surface area
         return Mathf.Abs(area / 2f) > minCircleSurface;
     }
