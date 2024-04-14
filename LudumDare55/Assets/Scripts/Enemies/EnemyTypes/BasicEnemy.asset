@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279c37d2aeeccbb4c84f340897d83b43, type: 3}
   m_Name: BasicEnemy
   m_EditorClassIdentifier: 
+  highscore: 100
   walkingSpeed: 2.6129897
   enemyRotationSpeed: 0
   collisionDamage: 30

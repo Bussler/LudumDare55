@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyScore : MonoBehaviour
 {
-    [SerializeField] private int points = 100;
+    private int points = 100;
 
     [SerializeField] private EnemyController enemy;
 
@@ -14,7 +14,8 @@ public class EnemyScore : MonoBehaviour
         if (!enemy.IsAlive.Value) {
             return;
         }
-        enemy.IsAlive.Take(1).Subscribe(_ => OnScore()).AddTo(this);
+        points = enemy.enemyConfig.highscore;
+        //enemy.IsAlive.Subscribe(_ => OnScore()).AddTo(this);
     }
 
     public void OnScore() {
@@ -23,5 +24,14 @@ public class EnemyScore : MonoBehaviour
         }
         LootLockerPlayermanager.Instance.AddScore(points);
     }
-    
+
+    public void AddScore()
+    {
+        if (LootLockerPlayermanager.Instance == null)
+        {
+            return;
+        }
+        LootLockerPlayermanager.Instance.AddScore(points);
+    }
+
 }
