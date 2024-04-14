@@ -49,6 +49,7 @@ public class InGameMenu : MonoBehaviour
 
     private void GenerateGunStats()
     {
+        gunStats.text = "";
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -72,8 +73,8 @@ public class InGameMenu : MonoBehaviour
                 gunStats.text += "BulletHealth: " + currentGun.BulletHealth.ToString() + "\n";
                 gunStats.text += "LifeSteal: " + currentGun.LifeSteal.ToString() + "\n";
                 
-                gunStats.text += "Effects: " + currentGun.Range.ToString() + "\n";
-                gunStats.text += "- TODO: ";
+                gunStats.text += "Effects:\n";
+                gunStats.text += "- Amount: " + currentGun.Effects.Count.ToString() + "\n";
 
                 // TODO
                 //foreach (ObjectEffect effect in currentGun.Effects)
