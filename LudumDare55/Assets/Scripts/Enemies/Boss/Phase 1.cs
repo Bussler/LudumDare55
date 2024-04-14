@@ -20,7 +20,6 @@ public class Phase1 : BossPhase
 
     public override void OnStartPhase(BossController bossController)
     {
-        Debug.Log("Phase 1 started");
         base.OnStartPhase(bossController);
 
         bossCollider = bossController.GetComponent<BoxCollider>();
@@ -53,7 +52,11 @@ public class Phase1 : BossPhase
 
     public override void ExecutePhase()
     {
-        Debug.Log("Phase 1 executing");
+        // rotate the plants around the boss
+        foreach (GameObject plant in plants)
+        {
+            plant.transform.RotateAround(boss.transform.position, Vector3.up, rotationSpeed * Time.deltaTime);
+        }
 
         // Test if all plants are inactive/ destroyed
         bool allInactive = true;
@@ -73,8 +76,6 @@ public class Phase1 : BossPhase
 
     public override void OnEndPhase()
     {
-        Debug.Log("Boss Phase 1 ended");
-
         if (bossCollider != null)
         {
             bossCollider.enabled = true;
@@ -86,5 +87,6 @@ public class Phase1 : BossPhase
 
         // TODO enable when phase 2 is implemented
         //boss.StartPhase(BossController.PhaseFlag.Flag2, 1);
+        ProgressionManager.Instance.EndGame();
     }
 }
