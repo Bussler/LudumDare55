@@ -51,20 +51,16 @@ public class PlayerStatManager : MonoBehaviour
         get => _currentBlood;
         set
         {
-            Debug.Log("Setting blood to: " + value);
             if (value <= 0)
             {
                 _currentBlood = 0;
-                Debug.Log("MIN BLOOD REACHED" + value);
             }
             else if (value >= _maxBlood)
             {
-                Debug.Log("MAX BLOOD REACHED" + value);
                 _currentBlood = _maxBlood;
             }
             else
             {
-                Debug.Log("SETTING BLOOD TO: " + value);
                 _currentBlood = value;
             }
         }
@@ -120,7 +116,7 @@ public class PlayerStatManager : MonoBehaviour
     public void Initialize()
     {
         CurrentHealth = MaxHealth;
-        CurrentBlood = MaxBlood;
+        CurrentBlood = 0;
     }
 
     public void TakeDamage(int amount)

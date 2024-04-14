@@ -1418,13 +1418,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4732670840569666539, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
-      propertyPath: m_Center.y
-      value: 2.45
+    - target: {fileID: 5288269126688642131, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+      propertyPath: _maxBlood
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 5288269126688642131, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
       propertyPath: _bloodDrain
-      value: 5
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288269126688642131, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+      propertyPath: _movementSpeed
+      value: 8.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531806215238823251, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+      propertyPath: minCircleSurface
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7514172000582307705, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
       propertyPath: spline

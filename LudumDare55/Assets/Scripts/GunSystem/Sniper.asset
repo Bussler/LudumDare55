@@ -16,7 +16,7 @@ MonoBehaviour:
   Damage: 80
   FireRate: 1
   Accuracy: 100
-  TimeLimit: 5
+  TimeLimit: 10
   Range: 59
   BulletAmount: 1
   BulletSpeed: 30

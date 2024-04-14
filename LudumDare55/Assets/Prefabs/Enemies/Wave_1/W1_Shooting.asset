@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highscore: 59
   walkingSpeed: 3.09
-  enemyRotationSpeed: 2.22
+  enemyRotationSpeed: 1.5
   collisionDamage: 11
   healthPoints: 100
   dropsBlood: 1
   amountBloodDropped: 35
+  collisionDamageCooldownInSeconds: 2
   enemyBehaviour: 1
   chargingSpeed: 15
   chargingAcceleration: 5

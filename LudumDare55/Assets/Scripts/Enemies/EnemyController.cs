@@ -31,6 +31,8 @@ public class EnemyController : MonoBehaviour
 
     private Animator animator;
 
+    private float timeSinceLastShot = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +82,7 @@ public class EnemyController : MonoBehaviour
         {
             navMeshAgent.SetDestination(player.transform.position);
         }
+        timeSinceLastShot += Time.deltaTime;
     }
 
     private void Die()
@@ -122,11 +125,17 @@ public class EnemyController : MonoBehaviour
         {
             if(PlayerStatManager.Instance != null)
             {
-                PlayerStatManager.Instance.TakeDamage(enemyConfig.collisionDamage);
-                Die();
+                if (timeSinceLastShot > enemyConfig.collisionDamageCooldownInSeconds)
+                {
+                    timeSinceLastShot = 0;
+                    PlayerStatManager.Instance.TakeDamage(enemyConfig.collisionDamage);
+                }
+                //Die();
             }
         }
     }
+
+    
 
     public void CloseCombatToPlayerBehavior()
     {
