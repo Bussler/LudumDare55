@@ -17,12 +17,14 @@ public class ObjectPoolManager : MonoBehaviour
     public GameObject _enemyPoolHolder;
     public GameObject _enemyBulletPoolHolder;
     public GameObject _bulletPoolHolder;
+    public GameObject _itemPoolHolder;
 
     public enum PoolType
     {
         Enemy,
         EnemyBullet,
         Bullet,
+        Item,
         None
     }
 
@@ -53,6 +55,9 @@ public class ObjectPoolManager : MonoBehaviour
 
         _bulletPoolHolder = new GameObject("Bullet Pool");
         _bulletPoolHolder.transform.SetParent(_objectPoolHierarchyHolder.transform);
+
+        _itemPoolHolder = new GameObject("Item Pool");
+        _itemPoolHolder.transform.SetParent(_objectPoolHierarchyHolder.transform);
     }
 
     /// <summary>
@@ -166,6 +171,8 @@ public class ObjectPoolManager : MonoBehaviour
                 return _enemyBulletPoolHolder;
             case PoolType.Bullet:
                 return _bulletPoolHolder;
+            case PoolType.Item:
+                return _itemPoolHolder;
             default:
                 return null;
         }

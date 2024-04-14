@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5377573969826394223}
   - component: {fileID: 36885649088312982}
   - component: {fileID: 2738813386154284068}
+  - component: {fileID: 147981643082107971}
+  - component: {fileID: 2707848554727573379}
   m_Layer: 7
   m_Name: Stationary Enemy
   m_TagString: Enemy
@@ -167,7 +169,38 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &147981643082107971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160984804706276348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f4df0df2623be439168a6ad42b8dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunTemplates:
+  - {fileID: 11400000, guid: 8d1aba8d361e3eb4088631b68956365f, type: 2}
+  equippedGun: {fileID: 0}
+  ShootingStartPoint: {fileID: 4203996576459595303}
+--- !u!114 &2707848554727573379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160984804706276348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2cbda2c4251a7448213b891a9f19db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemPrefabs:
+  - {fileID: 5112027007212064104, guid: 393a6e66b78113249a3e784598a01fc5, type: 3}
+  _dropChance: 0.5
