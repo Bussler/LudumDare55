@@ -13,7 +13,7 @@ public class EnemyWave : ScriptableObject
     public int waveQuota = 0; // total number of enemies in this wave. Is calculated automatically, if set to 0
 
     [System.NonSerialized]
-    public float spawnCount; // How many enemies have been spawned
+    public float spawnCount = 0; // How many enemies have been spawned
 
     public void CalculateWaveQuota() // Calculates waveQuota based on enemyGroups
     {
@@ -22,6 +22,38 @@ public class EnemyWave : ScriptableObject
         {
             waveQuota += enemyGroup.enemyCount;
         }
+    }
+    
+    /// <summary>
+    /// Create a deep copy of this wave.
+    /// </summary>
+    /// <returns></returns>
+    public EnemyWave Clone()
+    {
+        EnemyWave clone = CreateInstance<EnemyWave>();
+        clone.enemyGroups = new List<EnemyGroup>();
+        foreach (EnemyGroup enemyGroup in enemyGroups)
+        {
+            clone.enemyGroups.Add(new EnemyGroup
+            {
+                enemyCount = enemyGroup.enemyCount,
+                spawnIntensity = enemyGroup.spawnIntensity,
+                enemyPrefab = enemyGroup.enemyPrefab
+            });
+        }
+        clone.spawnPoints = new List<SpawnPoint>();
+        foreach (SpawnPoint spawnPoint in spawnPoints)
+        {
+            clone.spawnPoints.Add(new SpawnPoint
+            {
+                spawnPoint = spawnPoint.spawnPoint,
+                spawnRadius = spawnPoint.spawnRadius
+            });
+        }
+        clone.spawnInterval = spawnInterval;
+        clone.waveQuota = waveQuota;
+        clone.spawnCount = spawnCount;
+        return clone;
     }
 }
 
@@ -33,7 +65,7 @@ public class EnemyGroup
     public GameObject enemyPrefab; // Enemy prefab to spawn
 
     [System.NonSerialized]
-    public float spawnCount; // How many enemies in this group have been spawned
+    public float spawnCount = 0; // How many enemies in this group have been spawned
 }
 
 [System.Serializable]
