@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 816ab7ab8817287468a49cd86b261a86
+guid: a43cc6613d8760142bd4f4b09a7597ee
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_Wizard
-    second: {fileID: 2100000, guid: d4e4e73db76fb8b418eb160d8744aa53, type: 2}
+      name: M_Cluster1
+    second: {fileID: 2100000, guid: 22dbea57e7f48a74994c6378418155ea, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_WizardBeard
-    second: {fileID: 2100000, guid: a377e8b16fe9afd4b833c4fb06a0ff76, type: 2}
+      name: M_Cluster2
+    second: {fileID: 2100000, guid: 78d9be847e72a52438a2e66bbb350c0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Cluster3
+    second: {fileID: 2100000, guid: d83d605fdb7672e43bce7c581bab1675, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Stamm
+    second: {fileID: 2100000, guid: a55aabce3539715439c8197c1e75c8eb, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -41,36 +51,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: WizardArmature|Run
-      takeName: WizardArmature|Run
-      internalID: -4474134948076654584
-      firstFrame: 0
-      lastFrame: 16
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 0
   meshes:
     lODScreenPercentages: []
