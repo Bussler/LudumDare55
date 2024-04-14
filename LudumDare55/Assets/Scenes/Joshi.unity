@@ -1212,6 +1212,8 @@ GameObject:
   - component: {fileID: 914604591}
   - component: {fileID: 914604590}
   - component: {fileID: 914604589}
+  - component: {fileID: 914604593}
+  - component: {fileID: 914604592}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Wall
@@ -1305,6 +1307,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914604587}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &914604592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914604587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f4df0df2623be439168a6ad42b8dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunTemplates:
+  - {fileID: 11400000, guid: ee60bc9781e6fa34094e9a574decf7b6, type: 2}
+  equippedGun: {fileID: 0}
+  ShootingStartPoint: {fileID: 914604588}
+--- !u!114 &914604593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914604587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cf1c49dfc48da4d9c9c7b6e0f77237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyConfig: {fileID: 11400000, guid: 95e98ee7722c40744bbfc16ec111ac6d, type: 2}
+  phases:
+  - {fileID: 11400000, guid: 5666abf4d0763234b81fcde6f6e06450, type: 2}
 --- !u!1001 &977711287
 PrefabInstance:
   m_ObjectHideFlags: 0
