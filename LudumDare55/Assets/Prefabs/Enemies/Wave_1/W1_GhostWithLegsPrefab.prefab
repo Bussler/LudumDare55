@@ -288,6 +288,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemPrefabs:
   - {fileID: 2877145971201183682, guid: c0cde1f9f1a3bc74fb31c84c56f9a4c9, type: 3}
+  - {fileID: 2877145971201183682, guid: 58a71c3e85444dc4d925521cf0b9805f, type: 3}
+  - {fileID: 2877145971201183682, guid: 9ffa24765ab85834dbc3f327154a5cc4, type: 3}
+  - {fileID: 2877145971201183682, guid: ef0f724730e9b6946a27f8da1a398194, type: 3}
+  - {fileID: 2877145971201183682, guid: 6e2ebc1e8b1c53f49b6e3d6b1eed1b12, type: 3}
+  - {fileID: 2877145971201183682, guid: a6335ce698cb0f542a5ede1959ecce64, type: 3}
+  - {fileID: 2877145971201183682, guid: db5a75ef225339a48b0171b84236995f, type: 3}
+  - {fileID: 2877145971201183682, guid: f5825ea98e9966f489d05f70e2ffaf4c, type: 3}
+  - {fileID: 2877145971201183682, guid: ff7d993672a8a454ea4bb4a19dfcddad, type: 3}
+  - {fileID: 2877145971201183682, guid: ae00b01f5513e2c439bf6c981e0d63f1, type: 3}
   _dropChance: 0.5
 --- !u!114 &3418043460757073965
 MonoBehaviour:
