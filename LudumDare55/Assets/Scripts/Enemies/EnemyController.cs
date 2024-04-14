@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,6 +24,10 @@ public class EnemyController : MonoBehaviour
     private float waitedTime = 0f;
 
     private bool isKnockbackable=true;
+
+    private ReactiveProperty<bool> isAlive = new ReactiveProperty<bool>(true);
+
+    public ReadOnlyReactiveProperty<bool> IsAlive => isAlive.ToReadOnlyReactiveProperty();
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +79,7 @@ public class EnemyController : MonoBehaviour
 
         ObjectPoolManager.Instance.DespawnObject(this.gameObject);
         EnemySpawner.Instance.OnEnemyDied();
+        isAlive.Value = false;
         if (enemyConfig.dropsBlood)
         {
             player.GetComponent<PlayerStatManager>().gainBlood(enemyConfig.amountBloodDropped);
