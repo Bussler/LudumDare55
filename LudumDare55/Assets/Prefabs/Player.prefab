@@ -150,6 +150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
+  _currentHealth: 0
+  _maxBlood: 100
+  _currentBlood: 0
   _movementSpeed: 7
   _dashingPower: 15
   _dashingTime: 0.3
@@ -192,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2dd96113246825419d03d4fb13908ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicGun: {fileID: 11400000, guid: f598474b0df4a56418e3fb3b87a85057, type: 2}
   gunTemplates:
   - {fileID: 11400000, guid: e3991a550a39c3a44be5af0b4233e62b, type: 2}
   - {fileID: 11400000, guid: a328da35b73848d4aa9fd0536288241b, type: 2}
