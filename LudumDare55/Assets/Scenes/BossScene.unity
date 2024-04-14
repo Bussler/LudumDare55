@@ -823,6 +823,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LootLockerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6378899750723373708, guid: 9c22a5f349611f7459edc3fa6ca283bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8693017678477718279, guid: 9c22a5f349611f7459edc3fa6ca283bb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2486,7 +2490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5486713456100721055, guid: 3f338e4dfd37aa74693cf3c36371b677, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5486713456100721055, guid: 3f338e4dfd37aa74693cf3c36371b677, type: 3}
       propertyPath: m_LocalPosition.z

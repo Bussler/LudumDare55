@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
 {
 
     public EnemyConfiguration enemyConfig;
+    private int _currentHealth;
 
     [SerializeField]
     private NavMeshAgent navMeshAgent;
@@ -35,7 +36,7 @@ public class EnemyController : MonoBehaviour
     {
         Initialize();
         player = GameObject.FindWithTag("Player");
-        if (navMeshAgent.enabled)
+        if (navMeshAgent != null && navMeshAgent.enabled)
         {
             navMeshAgent.SetDestination(player.transform.position);
         }
@@ -47,26 +48,35 @@ public class EnemyController : MonoBehaviour
             EnemyBehaviour.ShootingToPlayer => ShootingToPlayerBehavior,
             EnemyBehaviour.ChargingToPlayersLastPosition => ChargingToPlayersLastPositionBehavior,
             EnemyBehaviour.StationaryShootingToPlayer => StationaryShootingToPlayerBehavior,
+            EnemyBehaviour.Nothing => () => { },
             _ => throw new ArgumentOutOfRangeException()
         };
 
-        navMeshAgent.speed = enemyConfig.walkingSpeed;
+        if(navMeshAgent != null)
+        {
+            navMeshAgent.speed = enemyConfig.walkingSpeed;
+        }
+
         shootingComponent = GetComponent<EnemyShootingComponent>();
         animator = GetComponent<Animator>();
     }
 
     public void Initialize()
     {
-        enemyConfig.healthPoints = 100;
+        _currentHealth = enemyConfig.healthPoints;
         isAlive.Value = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (enemyBehavior == null)
+        {
+            return;
+        }
 
         enemyBehavior.Invoke();
-        if (navMeshAgent.enabled && currentChagingState.Equals(ChargingStates.notCharging))
+        if (navMeshAgent != null && navMeshAgent.enabled && currentChagingState.Equals(ChargingStates.notCharging))
         {
             navMeshAgent.SetDestination(player.transform.position);
         }
@@ -99,8 +109,8 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Debug.Log("Enemy took damage: " + damage);
-        enemyConfig.healthPoints -= damage;
-        if (enemyConfig.healthPoints <= 0)
+        _currentHealth -= damage;
+        if (_currentHealth <= 0)
         {
             Die();
         }
@@ -292,13 +302,16 @@ public class EnemyController : MonoBehaviour
 
     public void ApplyKnockback(Vector3 knockback)
     {
-        IEnumerator c = ApplyKnockbackCoroutine(knockback);
-        StartCoroutine(c);
+        if (this.gameObject.activeSelf)
+        {
+            IEnumerator c = ApplyKnockbackCoroutine(knockback);
+            StartCoroutine(c);
+        }
     }
 
     private IEnumerator ApplyKnockbackCoroutine(Vector3 knockback)
     {
-        if (isKnockbackable)
+        if (isKnockbackable && navMeshAgent != null)
         {
             yield return null;
             float x = 0;

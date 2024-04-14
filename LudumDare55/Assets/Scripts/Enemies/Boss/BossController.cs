@@ -97,10 +97,9 @@ public class BossController : MonoBehaviour
         phases[i].OnStartPhase(this);
     }
 
-    public void EndPhase(PhaseFlag flag, int i)
+    public void EndPhase(PhaseFlag flag)
     {
         phaseFlag &= ~flag;
-        phases[i].OnEndPhase();
     }
 
     public bool CheckPhaseFlag(PhaseFlag flag)
