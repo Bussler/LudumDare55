@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1438,6 +1438,10 @@ PrefabInstance:
       value: -0.06706375
       objectReference: {fileID: 0}
     - target: {fileID: 1562463938325003173, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+      propertyPath: GunObject
+      value: 
+      objectReference: {fileID: 959621743}
+    - target: {fileID: 1562463938325003173, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
       propertyPath: ShootingStartPoint
       value: 
       objectReference: {fileID: 959621744}
@@ -2375,10 +2379,10 @@ MonoBehaviour:
   splineIntersectionSensor: {fileID: 1541571279}
   splineTrailGenerator: {fileID: 1541571280}
   unitSphere: {fileID: 0}
-  minCircleSurface: 30
+  minCircleSurface: 5
   mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2176
   shootingComponent: {fileID: 1541571273}
 --- !u!1 &1568756987
 GameObject:

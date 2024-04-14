@@ -16,12 +16,16 @@ MonoBehaviour:
   Damage: 80
   FireRate: 1
   Accuracy: 100
-  TimeLimit: 3
+  TimeLimit: 5
   Range: 59
   BulletAmount: 1
   BulletSpeed: 30
-  BulletSize: 0.1
+  BulletSize: 0.3
   BulletKnockback: 3
   BulletHealth: 2
+  LifeSteal: 0
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
-  Effects: 
+  Effects: []
+  gunSize: {x: 10, y: 10, z: 10}
+  mesh: {fileID: 6449654466282237968, guid: 816ab7ab8817287468a49cd86b261a86, type: 3}
+  material: {fileID: 2100000, guid: c6d849c1a6c1aec4399df54cffc4790a, type: 2}

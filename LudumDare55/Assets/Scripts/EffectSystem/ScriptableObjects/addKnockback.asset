@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: addKnockback
   m_EditorClassIdentifier: 
   Change: 2
+  ParticleSystem: {fileID: 2461891309415761645, guid: 8591ce9ffec038d408c4e67bd4e57177, type: 3}

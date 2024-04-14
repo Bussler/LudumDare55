@@ -26,6 +26,10 @@ public class ShootingComponent : MonoBehaviour
 
     private Gun.GunType lastGunType;
 
+    public GameObject GunObject;
+    private MeshRenderer gunMesRenderer;
+    private MeshFilter gunMeshFilterer;
+
     private void Awake()
     {
         _input = new MainControls();
@@ -50,6 +54,10 @@ public class ShootingComponent : MonoBehaviour
     {
         currentGun = basicGun;
         _statManager = PlayerStatManager.Instance;
+        ShootingStartPoint = GunObject.transform;
+        gunMeshFilterer= GunObject.GetComponent<MeshFilter>();
+        gunMesRenderer= GunObject.GetComponent<MeshRenderer>();
+        SetGunMesh();
     }
 
     // Update is called once per frame
@@ -101,6 +109,8 @@ public class ShootingComponent : MonoBehaviour
             //TODO add enemyEffects
         }
         Invoke("DequipGun", currentGun.TimeLimit);
+
+        SetGunMesh();
         return g;
     }
 
@@ -122,6 +132,23 @@ public class ShootingComponent : MonoBehaviour
         }
 
         currentGun = basicGun;
+        SetGunMesh();
+    }
+
+    public void SetGunMesh()
+    {
+        for(int i=0; i <GunObject.transform.childCount; i++)
+        {
+            Destroy(GunObject.transform.GetChild(i).gameObject);
+        }
+
+        GunObject.transform.localScale = currentGun.gunSize;
+        gunMesRenderer.material = currentGun.material;
+        gunMeshFilterer.mesh = currentGun.mesh;
+        foreach (ObjectEffect effect in currentGun.Effects)
+        {
+            Instantiate(effect.ParticleSystem,GunObject.transform.position,GunObject.transform.rotation,GunObject.transform);
+        }
     }
 
     private Gun GenerateNewGun(IEnumerable<ObjectEffect> effects= null)
@@ -150,6 +177,7 @@ public class ShootingComponent : MonoBehaviour
                 p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.BulletKnockback, currentGun.Range, currentGun.BulletSize,currentGun.BulletHealth);
                 p.layer = LayerMask.NameToLayer("PlayerProjectile");
                 p.transform.forward = _shootDir;
+
                 float acc = (100 - currentGun.Accuracy) / 2;
                 p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
 

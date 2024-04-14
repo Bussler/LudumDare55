@@ -9,12 +9,6 @@ public class Projectile : MonoBehaviour
     private float _knockBack;
     private int  _health;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        this.transform.localScale.Set(_size, _size, _size);
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -30,6 +24,7 @@ public class Projectile : MonoBehaviour
         _size = size;
         _health = health;
         _knockBack = knockback;
+        this.transform.localScale = new Vector3(_size, _size, _size);
     }
 
     public void MoveForward()

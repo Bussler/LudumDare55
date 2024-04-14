@@ -51,7 +51,10 @@ public class Gun : ScriptableObject
 
     public List<ObjectEffect> Effects;
 
-   
+    public Vector3 gunSize;
+    public Mesh mesh; 
+    public Material material;
+
 
     public Gun CopyThis()
     {
@@ -69,6 +72,10 @@ public class Gun : ScriptableObject
         newGun.BulletHealth = BulletHealth;
         newGun.Projectile = Projectile;
         newGun.Effects = Effects;
+        newGun.LifeSteal = LifeSteal;
+        newGun.mesh = mesh;
+        newGun.material = material;
+        newGun.gunSize = gunSize;
 
         return newGun;
 
