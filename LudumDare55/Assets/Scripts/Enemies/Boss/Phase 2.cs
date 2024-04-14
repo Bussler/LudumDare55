@@ -15,8 +15,9 @@ public class Phase2 : BossPhase
 
     private int AttackCounter;
 
-    public override void OnStartPhase()
+    public override void OnStartPhase(BossController bossController)
     {
+        base.OnStartPhase(bossController);
         AttackCounter = 0;
       //  shootingComponent = this.GetComponent<EnemyShootingComponent>();
         Debug.Log("Phase 2 started");

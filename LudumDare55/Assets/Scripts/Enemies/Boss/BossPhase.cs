@@ -6,7 +6,7 @@ using UnityEngine;
 public class BossPhase : ScriptableObject
 {
 
-    [SerializeField] private BossController boss;
+    [SerializeField] protected BossController boss;
     public virtual void OnStartPhase(BossController bossController)
     {
         boss = bossController;

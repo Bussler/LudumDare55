@@ -24,12 +24,11 @@ public class BossController : MonoBehaviour
     [Flags]
     public enum PhaseFlag
     {
-        None = 0,
         Flag1 = 1 << 0,  // 1
         Flag2 = 1 << 1,  // 2
     }
 
-    PhaseFlag phaseFlag = PhaseFlag.None;
+    PhaseFlag phaseFlag = PhaseFlag.Flag1;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +42,7 @@ public class BossController : MonoBehaviour
     public void Initialize()
     {
         enemyConfig.healthPoints = 100;
+        phaseFlag = PhaseFlag.Flag1;
         StartPhase(PhaseFlag.Flag1, 0);
     }
 
@@ -57,7 +57,7 @@ public class BossController : MonoBehaviour
         {
             if (CheckPhaseFlag(phase))
             {
-                //phases[counter].ExecutePhase();
+                phases[counter].ExecutePhase();
             }
             counter++;
         }
