@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BossPhase1 Template", menuName = "ScriptableObjects/BossPhase1")]
 public class Phase1 : BossPhase
 {
+
     [SerializeField]
     private GameObject plantPrefab;
 

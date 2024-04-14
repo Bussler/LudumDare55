@@ -11,16 +11,19 @@ public class Phase2 : BossPhase
     [SerializeField] private int DirectionNumber;
 
     [SerializeField] private float TimeBetweenAttacks;
+    private float time;
     [SerializeField] private EnemyShootingComponent shootingComponent;
 
-    private int AttackCounter;
-
+    private int AttackCounter=0;
+    private float additionalRotation=5;
 
     public override void OnStartPhase(BossController bossController)
     {
         base.OnStartPhase(bossController);
         AttackCounter = 0;
-      //  shootingComponent = this.GetComponent<EnemyShootingComponent>();
+    
+        shootingComponent= boss.GetComponent<EnemyShootingComponent>();
+        
         Debug.Log("Phase 2 started");
     }
 
@@ -38,29 +41,40 @@ public class Phase2 : BossPhase
 
     public void Attack()
     {
-        if (AttackCounter %2== 0)
+        Debug.Log("Attack");
+        time += Time.fixedDeltaTime;
+        if (time > TimeBetweenAttacks)
         {
-            DoDirectionalAttack();
-        }
-        else
-        {
-            DoLaserAttack();
+            if (AttackCounter % 2 == 0)
+            {
+                DoDirectionalAttack();
+            }
+            else
+            {
+                DoLaserAttack();
+            }
+            time = 0;
+            AttackCounter++;
         }
     }
 
     public void DoLaserAttack()
     {
         shootingComponent.equippedGun = LaserGun;
+        Debug.Log("DoLaser");
     }
 
     public void DoDirectionalAttack()
     {
+        Debug.Log("DoDir");
         shootingComponent.equippedGun = DirectionGun;
 
+        Vector3[] directions = new Vector3[DirectionNumber];
         for(int i=0; i< DirectionNumber; i++)
         {
-            shootingComponent.Shoot(Quaternion.AngleAxis(-45, Vector3.up)*Vector3.fwd * (360 / DirectionNumber) * i);
+            directions[i]=Quaternion.AngleAxis((360 / DirectionNumber) * i+additionalRotation*AttackCounter, Vector3.up)*Vector3.fwd ;
         }
+        shootingComponent.ShootMultipleTimes(directions);
 
     }
 }

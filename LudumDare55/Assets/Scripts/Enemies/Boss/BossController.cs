@@ -49,7 +49,7 @@ public class BossController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        BasicShooting();
+       // BasicShooting();
 
         // Check if the boss has a phase to execute
         int counter = 0;
