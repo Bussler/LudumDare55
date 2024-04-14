@@ -73,6 +73,10 @@ public class EnemyController : MonoBehaviour
     {
         ObjectPoolManager.Instance.DespawnObject(this.gameObject);
         EnemySpawner.Instance.OnEnemyDied();
+        if (enemyConfig.dropsBlood)
+        {
+            player.GetComponent<PlayerStatManager>().gainBlood(enemyConfig.amountBloodDropped);
+        }
     }
 
     public void TakeDamage(int damage)
