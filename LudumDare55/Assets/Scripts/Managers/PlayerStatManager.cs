@@ -35,6 +35,41 @@ public class PlayerStatManager : MonoBehaviour
         }
     }
 
+    [Header("Blood")]
+    [SerializeField]
+    private int _maxBlood;
+    public int MaxBlood
+    {
+        get => _maxBlood;
+        set => _maxBlood = value;
+    }
+
+    [SerializeField]
+    private int _currentBlood;
+    public int CurrentBlood
+    { 
+        get => _currentBlood;
+        set
+        {
+            Debug.Log("Setting blood to: " + value);
+            if (value <= 0)
+            {
+                _currentBlood = 0;
+                Debug.Log("MIN BLOOD REACHED" + value);
+            }
+            else if (value >= _maxBlood)
+            {
+                Debug.Log("MAX BLOOD REACHED" + value);
+                _currentBlood = _maxBlood;
+            }
+            else
+            {
+                Debug.Log("SETTING BLOOD TO: " + value);
+                _currentBlood = value;
+            }
+        }
+    }
+
     [Header("Movement")]
     [SerializeField]
     private float _movementSpeed;
@@ -68,12 +103,13 @@ public class PlayerStatManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        Initilize();
+        Initialize();
     }
 
-    public void Initilize()
+    public void Initialize()
     {
         CurrentHealth = MaxHealth;
+        CurrentBlood = 0;
     }
 
     public void TakeDamage(int amount)
@@ -106,5 +142,19 @@ public class PlayerStatManager : MonoBehaviour
         ProgressionManager.Instance.EndGame();
     }
 
+    public void gainBlood(int amount)
+    {
+        CurrentBlood += amount;
+        Debug.Log("Player gained blood: " + amount);
+    }
 
+    public void useBlood(int amount)
+    {
+        CurrentBlood -= amount;
+    }
+
+    public void setMaxBlood()
+    {
+        CurrentBlood = MaxBlood;
+    }
 }
