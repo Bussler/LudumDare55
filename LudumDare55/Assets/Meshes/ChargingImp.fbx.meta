@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: b699f3372460f2a468c014bea360be37
+guid: d15a0ac136a696b4d80fa84519f81221
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_GhostWithLegs
-    second: {fileID: 2100000, guid: 145f7aa2d530f9b4795c71820cbe951f, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
