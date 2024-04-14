@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,10 @@ public class EnemyController : MonoBehaviour
     private ChargingStates currentChagingState = ChargingStates.notCharging;
 
     private float waitedTime = 0f;
+
+    private ReactiveProperty<bool> isAlive = new ReactiveProperty<bool>(true);
+
+    public ReadOnlyReactiveProperty<bool> IsAlive => isAlive.ToReadOnlyReactiveProperty();
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +78,7 @@ public class EnemyController : MonoBehaviour
     {
         ObjectPoolManager.Instance.DespawnObject(this.gameObject);
         EnemySpawner.Instance.OnEnemyDied();
+        isAlive.Value = false;
     }
 
     void OnCollisionEnter(Collision collision)
