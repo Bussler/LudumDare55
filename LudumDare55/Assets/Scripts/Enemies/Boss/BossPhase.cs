@@ -5,9 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BossPhase Template", menuName = "ScriptableObjects/BossPhase")]
 public class BossPhase : ScriptableObject
 {
-    public virtual void OnStartPhase()
-    {
 
+    [SerializeField] private BossController boss;
+    public virtual void OnStartPhase(BossController bossController)
+    {
+        boss = bossController;
     }
 
     public virtual void ExecutePhase()

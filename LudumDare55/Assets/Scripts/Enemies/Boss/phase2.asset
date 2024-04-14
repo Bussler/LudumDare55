@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0c17df34e2a61843b1d68d2f0aa580f, type: 3}
   m_Name: phase2
   m_EditorClassIdentifier: 
+  LaserGun: {fileID: 11400000, guid: b78daf59ca64d824f87b069f15e83446, type: 2}
+  DirectionGun: {fileID: 11400000, guid: ee60bc9781e6fa34094e9a574decf7b6, type: 2}
+  DirectionNumber: 5
+  TimeBetweenAttacks: 0
+  shootingComponent: {fileID: 0}
