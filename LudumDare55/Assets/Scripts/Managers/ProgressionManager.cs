@@ -24,7 +24,8 @@ public class ProgressionManager : MonoBehaviour
         Flag5 = 1 << 4,
         Flag6 = 1 << 5,
         Flag7 = 1 << 6,
-        Flag8 = 1 << 7
+        Flag8 = 1 << 7,
+        FlagBossSpawned = 1 << 8,
     }
 
     private StoryFlags storyFlags = StoryFlags.None;
@@ -121,6 +122,6 @@ public class ProgressionManager : MonoBehaviour
     {
         if (LootLockerPlayermanager.Instance != null)
             LootLockerPlayermanager.Instance.UploadScore(); 
-        // TODO do more stuff when game ends
+        // TODO do more stuff when game ends, like switch to main menu
     }
 }

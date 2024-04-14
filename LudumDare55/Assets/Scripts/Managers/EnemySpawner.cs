@@ -62,6 +62,9 @@ public class EnemySpawner : MonoBehaviour
                 wave.CalculateWaveQuota();
             neededEnemyQuota += wave.waveQuota;
         }
+
+        currentWaveIndex = 0;
+        SetProgressionFlag();
     }
 
     /// <summary>
@@ -100,6 +103,7 @@ public class EnemySpawner : MonoBehaviour
         if (currentWaveIndex < waves.Count - 1)
         {
             currentWaveIndex++;
+            SetProgressionFlag();
             spawnTimer = waves[currentWaveIndex].spawnInterval; // Start spawning immediately
         }
         waitingForNextWave = false;
@@ -186,9 +190,13 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnBoss()
     {
         if (bossWave == null)
+        {
             Debug.Log("No boss wave to spawn");
+            ProgressionManager.Instance.EndGame();
             return;
+        }
 
+        ProgressionManager.Instance.SetStoryFlag(ProgressionManager.StoryFlags.FlagBossSpawned);
         SpawnWave(bossWave);
     }
 
@@ -197,7 +205,45 @@ public class EnemySpawner : MonoBehaviour
         enemiesAlive--;
         enemiesKilled++;
 
-        if (enemiesKilled >= neededEnemyQuota) // TODO impelement some other method to spawn boss
+        if (enemiesKilled >= neededEnemyQuota)
+        {
             SpawnBoss();
+        }
+    }
+
+    /// <summary>
+    /// Sets the progression flag for the current wave.
+    /// </summary>
+    private void SetProgressionFlag()
+    {
+        switch (currentWaveIndex)
+        {
+            case 0:
+                ProgressionManager.Instance.SetStoryFlag(ProgressionManager.StoryFlags.Flag1);
+                break;
+            case 1:
+                ProgressionManager.Instance.SetStoryFlag(ProgressionManager.StoryFlags.Flag2);
+                break;
+            case 2:
+                ProgressionManager.Instance.SetStoryFlag(ProgressionManager.StoryFlags.Flag3);
+                break;
+            case 3:
+                ProgressionManager.Instance.SetStoryFlag(ProgressionManager.StoryFlags.Flag4);
+                break;
+            case 4:
+                ProgressionManager.Instance.SetStoryFlag(ProgressionManager.StoryFlags.Flag5);
+                break;
+            case 5:
+                ProgressionManager.Instance.SetStoryFlag(ProgressionManager.StoryFlags.Flag6);
+                break;
+            case 6:
+                ProgressionManager.Instance.SetStoryFlag(ProgressionManager.StoryFlags.Flag7);
+                break;
+            case 7:
+                ProgressionManager.Instance.SetStoryFlag(ProgressionManager.StoryFlags.Flag8);
+                break;
+            default:
+                break;
+        }
     }
 }
