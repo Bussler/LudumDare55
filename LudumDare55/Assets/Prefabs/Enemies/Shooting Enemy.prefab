@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6178601955014933238}
   - component: {fileID: 2165359085686355411}
   - component: {fileID: 724814006009503874}
+  - component: {fileID: 2183903128681570799}
   m_Layer: 7
   m_Name: Shooting Enemy
   m_TagString: Enemy
@@ -188,3 +189,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e3991a550a39c3a44be5af0b4233e62b, type: 2}
   equippedGun: {fileID: 0}
   ShootingStartPoint: {fileID: 754073786974332832}
+--- !u!114 &2183903128681570799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2951005199357228338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2cbda2c4251a7448213b891a9f19db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemPrefabs:
+  - {fileID: 5112027007212064104, guid: 393a6e66b78113249a3e784598a01fc5, type: 3}
+  _dropChance: 0.5

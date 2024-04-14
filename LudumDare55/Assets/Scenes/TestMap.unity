@@ -479,10 +479,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stationary Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 160984804706276348, guid: b237df4284ba13e4282a27d9eaefe1ef, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4203996576459595303, guid: b237df4284ba13e4282a27d9eaefe1ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.08
@@ -904,10 +900,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 9075474562275055246, guid: 0ca784cedc365ae44b0659311f4c7f22, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -984,6 +976,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2749252794829825604, guid: db1260cffda318f4e8cfbcc7ba652085, type: 3}
+      propertyPath: _dropChance
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7286990214444580195, guid: db1260cffda318f4e8cfbcc7ba652085, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.94

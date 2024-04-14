@@ -62,15 +62,16 @@ public class EnemyController : MonoBehaviour
         {
             navMeshAgent.SetDestination(player.transform.position);
         }
-
-        else if (enemyConfig.healthPoints <= 0) // TODO: Do we really need this check here?
-        {
-            Die();
-        }
     }
 
     private void Die()
     {
+        ItemDrop itemDrop = GetComponent<ItemDrop>();
+        if (itemDrop != null)
+        {
+            itemDrop.Drop();
+        }
+
         ObjectPoolManager.Instance.DespawnObject(this.gameObject);
         EnemySpawner.Instance.OnEnemyDied();
         if (enemyConfig.dropsBlood)
