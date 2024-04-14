@@ -18,7 +18,7 @@ public class TimeScore : MonoBehaviour
     void Awake() {
         timePointState = new ReactiveProperty<int>(totalTimePoints);
 
-        Observable.Interval(TimeSpan.FromSeconds(decreaseIntervalSec))
+        Observable.Interval(TimeSpan.FromSeconds(decreasePerInterval))
             .Subscribe(_ => OnTimeScoreTick())
             .AddTo(this);
         
