@@ -1187,8 +1187,88 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4129771723302443558, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1293056995}
+    - targetCorrespondingSourceObject: {fileID: 4129771723302443558, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1293056996}
+    - targetCorrespondingSourceObject: {fileID: 4129771723302443558, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1293056997}
   m_SourcePrefab: {fileID: 100100000, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+--- !u!1 &1293056994 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4129771723302443558, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+  m_PrefabInstance: {fileID: 1293056993}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1293056995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293056994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5c86fac8d38aa4eafca800980d3d1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineIntersectionSensor: {fileID: 1293056996}
+  splineTrailGenerator: {fileID: 1293056997}
+  unitSphere: {fileID: 0}
+  minCircleSurface: 30
+  mask:
+    serializedVersion: 2
+    m_Bits: 2176
+  shootingComponent: {fileID: 1293056998}
+--- !u!114 &1293056996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293056994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8a7a8242b342f4d8d975bd63142628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spline: {fileID: 0}
+--- !u!114 &1293056997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293056994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35839ea884af1042ba54c4bdcb80cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spline: {fileID: 0}
+  origin: {fileID: 1293056999}
+  originOffset: {x: 0, y: 0, z: 0}
+  splineKnotInterval: 1
+  maxKnots: 32
+--- !u!114 &1293056998 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5594667863130838519, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+  m_PrefabInstance: {fileID: 1293056993}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293056994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2dd96113246825419d03d4fb13908ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1293056999 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3604064068661756060, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+  m_PrefabInstance: {fileID: 1293056993}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1331735547
 PrefabInstance:
   m_ObjectHideFlags: 0
