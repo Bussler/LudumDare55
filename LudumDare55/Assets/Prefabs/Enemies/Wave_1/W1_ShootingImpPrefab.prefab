@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunTemplates:
-  - {fileID: 11400000, guid: e3991a550a39c3a44be5af0b4233e62b, type: 2}
+  - {fileID: 11400000, guid: 6ffaaf7b87de51d48be3155ce4ed65c3, type: 2}
   equippedGun: {fileID: 0}
   ShootingStartPoint: {fileID: 8752368924368026961}
 --- !u!4 &8752368924368026961 stripped

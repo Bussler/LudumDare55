@@ -1492,6 +1492,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3590924676420217421, guid: b779d117988357b4a9968bb61dad8161, type: 3}
+      propertyPath: maxEnemiesAllowed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3590924676420217421, guid: b779d117988357b4a9968bb61dad8161, type: 3}
       propertyPath: waves.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 3a65831a717f31f4c9bfb439d86372a9, type: 2}

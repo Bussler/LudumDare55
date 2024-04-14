@@ -222,7 +222,6 @@ public class EnemyController : MonoBehaviour
         }
         else
         {
-            animator.enabled = false;
             turnTowardsPlayer(CalculateDirectionToPlayer(), enemyConfig.enemyRotationSpeed);
         }
     }
@@ -245,6 +244,7 @@ public class EnemyController : MonoBehaviour
         {
             currentChagingState = ChargingStates.notCharging;
             waitedTime = 0f;
+            animator.SetBool("isCharging", false);
         }
     }
 
