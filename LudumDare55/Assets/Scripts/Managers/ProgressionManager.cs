@@ -24,12 +24,16 @@ public class ProgressionManager : MonoBehaviour
         Flag5 = 1 << 4,
         Flag6 = 1 << 5,
         Flag7 = 1 << 6,
-        Flag8 = 1 << 7
+        Flag8 = 1 << 7,
+        FlagBossSpawned = 1 << 8,
     }
 
     private StoryFlags storyFlags = StoryFlags.None;
+    
+    private float runStartTime = 0f;
+    private int numberOfSummons = 0;
 
-    public StoryFlags StoryFlags1 { get => storyFlags; set => storyFlags = value; }
+    public int NumberOfSummons { get => numberOfSummons; set => numberOfSummons = value; }
 
     private void Awake()
     {
@@ -44,7 +48,36 @@ public class ProgressionManager : MonoBehaviour
 
     private void Start()
     {
-        storyFlags = StoryFlags.None;
+        ResetValues();
+    }
+    
+    /// <summary>
+    /// Reset all values in the progression.
+    /// This includes StoryFlags, runStartTime, numberOfSummons.
+    /// </summary>
+    public void ResetValues()
+    {
+        storyFlags = StoryFlags.Flag1;
+        runStartTime = Time.time;
+        numberOfSummons = 0;
+    }
+
+    /// <summary>
+    /// Increase the number of summons stat.
+    /// By default, it increases by 1.
+    /// </summary>
+    public void increaseSummonCounter(int counter = 1)
+    {
+        numberOfSummons += counter;
+    }
+
+    /// <summary>
+    /// Returns the time since the run started.
+    /// </summary>
+    /// <returns></returns>
+    public float GetRunTime()
+    {
+        return Time.time - runStartTime;
     }
 
     /// <summary>
@@ -89,6 +122,6 @@ public class ProgressionManager : MonoBehaviour
     {
         if (LootLockerPlayermanager.Instance != null)
             LootLockerPlayermanager.Instance.UploadScore(); 
-        // TODO do more stuff when game ends
+        // TODO do more stuff when game ends, like switch to main menu
     }
 }
