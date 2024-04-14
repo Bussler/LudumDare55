@@ -131,10 +131,13 @@ public class EnemyController : MonoBehaviour
         navMeshAgent.stoppingDistance = enemyConfig.playerDistanceToKeepForShooting;
         //TODO: Implement ShootingToPlayer behavior
         Vector3 directionToPlayer = CalculateDirectionToPlayer();
-
+        animator.SetBool("isShooting", false);
+        Debug.Log("In shooting behavior");
         if (CalculateDistanceToPlayer() < enemyConfig.playerDistanceToStartShooting &&
             (!Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, enemyConfig.playerDistanceRecognition) || hit.transform == player.transform))
         {
+            Debug.Log("Stopping distance reached");
+            animator.SetBool("isShooting", true);
             shootingComponent.Shoot(directionToPlayer);
         }
 
@@ -196,6 +199,7 @@ public class EnemyController : MonoBehaviour
             waitedTime = 0f;
             isKnockbackable = false;
             animator.enabled = true;
+            animator.SetBool("isCharging", true);
         }
         else
         {
