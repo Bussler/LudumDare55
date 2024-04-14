@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: basicGun
   m_EditorClassIdentifier: 
   type: 0
-  Damage: 1
+  Damage: 28
   FireRate: 1
-  Accuracy: 50
+  Accuracy: 65.7
   TimeLimit: 100
   Range: 2
   BulletAmount: 1
-  BulletSpeed: 5
+  BulletSpeed: 8.43
   BulletSize: 0.3
   BulletKnockback: 1
   BulletHealth: 1
