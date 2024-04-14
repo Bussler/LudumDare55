@@ -33,6 +33,7 @@ public class LootLockerPlayermanager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        DontDestroyOnLoad(this.gameObject);
     }
 
     /// <summary>
