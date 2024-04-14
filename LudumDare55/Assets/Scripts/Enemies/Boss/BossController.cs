@@ -12,11 +12,11 @@ public class BossController : MonoBehaviour
 
     private GameObject player;
 
-    private EnemyShootingComponent shootingComponent;
+    //private EnemyShootingComponent shootingComponent;
 
-    private Animator animator;
+    //private Animator animator;
 
-    private List<BossPhase> phases;
+    public List<BossPhase> phases;
 
     [Flags]
     public enum PhaseFlag
@@ -33,8 +33,8 @@ public class BossController : MonoBehaviour
     {
         Initialize();
         player = GameObject.FindWithTag("Player");
-        shootingComponent = GetComponent<EnemyShootingComponent>();
-        animator = GetComponent<Animator>();
+        //shootingComponent = GetComponent<EnemyShootingComponent>();
+        //animator = GetComponent<Animator>();
     }
 
     public void Initialize()
