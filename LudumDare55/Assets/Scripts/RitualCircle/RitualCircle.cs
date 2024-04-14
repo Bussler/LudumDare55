@@ -65,7 +65,7 @@ public class RitualCircle : MonoBehaviour
         {
             Vector3 currentPoint = points[i];
             Vector3 nextPoint = points[(i + 1) % numPoints];
-            area += Math.Abs(currentPoint.x * nextPoint.y - nextPoint.x * currentPoint.y);
+            area += currentPoint.x * nextPoint.z - nextPoint.x * currentPoint.z;
         }
 
         // The absolute value of the sum divided by 2 is the surface area
