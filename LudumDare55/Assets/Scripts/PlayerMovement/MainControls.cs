@@ -263,6 +263,34 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""draw"",
+            ""id"": ""97bfaccc-c2a9-460f-8fee-96d36a1f1890"",
+            ""actions"": [
+                {
+                    ""name"": ""draw"",
+                    ""type"": ""Value"",
+                    ""id"": ""5901df73-dd80-463b-b40c-170f35c4227a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1edff2f0-d474-48b7-ba5b-d80061a082d8"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""draw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -274,6 +302,9 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
         // shoot
         m_shoot = asset.FindActionMap("shoot", throwIfNotFound: true);
         m_shoot_shoot = m_shoot.FindAction("shoot", throwIfNotFound: true);
+        // draw
+        m_draw = asset.FindActionMap("draw", throwIfNotFound: true);
+        m_draw_draw = m_draw.FindAction("draw", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -431,6 +462,52 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
         }
     }
     public ShootActions @shoot => new ShootActions(this);
+
+    // draw
+    private readonly InputActionMap m_draw;
+    private List<IDrawActions> m_DrawActionsCallbackInterfaces = new List<IDrawActions>();
+    private readonly InputAction m_draw_draw;
+    public struct DrawActions
+    {
+        private @MainControls m_Wrapper;
+        public DrawActions(@MainControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @draw => m_Wrapper.m_draw_draw;
+        public InputActionMap Get() { return m_Wrapper.m_draw; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DrawActions set) { return set.Get(); }
+        public void AddCallbacks(IDrawActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DrawActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DrawActionsCallbackInterfaces.Add(instance);
+            @draw.started += instance.OnDraw;
+            @draw.performed += instance.OnDraw;
+            @draw.canceled += instance.OnDraw;
+        }
+
+        private void UnregisterCallbacks(IDrawActions instance)
+        {
+            @draw.started -= instance.OnDraw;
+            @draw.performed -= instance.OnDraw;
+            @draw.canceled -= instance.OnDraw;
+        }
+
+        public void RemoveCallbacks(IDrawActions instance)
+        {
+            if (m_Wrapper.m_DrawActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IDrawActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DrawActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DrawActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public DrawActions @draw => new DrawActions(this);
     public interface IMovementActions
     {
         void OnDash(InputAction.CallbackContext context);
@@ -439,5 +516,9 @@ public partial class @MainControls: IInputActionCollection2, IDisposable
     public interface IShootActions
     {
         void OnShoot(InputAction.CallbackContext context);
+    }
+    public interface IDrawActions
+    {
+        void OnDraw(InputAction.CallbackContext context);
     }
 }
