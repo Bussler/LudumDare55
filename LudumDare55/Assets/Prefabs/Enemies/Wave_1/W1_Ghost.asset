@@ -20,7 +20,7 @@ MonoBehaviour:
   dropsBlood: 0
   amountBloodDropped: 0
   collisionDamageCooldownInSeconds: 2
-  enemyBehaviour: 0
+  enemyBehaviour: 1
   chargingSpeed: 15
   chargingAcceleration: 5
   playerChargingDistance: 0

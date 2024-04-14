@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: BossGun
   m_EditorClassIdentifier: 
   type: 0
-  Damage: 40
-  FireRate: 1
+  Damage: 30
+  FireRate: 1.5
   Accuracy: 90
   TimeLimit: 5
   Range: 50
   BulletAmount: 1
-  BulletSpeed: 20
+  BulletSpeed: 16
   BulletSize: 0.3
   BulletKnockback: 2
   BulletHealth: 1
