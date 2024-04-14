@@ -51,20 +51,16 @@ public class PlayerStatManager : MonoBehaviour
         get => _currentBlood;
         set
         {
-            Debug.Log("Setting blood to: " + value);
             if (value <= 0)
             {
                 _currentBlood = 0;
-                Debug.Log("MIN BLOOD REACHED" + value);
             }
             else if (value >= _maxBlood)
             {
-                Debug.Log("MAX BLOOD REACHED" + value);
                 _currentBlood = _maxBlood;
             }
             else
             {
-                Debug.Log("SETTING BLOOD TO: " + value);
                 _currentBlood = value;
             }
         }
@@ -79,6 +75,12 @@ public class PlayerStatManager : MonoBehaviour
         {
            _bloodDrain = value;
         }
+    }
+
+    private int _circleUsedBlood;
+    public int CircleUsedBlood
+    {
+        get => _circleUsedBlood;
     }
 
     [Header("Movement")]
@@ -120,7 +122,7 @@ public class PlayerStatManager : MonoBehaviour
     public void Initialize()
     {
         CurrentHealth = MaxHealth;
-        CurrentBlood = MaxBlood;
+        CurrentBlood = 0;
     }
 
     public void TakeDamage(int amount)
@@ -161,7 +163,17 @@ public class PlayerStatManager : MonoBehaviour
 
     public void useBlood(int amount)
     {
-        CurrentBlood -= amount;
+        _circleUsedBlood += amount;
+    }
+
+    public void commitUsedBlood()
+    {
+        CurrentBlood -= _circleUsedBlood;
+    }
+
+    public void resetUsedBlood()
+    {
+        _circleUsedBlood = 0;
     }
 
     public void setMaxBlood()

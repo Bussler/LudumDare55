@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0805e59bd8cc246498455d9e4ff7f45a, type: 3}
-  m_Name: Sniper
+  m_Name: W1_Pistol
   m_EditorClassIdentifier: 
-  type: 2
-  Damage: 80
-  FireRate: 1
-  Accuracy: 100
+  type: 0
+  Damage: 11
+  FireRate: 2.83
+  Accuracy: 97.4
   TimeLimit: 10
-  Range: 59
+  Range: 50
   BulletAmount: 1
-  BulletSpeed: 30
+  BulletSpeed: 20
   BulletSize: 0.3
-  BulletKnockback: 3
-  BulletHealth: 2
+  BulletKnockback: 2
+  BulletHealth: 1
   LifeSteal: 0
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: []

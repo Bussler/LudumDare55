@@ -1418,14 +1418,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4732670840569666539, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
-      propertyPath: m_Center.y
-      value: 2.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 5288269126688642131, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
-      propertyPath: _bloodDrain
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7514172000582307705, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
       propertyPath: spline
       value: 
@@ -1484,6 +1476,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3590924676420217421, guid: b779d117988357b4a9968bb61dad8161, type: 3}
+      propertyPath: maxEnemiesAllowed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3590924676420217421, guid: b779d117988357b4a9968bb61dad8161, type: 3}
       propertyPath: waves.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 3a65831a717f31f4c9bfb439d86372a9, type: 2}
@@ -1494,8 +1490,41 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4181843328959725774, guid: b779d117988357b4a9968bb61dad8161, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1323021846}
   m_SourcePrefab: {fileID: 100100000, guid: b779d117988357b4a9968bb61dad8161, type: 3}
+--- !u!1 &1323021845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4181843328959725774, guid: b779d117988357b4a9968bb61dad8161, type: 3}
+  m_PrefabInstance: {fileID: 1323021844}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1323021846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323021845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0934142b2353b74fa8c4c171b1feaff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Effects:
+  - {fileID: 11400000, guid: e81c388d783749d4c9c41755ab399208, type: 2}
+  - {fileID: 11400000, guid: 41b828cf2fa2713488e77245f39f8946, type: 2}
+  - {fileID: 11400000, guid: c7bb9b482cee2634fad3d344a7af46b1, type: 2}
+  - {fileID: 11400000, guid: c95ec3883654ea645b1b1e4e7377ebef, type: 2}
+  - {fileID: 11400000, guid: a68f004747481e940b1ae25c0e050f1c, type: 2}
+  - {fileID: 11400000, guid: cfb7f41bbb932be41825b83400dae150, type: 2}
+  - {fileID: 11400000, guid: 9bd9ed22a349a0f4ba3f9fd455095bfc, type: 2}
+  - {fileID: 11400000, guid: 4c9424fe18551144c9a4f88c6bdd2665, type: 2}
+  - {fileID: 11400000, guid: c43de0da03211f44a916e8c604cde8a8, type: 2}
+  - {fileID: 11400000, guid: ceb511257025c7444830c6db6f202d5f, type: 2}
+  EffectsParticleSystems: []
+  RandomOrderedEffects: []
 --- !u!1 &1330187040
 GameObject:
   m_ObjectHideFlags: 0

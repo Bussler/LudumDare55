@@ -37,6 +37,9 @@ public class EnemyConfiguration : ScriptableObject
     [Range(0, 100)]
     public int amountBloodDropped;
 
+    [Range(0, 5)]
+    public int collisionDamageCooldownInSeconds;
+
     public EnemyBehaviour enemyBehaviour;
 
     [Header("Charging Enemy Settings")]
