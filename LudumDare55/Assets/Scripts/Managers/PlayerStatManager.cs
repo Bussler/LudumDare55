@@ -118,7 +118,10 @@ public class PlayerStatManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
 
+    private void Start()
+    {
         Initialize();
     }
 
@@ -126,6 +129,10 @@ public class PlayerStatManager : MonoBehaviour
     {
         CurrentHealth = MaxHealth;
         CurrentBlood = _startBlood;
+        if (LootLockerPlayermanager.Instance != null)
+        {
+            LootLockerPlayermanager.Instance.Initialize();
+        }
     }
 
     public void TakeDamage(int amount)

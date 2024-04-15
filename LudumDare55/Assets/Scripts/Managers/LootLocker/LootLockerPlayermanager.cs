@@ -35,7 +35,13 @@ public class LootLockerPlayermanager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        Initialize();
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void Initialize()
+    {
+        score = 0;
     }
 
     /// <summary>
