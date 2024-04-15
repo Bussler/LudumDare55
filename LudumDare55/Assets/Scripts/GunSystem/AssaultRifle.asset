@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0805e59bd8cc246498455d9e4ff7f45a, type: 3}
-  m_Name: Sniper
+  m_Name: AssaultRifle
   m_EditorClassIdentifier: 
-  type: 2
-  Damage: 40
-  FireRate: 1
-  Accuracy: 100
-  TimeLimit: 10
-  Range: 10
-  BulletAmount: 1
-  BulletSpeed: 30
-  BulletSize: 0.3
-  BulletKnockback: 3
-  BulletHealth: 3
+  type: 0
+  Damage: 0
+  FireRate: 0
+  Accuracy: 50
+  TimeLimit: 0
+  Range: 0
+  BulletAmount: 0
+  BulletSpeed: 0
+  BulletSize: 0
+  BulletKnockback: 0
+  BulletHealth: 0
   LifeSteal: 0
-  Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
+  Projectile: {fileID: 0}
   Effects: []
-  gunSize: {x: 10, y: 10, z: 10}
-  mesh: {fileID: 4106691986641640505, guid: 35ec633535363764f96e1a4188a19d2d, type: 3}
+  gunSize: {x: 0, y: 0, z: 0}
+  mesh: {fileID: -6654072213606414178, guid: 14c98665568b0b34eaad38c24126a3e1, type: 3}
   material: {fileID: 2100000, guid: 023812a682a071847a67766a6d9f69f9, type: 2}

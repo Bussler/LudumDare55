@@ -28,4 +28,4 @@ MonoBehaviour:
   Effects: []
   gunSize: {x: 10, y: 10, z: 10}
   mesh: {fileID: 0}
-  material: {fileID: 0}
+  material: {fileID: 2100000, guid: 023812a682a071847a67766a6d9f69f9, type: 2}
