@@ -15,7 +15,7 @@ MonoBehaviour:
   highscore: 30
   walkingSpeed: 2.58
   enemyRotationSpeed: 2.14
-  collisionDamage: 65
+  collisionDamage: 20
   healthPoints: 40
   dropsBlood: 1
   amountBloodDropped: 25
