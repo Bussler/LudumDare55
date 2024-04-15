@@ -32,6 +32,9 @@ public class ShootingComponent : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    [SerializeField]
+    private AudioClip machineGunClip;
+
     private void Awake()
     {
         _input = new MainControls();
@@ -201,7 +204,19 @@ public class ShootingComponent : MonoBehaviour
                 {
                     _statManager.TakeDamage(currentGun.LifeSteal);
                 }
-               _audioSource.PlayOneShot(currentGun.GunSound);
+
+                // PLay normal sound only when slower gun
+
+                if (currentGun.FireRate >= 8)
+                {
+                    if (!_audioSource.isPlaying)
+                    {
+                        _audioSource.PlayOneShot(machineGunClip);
+                    }
+                } else
+                {
+                    _audioSource.PlayOneShot(currentGun.GunSound);
+                }
 
                 Invoke("SetCanShoot",1/currentGun.FireRate);
             }
