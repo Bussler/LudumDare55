@@ -13,20 +13,19 @@ MonoBehaviour:
   m_Name: AssaultRifle
   m_EditorClassIdentifier: 
   type: 0
-  Damage: 1
-  FireRate: 5
+  Damage: 0
+  FireRate: 0
   Accuracy: 50
-  TimeLimit: 5
-  Range: 5
+  TimeLimit: 0
+  Range: 0
   BulletAmount: 0
-  BulletSpeed: 5
-  BulletSize: 0.3
+  BulletSpeed: 0
+  BulletSize: 0
   BulletKnockback: 0
-  BulletHealth: 1
+  BulletHealth: 0
   LifeSteal: 0
-  Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
+  Projectile: {fileID: 0}
   Effects: []
-  gunSize: {x: 10, y: 10, z: 10}
-  gunRotation: {x: -90, y: 0, z: 0}
+  gunSize: {x: 0, y: 0, z: 0}
   mesh: {fileID: -6654072213606414178, guid: 14c98665568b0b34eaad38c24126a3e1, type: 3}
   material: {fileID: 2100000, guid: 023812a682a071847a67766a6d9f69f9, type: 2}
