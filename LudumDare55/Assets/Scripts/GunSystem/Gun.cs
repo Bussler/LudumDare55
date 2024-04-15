@@ -52,6 +52,7 @@ public class Gun : ScriptableObject
     public List<ObjectEffect> Effects;
 
     public Vector3 gunSize;
+    public Vector3 gunRotation;
     public Mesh mesh; 
     public Material material;
 
@@ -76,6 +77,7 @@ public class Gun : ScriptableObject
         newGun.mesh = mesh;
         newGun.material = material;
         newGun.gunSize = gunSize;
+        newGun.gunRotation = gunRotation;
 
         return newGun;
 

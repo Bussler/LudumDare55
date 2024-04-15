@@ -65,7 +65,11 @@ public class RitualCircle : MonoBehaviour
                 PlayerStatManager.Instance.commitUsedBlood();
             }
         }
-        shootingComponent.EquipGun(effects);
+
+        if (effects.Count > 0)
+        {
+            shootingComponent.EquipGun(effects);
+        }
 
         splineTrailGenerator.ResetSpline();
     }

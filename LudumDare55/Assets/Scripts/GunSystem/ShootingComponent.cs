@@ -143,6 +143,7 @@ public class ShootingComponent : MonoBehaviour
         }
 
         GunObject.transform.localScale = currentGun.gunSize;
+        GunObject.transform.localEulerAngles = currentGun.gunRotation;
         gunMesRenderer.material = currentGun.material;
         gunMeshFilterer.mesh = currentGun.mesh;
         foreach (ObjectEffect effect in currentGun.Effects)

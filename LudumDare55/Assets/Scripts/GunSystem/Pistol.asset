@@ -27,5 +27,6 @@ MonoBehaviour:
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: []
   gunSize: {x: 10, y: 10, z: 10}
-  mesh: {fileID: 6449654466282237968, guid: 816ab7ab8817287468a49cd86b261a86, type: 3}
-  material: {fileID: 2100000, guid: c6d849c1a6c1aec4399df54cffc4790a, type: 2}
+  gunRotation: {x: -90, y: 0, z: 0}
+  mesh: {fileID: 1934041388397676203, guid: cd14fae5b463ef248a6f07131eb6f063, type: 3}
+  material: {fileID: 2100000, guid: 023812a682a071847a67766a6d9f69f9, type: 2}
