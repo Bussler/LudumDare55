@@ -115,7 +115,7 @@ public class ShootingComponent : MonoBehaviour
             //TODO add enemyEffects
         }
         Invoke("DequipGun", currentGun.TimeLimit);
-
+        _audioSource.PlayOneShot(g.EquipSound);
         _audioSource.clip = g.GunSound;
 
         SetGunMesh();
