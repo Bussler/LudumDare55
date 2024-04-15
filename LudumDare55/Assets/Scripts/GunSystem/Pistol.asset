@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   Damage: 40
-  FireRate: 4
+  FireRate: 2
   Accuracy: 97.4
   TimeLimit: 10
   Range: 6
