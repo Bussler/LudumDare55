@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35796bba937e5e45ab99a0f978d7000, type: 3}
   m_Name: addTime
   m_EditorClassIdentifier: 
-  Change: 0
+  Change: 10
+  ParticleSystem: {fileID: 0}

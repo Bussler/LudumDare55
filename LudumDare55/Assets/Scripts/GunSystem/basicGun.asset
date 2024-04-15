@@ -19,7 +19,7 @@ MonoBehaviour:
   TimeLimit: 2
   Range: 4
   BulletAmount: 1
-  BulletSpeed: 17
+  BulletSpeed: 25
   BulletSize: 0.3
   BulletKnockback: 1
   BulletHealth: 1

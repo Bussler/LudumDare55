@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443a56a03fc1be441953acf96f2e9e4e, type: 3}
   m_Name: addFireRate
   m_EditorClassIdentifier: 
-  Change: 50
+  Change: 10
   ParticleSystem: {fileID: 5454058942328219970, guid: 71c3bfbb85cdd5442972a7a35cbb5be3, type: 3}

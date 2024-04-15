@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c77e740457047de4abcec8fe0864f18e, type: 3}
   m_Name: addDamage
   m_EditorClassIdentifier: 
-  Change: 1
+  Change: 0
   ParticleSystem: {fileID: 5454058942328219970, guid: 71c3bfbb85cdd5442972a7a35cbb5be3, type: 3}
