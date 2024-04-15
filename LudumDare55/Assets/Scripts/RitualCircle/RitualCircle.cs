@@ -77,7 +77,7 @@ public class RitualCircle : MonoBehaviour
 
         var circleEffect = Instantiate(ritualCirclePrefab);
         circleEffect.transform.position = circle.Item1 + new Vector3(0, gameObject.transform.position.y + 0.5f, 0);
-        // circleEffect.transform.localScale = circle.Item2 * new Vector3(1, 1, 1);
+        circleEffect.transform.localScale = 0.25f * circle.Item2 * new Vector3(1, 1, 1);
     }
 
 
