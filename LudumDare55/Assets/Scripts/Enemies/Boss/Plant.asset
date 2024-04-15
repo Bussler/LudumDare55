@@ -16,9 +16,10 @@ MonoBehaviour:
   walkingSpeed: 0
   enemyRotationSpeed: 0
   collisionDamage: 0
-  healthPoints: 100
+  healthPoints: 60
   dropsBlood: 0
   amountBloodDropped: 30
+  collisionDamageCooldownInSeconds: 0
   enemyBehaviour: 0
   chargingSpeed: 15
   chargingAcceleration: 5
