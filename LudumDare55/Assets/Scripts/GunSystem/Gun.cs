@@ -45,6 +45,8 @@ public class Gun : ScriptableObject
 
     public int LifeSteal;
 
+    public AudioClip GunSound;
+
 
     public GameObject Projectile;
 
@@ -78,6 +80,7 @@ public class Gun : ScriptableObject
         newGun.material = material;
         newGun.gunSize = gunSize;
         newGun.gunRotation = gunRotation;
+        newGun.GunSound = GunSound;
 
         return newGun;
 
