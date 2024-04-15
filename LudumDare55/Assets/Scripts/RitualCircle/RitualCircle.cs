@@ -23,6 +23,8 @@ public class RitualCircle : MonoBehaviour
 
     [SerializeField] private LayerMask mask;
     [SerializeField] private ShootingComponent shootingComponent;
+
+    [SerializeField] private GameObject ritualCirclePrefab;
    
 
     public void InitMeFirstPlease() {
@@ -72,6 +74,10 @@ public class RitualCircle : MonoBehaviour
         }
 
         splineTrailGenerator.ResetSpline();
+
+        var circleEffect = Instantiate(ritualCirclePrefab);
+        circleEffect.transform.position = circle.Item1 + new Vector3(0, gameObject.transform.position.y + 0.5f, 0);
+        // circleEffect.transform.localScale = circle.Item2 * new Vector3(1, 1, 1);
     }
 
 

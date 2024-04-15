@@ -1078,6 +1078,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2176
   shootingComponent: {fileID: 1562463938325003173}
+  ritualCirclePrefab: {fileID: 2475799534375751191, guid: 73ab7ddff0774a9a99b4447e5a4b6804, type: 3}
 --- !u!114 &7514172000582307705
 MonoBehaviour:
   m_ObjectHideFlags: 0
