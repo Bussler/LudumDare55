@@ -15,6 +15,8 @@ Repository for the [Ludum Dare 55](https://ldjam.com/events/ludum-dare/55).
 
 ### WebGL
 
+Click on https://gamedevploration.itch.io/gunmancer and play the game in your browser.
+
 ### Local .Exe
 
 - Download the latest release.
