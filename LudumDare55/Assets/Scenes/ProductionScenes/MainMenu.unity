@@ -315,9 +315,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1947554492}
-  m_Father: {fileID: 1638765}
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -368,7 +367,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8897547}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -450,7 +449,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1183653870}
-  m_Father: {fileID: 1638765}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -501,7 +500,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8897547}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
@@ -842,6 +841,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3168575352922669909, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168575352922669909, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168575352922669909, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168575352922669909, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168575352922669909, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168575352922669909, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3168575352922669909, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -152
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188769317530817350, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343383075158394704, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665660766395299388, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -634.157
+      objectReference: {fileID: 0}
     - target: {fileID: 5302192604576758532, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
       propertyPath: m_Camera
       value: 
@@ -849,6 +888,22 @@ PrefabInstance:
     - target: {fileID: 5576638329670766137, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
       propertyPath: m_Name
       value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5892446922267178312, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5892446922267178312, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -152.00005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416056699922699033, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -152
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894751118313565204, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9002953286575856788, guid: 217bd9e1bac91354fa6d6f4e43857151, type: 3}
       propertyPath: m_LocalPosition.x
@@ -904,3 +959,5 @@ SceneRoots:
   - {fileID: 8017926240289226762}
   - {fileID: 546549342}
   - {fileID: 1962642168}
+  - {fileID: 1011805046}
+  - {fileID: 1036354042}
