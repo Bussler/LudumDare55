@@ -91,7 +91,7 @@ public class EnemyController : MonoBehaviour
         timeSinceLastShot += Time.deltaTime;
     }
 
-    private void Die()
+    public void Die()
     {
         ItemDrop itemDrop = GetComponent<ItemDrop>();
         if (itemDrop != null)
