@@ -22,9 +22,9 @@ public class TimeScore : MonoBehaviour
             .Subscribe(_ => OnTimeScoreTick())
             .AddTo(this);
         
-        ProgressionManager.Instance.GameEnded
-            .Subscribe(_ => ApplyScore())
-            .AddTo(this);
+        //ProgressionManager.Instance.GameEnded
+        //    .Subscribe(_ => ApplyScore())
+        //    .AddTo(this);
 
     }
 

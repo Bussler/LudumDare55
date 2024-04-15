@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Wave_3
   m_EditorClassIdentifier: 
   enemyGroups:
-  - enemyCount: 6
+  - enemyCount: 4
     spawnIntensity: 2
     enemyPrefab: {fileID: 274085355916890059, guid: 90d53ea90f22a2742b984eaa17825b95, type: 3}
-  - enemyCount: 6
+  - enemyCount: 4
     spawnIntensity: 2
     enemyPrefab: {fileID: 8231869313333585899, guid: 69e1c965704817e43acf0400d4efcd43, type: 3}
   spawnPoints:

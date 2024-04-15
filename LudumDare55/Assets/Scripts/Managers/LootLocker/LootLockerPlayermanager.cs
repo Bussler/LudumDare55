@@ -16,6 +16,8 @@ public class LootLockerPlayermanager : MonoBehaviour
     [SerializeField]
     private int score; // The player's curent score
 
+    public int Score => score;
+
     void Awake()
     {
         if (!LootLockerSDKManager.CheckInitialized())
@@ -33,7 +35,13 @@ public class LootLockerPlayermanager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        Initialize();
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void Initialize()
+    {
+        score = 0;
     }
 
     /// <summary>

@@ -11,12 +11,7 @@ using UnityEngine;
 /// </summary>
 public class ProgressionManager : MonoBehaviour
 {
-
     public static ProgressionManager Instance;
-
-    private ReactiveProperty<bool> gameEnded = new ReactiveProperty<bool>(false);
-
-    public ReadOnlyReactiveProperty<bool> GameEnded => gameEnded.ToReadOnlyReactiveProperty();
 
     [Flags]
     public enum StoryFlags
@@ -129,6 +124,9 @@ public class ProgressionManager : MonoBehaviour
         if (LootLockerPlayermanager.Instance != null)
             LootLockerPlayermanager.Instance.UploadScore();
         // TODO do more stuff when game ends
-        gameEnded.Value = true;
+        if (EndGameMenu.Instance  != null)
+        {
+            EndGameMenu.Instance.ShowEndGameMenu();
+        }
     }
 }
