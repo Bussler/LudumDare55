@@ -411,6 +411,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3590924676420217421, guid: b779d117988357b4a9968bb61dad8161, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4181843328959725774, guid: b779d117988357b4a9968bb61dad8161, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -2572,6 +2576,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1373919378703851792, guid: 3f338e4dfd37aa74693cf3c36371b677, type: 3}
+      propertyPath: phases.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 80203356e134dca488dbfc66e09f2013, type: 2}
     - target: {fileID: 1446359128506931495, guid: 3f338e4dfd37aa74693cf3c36371b677, type: 3}
       propertyPath: m_Name
       value: Boss

@@ -47,11 +47,47 @@ public class EnemyShootingComponent : MonoBehaviour
                 float acc = (100 - equippedGun.Accuracy) / 2;
                 p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
 
-                Invoke("SetCanShoot", 1 / equippedGun.FireRate);
+             
             }
+            Invoke("SetCanShoot", 1 / equippedGun.FireRate);
         }
     }
-    private void SetCanShoot()
+
+    public void ShootMultipleTimes(Vector3[] shootingDirections)
+    {
+        Debug.Log("TEST canshoot " + _canShoot);
+        if (_canShoot)
+        {
+            _canShoot = false;
+            for (int l = 0; l < shootingDirections.Length; l++)
+            {
+               
+                if (equippedGun != null )
+                {
+                    int bulletAmt = equippedGun.BulletAmount;
+                    for (int i = 0; i < bulletAmt; i++)
+                    {
+                        // calculate quaternion to look at direction
+                        float angle = Mathf.Atan2(shootingDirections[l].z, -shootingDirections[l].x) * Mathf.Rad2Deg;
+                        Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.up);
+
+                        GameObject p = ObjectPoolManager.Instance.SpawnObject(equippedGun.Projectile, ShootingStartPoint.transform.position, rotation, ObjectPoolManager.PoolType.EnemyBullet);
+                        p.GetComponent<Projectile>().InitProjectile(equippedGun.Damage, equippedGun.BulletSpeed, equippedGun.BulletKnockback, equippedGun.Range, equippedGun.BulletSize, equippedGun.BulletHealth);
+                        p.layer = LayerMask.NameToLayer("EnemyProjectile");
+                        //p.transform.forward = transform.forward;
+                        float acc = (100 - equippedGun.Accuracy) / 2;
+                        p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
+                    }
+                }
+            }
+            Invoke("SetCanShoot", 1 / equippedGun.FireRate);
+        }
+       
+       
+    }
+
+
+    public void SetCanShoot()
     {
         _canShoot = true;
     }

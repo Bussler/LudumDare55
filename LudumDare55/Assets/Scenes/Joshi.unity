@@ -1214,8 +1214,8 @@ GameObject:
   - component: {fileID: 914604589}
   - component: {fileID: 914604593}
   - component: {fileID: 914604592}
-  m_Layer: 0
-  m_Name: Cube (1)
+  m_Layer: 7
+  m_Name: BOSS
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1229,12 +1229,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914604587}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -4.67}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.74, y: 1, z: -5.52}
   m_LocalScale: {x: 1, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1243360321}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &914604589
 BoxCollider:
@@ -1277,7 +1277,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d9325e5bcaf9d14cbf7d69089b84d44, type: 2}
+  - {fileID: 2100000, guid: 0d5462fb69066454c9980f87c8b151bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunTemplates:
   - {fileID: 11400000, guid: ee60bc9781e6fa34094e9a574decf7b6, type: 2}
-  equippedGun: {fileID: 0}
+  equippedGun: {fileID: 11400000, guid: ee60bc9781e6fa34094e9a574decf7b6, type: 2}
   ShootingStartPoint: {fileID: 914604588}
 --- !u!114 &914604593
 MonoBehaviour:
@@ -1336,7 +1336,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyConfig: {fileID: 11400000, guid: 95e98ee7722c40744bbfc16ec111ac6d, type: 2}
+  gunTemplates: []
+  equippedGun: {fileID: 11400000, guid: ee60bc9781e6fa34094e9a574decf7b6, type: 2}
   phases:
+  - {fileID: 11400000, guid: 5666abf4d0763234b81fcde6f6e06450, type: 2}
   - {fileID: 11400000, guid: 5666abf4d0763234b81fcde6f6e06450, type: 2}
 --- !u!1001 &977711287
 PrefabInstance:
@@ -1744,7 +1747,6 @@ Transform:
   - {fileID: 480789631}
   - {fileID: 1494704752}
   - {fileID: 492209816}
-  - {fileID: 914604588}
   - {fileID: 1782970341}
   - {fileID: 1192256177}
   m_Father: {fileID: 0}
@@ -2590,3 +2592,4 @@ SceneRoots:
   - {fileID: 977711287}
   - {fileID: 6636228939090340452}
   - {fileID: 5482704785054700278}
+  - {fileID: 914604588}

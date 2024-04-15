@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BossPhase1 Template", menuName = "ScriptableObjects/BossPhase1")]
 public class Phase1 : BossPhase
 {
+
     [SerializeField]
     private GameObject plantPrefab;
 
@@ -21,7 +22,6 @@ public class Phase1 : BossPhase
     public override void OnStartPhase(BossController bossController)
     {
         base.OnStartPhase(bossController);
-
         bossCollider = bossController.GetComponent<BoxCollider>();
         if (bossCollider == null)
         {
@@ -86,7 +86,7 @@ public class Phase1 : BossPhase
         boss.EndPhase(BossController.PhaseFlag.Flag1);
 
         // TODO enable when phase 2 is implemented
-        //boss.StartPhase(BossController.PhaseFlag.Flag2, 1);
-        ProgressionManager.Instance.EndGame();
+        boss.StartPhase(BossController.PhaseFlag.Flag2, 1);
+       
     }
 }
