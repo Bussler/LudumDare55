@@ -75,6 +75,14 @@ public class Projectile : MonoBehaviour
 
                 enemy.ApplyKnockback(knockBackVector);
             }
+            else
+            {
+                BossController boss = collision.gameObject.GetComponent<BossController>();
+                if (boss != null)
+                {
+                    boss.TakeDamage(_damage);
+                }
+            }
 
             TakeDamage(1);
         } 

@@ -15,6 +15,8 @@ public class BossController : MonoBehaviour
 
     public Gun equippedGun;
 
+    public int _currentHealth;
+
     //private EnemyShootingComponent shootingComponent;
 
     //private Animator animator;
@@ -41,7 +43,7 @@ public class BossController : MonoBehaviour
 
     public void Initialize()
     {
-        enemyConfig.healthPoints = 100;
+        _currentHealth = enemyConfig.healthPoints;
         phaseFlag = PhaseFlag.Flag1;
         StartPhase(PhaseFlag.Flag1, 0);
     }
@@ -116,8 +118,9 @@ public class BossController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        enemyConfig.healthPoints -= damage;
-        if (enemyConfig.healthPoints <= 0)
+        Debug.Log("Boss took damage: " + _currentHealth);
+        _currentHealth -= damage;
+        if (_currentHealth <= 0)
         {
             Die();
         }

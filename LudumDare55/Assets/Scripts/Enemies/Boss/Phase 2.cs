@@ -24,26 +24,21 @@ public class Phase2 : BossPhase
         AttackCounter = 0;
         player = GameObject.FindWithTag("Player");
         shootingComponent = boss.GetComponent<EnemyShootingComponent>();
-        
-        Debug.Log("Phase 2 started");
     }
 
     public override void ExecutePhase()
     {
-        Debug.Log("Phase 2 executing");
         Attack();
     }
 
     public override void OnEndPhase()
     {
-        Debug.Log("Phase 2 ended");
         ProgressionManager.Instance.EndGame();
     }
 
 
     public void Attack()
     {
-        Debug.Log("Attack");
         time += Time.fixedDeltaTime;
         if (time > TimeBetweenAttacks)
         {
@@ -63,13 +58,10 @@ public class Phase2 : BossPhase
     public void DoLaserAttack()
     {
         shootingComponent.equippedGun = LaserGun;
-        Debug.Log("DoLaser");
-      
     }
 
     public void DoDirectionalAttack()
     {
-        Debug.Log("DoDir");
         shootingComponent.equippedGun = DirectionGun;
 
         Vector3[] directions = new Vector3[DirectionNumber];
