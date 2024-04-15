@@ -3557,6 +3557,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5288269126688642131, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+      propertyPath: damageClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 974df4efcd2aaeb49ac46a96649f9fec, type: 3}
+    - target: {fileID: 5288269126688642131, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
       propertyPath: _startBlood
       value: 100
       objectReference: {fileID: 0}
