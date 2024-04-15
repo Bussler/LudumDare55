@@ -72,6 +72,11 @@ public class RitualCircle : MonoBehaviour
 
                 ObjectPoolManager.Instance.DespawnObject(item.transform.gameObject);
                 PlayerStatManager.Instance.commitUsedBlood();
+
+                if (ProgressionManager.Instance != null)
+                {
+                    ProgressionManager.Instance.NumberOfSummons++;
+                }
             }
         }
       
