@@ -34,6 +34,10 @@ public class EnemySpawner : MonoBehaviour
     private int neededEnemyQuota; // Number of killed enemies needed to spawn the boss
     private bool waitingForNextWave = false; // Flag to check if waiting for next wave
 
+    [SerializeField]
+    private AudioClip bossMusicClip;
+    private AudioSource _audioSource;
+
 
     void Awake()
     {
@@ -65,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
                 wave.CalculateWaveQuota();
             neededEnemyQuota += wave.waveQuota;
         }
-
+        _audioSource = GetComponent<AudioSource>();
         currentWaveIndex = 0;
         SetProgressionFlag();
     }
@@ -200,6 +204,8 @@ public class EnemySpawner : MonoBehaviour
             ProgressionManager.Instance.EndGame();
             return;
         }
+        _audioSource.clip = bossMusicClip;
+        _audioSource.Play();
 
         ProgressionManager.Instance.SetStoryFlag(ProgressionManager.StoryFlags.FlagBossSpawned);
         SpawnWave(bossWave);
