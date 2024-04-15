@@ -87,7 +87,7 @@ public class EnemyShootingComponent : MonoBehaviour
     }
 
 
-    private void SetCanShoot()
+    public void SetCanShoot()
     {
         _canShoot = true;
     }

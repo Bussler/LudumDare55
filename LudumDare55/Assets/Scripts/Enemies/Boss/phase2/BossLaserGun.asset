@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: BossLaserGun
   m_EditorClassIdentifier: 
   type: 0
-  Damage: 0
-  FireRate: 0
-  Accuracy: 50
+  Damage: 1
+  FireRate: 10
+  Accuracy: 100
   TimeLimit: 0
-  Range: 0
-  BulletAmount: 0
-  BulletSpeed: 0
-  BulletSize: 0
+  Range: 20
+  BulletAmount: 2
+  BulletSpeed: 15
+  BulletSize: 0.5
   BulletKnockback: 0
-  BulletHealth: 0
+  BulletHealth: 1
   LifeSteal: 0
-  Projectile: {fileID: 0}
+  Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: []
   gunSize: {x: 0, y: 0, z: 0}
+  gunRotation: {x: 0, y: 0, z: 0}
   mesh: {fileID: 0}
   material: {fileID: 0}

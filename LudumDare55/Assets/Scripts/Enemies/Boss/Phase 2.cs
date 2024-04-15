@@ -13,6 +13,7 @@ public class Phase2 : BossPhase
     [SerializeField] private float TimeBetweenAttacks;
     private float time;
     [SerializeField] private EnemyShootingComponent shootingComponent;
+    private GameObject player;
 
     private int AttackCounter=0;
     private float additionalRotation=5;
@@ -21,8 +22,8 @@ public class Phase2 : BossPhase
     {
         base.OnStartPhase(bossController);
         AttackCounter = 0;
-    
-        shootingComponent= boss.GetComponent<EnemyShootingComponent>();
+        player = GameObject.FindWithTag("Player");
+        shootingComponent = boss.GetComponent<EnemyShootingComponent>();
         
         Debug.Log("Phase 2 started");
     }
@@ -36,6 +37,7 @@ public class Phase2 : BossPhase
     public override void OnEndPhase()
     {
         Debug.Log("Phase 2 ended");
+        ProgressionManager.Instance.EndGame();
     }
 
 
@@ -62,6 +64,7 @@ public class Phase2 : BossPhase
     {
         shootingComponent.equippedGun = LaserGun;
         Debug.Log("DoLaser");
+      
     }
 
     public void DoDirectionalAttack()
@@ -70,10 +73,12 @@ public class Phase2 : BossPhase
         shootingComponent.equippedGun = DirectionGun;
 
         Vector3[] directions = new Vector3[DirectionNumber];
+        float random = Random.Range(0, 360);
         for(int i=0; i< DirectionNumber; i++)
         {
-            directions[i]=Quaternion.AngleAxis((360 / DirectionNumber) * i+additionalRotation*AttackCounter, Vector3.up)*Vector3.fwd ;
+            directions[i]=Quaternion.AngleAxis((360 / DirectionNumber) * i+random, Vector3.up)*Vector3.fwd ;
         }
+        shootingComponent.SetCanShoot();
         shootingComponent.ShootMultipleTimes(directions);
 
     }

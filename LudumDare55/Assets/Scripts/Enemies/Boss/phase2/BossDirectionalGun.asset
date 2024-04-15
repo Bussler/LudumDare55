@@ -19,13 +19,14 @@ MonoBehaviour:
   TimeLimit: 5
   Range: 5
   BulletAmount: 1
-  BulletSpeed: 5
-  BulletSize: 0.5
+  BulletSpeed: 10
+  BulletSize: 1
   BulletKnockback: 0
   BulletHealth: 1
   LifeSteal: 0
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: []
   gunSize: {x: 0, y: 0, z: 0}
+  gunRotation: {x: 0, y: 0, z: 0}
   mesh: {fileID: 0}
   material: {fileID: 0}
