@@ -122,7 +122,10 @@ public class ProgressionManager : MonoBehaviour
     {
         Debug.Log("GAME ENDED");
         if (LootLockerPlayermanager.Instance != null)
+        {
+            LootLockerPlayermanager.Instance.AddScore(NumberOfSummons*10);
             LootLockerPlayermanager.Instance.UploadScore();
+        }
         // TODO do more stuff when game ends
         if (EndGameMenu.Instance  != null)
         {
