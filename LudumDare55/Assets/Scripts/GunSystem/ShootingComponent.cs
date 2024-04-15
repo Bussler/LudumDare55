@@ -173,6 +173,11 @@ public class ShootingComponent : MonoBehaviour
             {
                 _canShoot = false;
 
+                if (ObjectPoolManager.Instance == null)
+                {
+                    return;
+                }
+
                 GameObject p = ObjectPoolManager.Instance.SpawnObject(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Bullet);
                 p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.BulletKnockback, currentGun.Range, currentGun.BulletSize,currentGun.BulletHealth);
                 p.layer = LayerMask.NameToLayer("PlayerProjectile");
