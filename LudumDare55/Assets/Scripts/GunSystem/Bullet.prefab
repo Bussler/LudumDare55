@@ -130,7 +130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3c176dec94eda43afd433be85076c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationCollisionTag: Player
 --- !u!54 &-442032118311176861
 Rigidbody:
   m_ObjectHideFlags: 0

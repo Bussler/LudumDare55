@@ -107,6 +107,12 @@ public class PlayerStatManager : MonoBehaviour
     private float _dashingCooldown = 1.0f; // Cooldown between dashes
     public float DashingCooldown { get => _dashingCooldown; set => _dashingCooldown = value; }
 
+    [SerializeField]
+    private AudioClip damageClip;
+
+
+    private AudioSource _audioSource;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -123,6 +129,7 @@ public class PlayerStatManager : MonoBehaviour
     private void Start()
     {
         Initialize();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void Initialize()
@@ -152,6 +159,7 @@ public class PlayerStatManager : MonoBehaviour
 
         CurrentHealth -= amount;
 
+        _audioSource.PlayOneShot(damageClip, 0.35f);
         if (StatMenu.Instance != null)
         {
             StatMenu.Instance.SetHealth(CurrentHealth);

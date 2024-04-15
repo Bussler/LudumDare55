@@ -24,6 +24,8 @@ MonoBehaviour:
   BulletKnockback: 1
   BulletHealth: 1
   LifeSteal: 0
+  GunSound: {fileID: 8300000, guid: 4ca69ef2122a9af4e9c540152e64e5a8, type: 3}
+  EquipSound: {fileID: 8300000, guid: 37f434cd156e43d488bae7ea2e533fa9, type: 3}
   Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: []
   gunSize: {x: 10, y: 10, z: 10}
