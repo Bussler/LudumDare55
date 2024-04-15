@@ -179,7 +179,8 @@ public class ShootingComponent : MonoBehaviour
             gunMeshFilterer.mesh = currentGun.mesh;
             foreach (ObjectEffect effect in currentGun.Effects)
             {
-                Instantiate(effect.ParticleSystem, GunObject.transform.position, GunObject.transform.rotation, GunObject.transform);
+                GameObject g =Instantiate(effect.ParticleSystem, GunObject.transform.position, GunObject.transform.rotation, GunObject.transform);
+            g.GetComponent<ParticleSystem>().startColor = effect.color;
             }
         }
 
