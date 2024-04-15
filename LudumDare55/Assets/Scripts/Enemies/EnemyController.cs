@@ -33,6 +33,10 @@ public class EnemyController : MonoBehaviour
 
     private float timeSinceLastShot = 0;
 
+    public AudioClip hitSound;
+
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +65,8 @@ public class EnemyController : MonoBehaviour
 
         shootingComponent = GetComponent<EnemyShootingComponent>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = hitSound;
     }
 
     public void Initialize()
@@ -113,6 +119,7 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("Enemy took damage: " + damage);
         _currentHealth -= damage;
+        audioSource.Play();
         if (_currentHealth <= 0)
         {
             Die();
