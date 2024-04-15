@@ -9,6 +9,8 @@ public class Projectile : MonoBehaviour
     private float _knockBack;
     private int  _health;
 
+    [SerializeField] private GameObject bloodEffect;
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -69,6 +71,7 @@ public class Projectile : MonoBehaviour
                 // TODO Knockback on enemies can knock them off the navmesh
                 Vector3 knockBackVector = _knockBack * transform.forward;
                 knockBackVector.y = 0;
+                SpawnBloodEffect(enemy.transform.position);
 
                 enemy.ApplyKnockback(knockBackVector);
             }
@@ -81,9 +84,12 @@ public class Projectile : MonoBehaviour
             {
                 PlayerStatManager.Instance.TakeDamage(_damage);
                 BasicMovement player_movement = collision.gameObject.GetComponent<BasicMovement>();
-                if (player_movement != null)
+                if (player_movement != null) {
                     player_movement.ForceToApply = _knockBack * transform.forward;
+                    SpawnBloodEffect(player_movement.gameObject.transform.position);
+                }
             }
+            
             DestroyProjectile();
         }
     }
@@ -92,5 +98,10 @@ public class Projectile : MonoBehaviour
     {
         // TODO Fall off?
         ObjectPoolManager.Instance.DespawnObject(this.gameObject);
+    }
+
+    private void SpawnBloodEffect(Vector3 p) {
+        var bloodEffect = Instantiate(this.bloodEffect);
+        bloodEffect.transform.position = p;
     }
 }
