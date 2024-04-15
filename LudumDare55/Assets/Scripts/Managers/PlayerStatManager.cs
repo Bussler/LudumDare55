@@ -129,9 +129,17 @@ public class PlayerStatManager : MonoBehaviour
     {
         CurrentHealth = MaxHealth;
         CurrentBlood = _startBlood;
+
         if (LootLockerPlayermanager.Instance != null)
         {
             LootLockerPlayermanager.Instance.Initialize();
+        }
+
+        if (StatMenu.Instance != null)
+        {
+            StatMenu.Instance.SetMaxHealth(MaxHealth);
+            StatMenu.Instance.SetMaxBlood(MaxBlood);
+            StatMenu.Instance.SetBlood(CurrentBlood);
         }
     }
 
@@ -141,9 +149,15 @@ public class PlayerStatManager : MonoBehaviour
         {
             return;
         }
+
         CurrentHealth -= amount;
 
-        if(CurrentHealth <= 0)
+        if (StatMenu.Instance != null)
+        {
+            StatMenu.Instance.SetHealth(CurrentHealth);
+        }
+
+        if (CurrentHealth <= 0)
         {
             Die();
         }
@@ -152,11 +166,21 @@ public class PlayerStatManager : MonoBehaviour
     public void Heal( int amount)
     {
         CurrentHealth = Mathf.Min(CurrentHealth+ amount,MaxHealth);
+
+        if (StatMenu.Instance != null)
+        {
+            StatMenu.Instance.SetHealth(CurrentHealth);
+        }
     }
 
     public void HealToMax()
     {
         CurrentHealth = MaxHealth;
+
+        if (StatMenu.Instance != null)
+        {
+            StatMenu.Instance.SetHealth(CurrentHealth);
+        }
     }
 
     public void Die()
@@ -168,7 +192,11 @@ public class PlayerStatManager : MonoBehaviour
     public void gainBlood(int amount)
     {
         CurrentBlood += amount;
-        Debug.Log("Player gained blood: " + amount);
+
+        if (StatMenu.Instance != null)
+        {
+            StatMenu.Instance.SetBlood(CurrentBlood);
+        }
     }
 
     public void useBlood(int amount)
@@ -179,6 +207,11 @@ public class PlayerStatManager : MonoBehaviour
     public void commitUsedBlood()
     {
         CurrentBlood -= _circleUsedBlood;
+
+        if (StatMenu.Instance != null)
+        {
+            StatMenu.Instance.SetBlood(CurrentBlood);
+        }
     }
 
     public void resetUsedBlood()
@@ -189,5 +222,10 @@ public class PlayerStatManager : MonoBehaviour
     public void setMaxBlood()
     {
         CurrentBlood = MaxBlood;
+
+        if (StatMenu.Instance != null)
+        {
+            StatMenu.Instance.SetBlood(CurrentBlood);
+        }
     }
 }
