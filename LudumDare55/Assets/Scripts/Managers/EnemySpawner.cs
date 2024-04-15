@@ -69,6 +69,12 @@ public class EnemySpawner : MonoBehaviour
                 wave.CalculateWaveQuota();
             neededEnemyQuota += wave.waveQuota;
         }
+
+        if (bossWave != null)
+        {
+            bossWave.CalculateWaveQuota();
+        }
+
         _audioSource = GetComponent<AudioSource>();
         currentWaveIndex = 0;
         SetProgressionFlag();
