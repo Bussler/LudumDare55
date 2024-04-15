@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -98,32 +99,8 @@ public class ShootingComponent : MonoBehaviour
 
     public Gun EquipGun(IEnumerable<ObjectEffect> effects = null)
     {
-        Gun g= GenerateNewGun(effects);
 
-        foreach (ObjectEffect effect in effects)
-        {
-            if (effect.GetType().IsSubclassOf(typeof(GunEffect)))
-            {
-                effect.ApplyEffect(g);
-            }
-
-            if (effect.GetType().IsSubclassOf(typeof(PlayerEffects)))
-            {
-                effect.ApplyEffect(_statManager);
-            }
-
-            //TODO add enemyEffects
-        }
-        Invoke("DequipGun", currentGun.TimeLimit);
-        _audioSource.PlayOneShot(g.EquipSound);
-        _audioSource.clip = g.GunSound;
-
-        SetGunMesh();
-        return g;
-    }
-
-    public void DequipGun()
-    {
+        //unequip old effects
         foreach (ObjectEffect effect in currentGun.Effects)
         {
             if (effect.GetType().IsSubclassOf(typeof(GunEffect)))
@@ -139,97 +116,142 @@ public class ShootingComponent : MonoBehaviour
             //TODO add enemyEffects
         }
 
-        currentGun = basicGun;
-        _audioSource.clip = currentGun.GunSound;
+        Gun g = GenerateNewGun(effects);
+        
+        foreach (ObjectEffect effect in effects)
+        {
+            if (effect.GetType().IsSubclassOf(typeof(GunEffect)))
+            {
+                effect.ApplyEffect(g);
+            }
+
+            if (effect.GetType().IsSubclassOf(typeof(PlayerEffects)))
+            {
+                effect.ApplyEffect(_statManager);
+            }
+
+            //TODO add enemyEffects
+        }
+
+        IEnumerator c2 = DequipGun(currentGun, currentGun.TimeLimit);
+        StartCoroutine(c2);
+
         SetGunMesh();
+        return g;
     }
 
-    public void SetGunMesh()
+    IEnumerator DequipGun(Gun gun, float TimeToWait)
     {
-        for(int i=0; i <GunObject.transform.childCount; i++)
+        yield return new WaitForSeconds(TimeToWait);
+        if (gun == currentGun)
         {
-            Destroy(GunObject.transform.GetChild(i).gameObject);
-        }
+            foreach (ObjectEffect effect in currentGun.Effects)
+            {
+                if (effect.GetType().IsSubclassOf(typeof(GunEffect)))
+                {
+                    effect.RemoveEffect(currentGun);
+                }
 
-        GunObject.transform.localScale = currentGun.gunSize;
-        GunObject.transform.localEulerAngles = currentGun.gunRotation;
-        gunMesRenderer.material = currentGun.material;
-        gunMeshFilterer.mesh = currentGun.mesh;
-        foreach (ObjectEffect effect in currentGun.Effects)
-        {
-            Instantiate(effect.ParticleSystem,GunObject.transform.position,GunObject.transform.rotation,GunObject.transform);
+                if (effect.GetType().IsSubclassOf(typeof(PlayerEffects)))
+                {
+                    effect.RemoveEffect(_statManager);
+                }
+
+                //TODO add enemyEffects
+            }
+
+            currentGun = basicGun;
+            _audioSource.clip = currentGun.GunSound;
+            SetGunMesh();
         }
     }
 
-    private Gun GenerateNewGun(IEnumerable<ObjectEffect> effects= null)
-    {
-        currentGun = gunTemplates[Random.Range(0,gunTemplates.Count)].CopyThis();
+        public void SetGunMesh()
+        {
+            for (int i = 0; i < GunObject.transform.childCount; i++)
+            {
+                Destroy(GunObject.transform.GetChild(i).gameObject);
+            }
 
-        while(currentGun.type == lastGunType)
+            GunObject.transform.localScale = currentGun.gunSize;
+            GunObject.transform.localEulerAngles = currentGun.gunRotation;
+            gunMesRenderer.material = currentGun.material;
+            gunMeshFilterer.mesh = currentGun.mesh;
+            foreach (ObjectEffect effect in currentGun.Effects)
+            {
+                Instantiate(effect.ParticleSystem, GunObject.transform.position, GunObject.transform.rotation, GunObject.transform);
+            }
+        }
+
+        private Gun GenerateNewGun(IEnumerable<ObjectEffect> effects = null)
         {
             currentGun = gunTemplates[Random.Range(0, gunTemplates.Count)].CopyThis();
-        }
-        currentGun.Effects = effects.ToList();
-        
-        lastGunType = currentGun.type;
-        return currentGun;
-    }
 
-    private void Shoot()
-    {
-        if(currentGun != null&&_isShooting&&_canShoot){
-            int bulletAmt = currentGun.BulletAmount;
-            for (int i = 0; i < bulletAmt; i++)
+            while (currentGun.type == lastGunType)
             {
-                _canShoot = false;
+                currentGun = gunTemplates[Random.Range(0, gunTemplates.Count)].CopyThis();
+            }
+            currentGun.Effects = effects.ToList();
 
-                if (ObjectPoolManager.Instance == null)
+            lastGunType = currentGun.type;
+            return currentGun;
+        }
+
+        private void Shoot()
+        {
+            if (currentGun != null && _isShooting && _canShoot) {
+                int bulletAmt = currentGun.BulletAmount;
+                for (int i = 0; i < bulletAmt; i++)
                 {
-                    return;
-                }
+                    _canShoot = false;
 
-                GameObject p = ObjectPoolManager.Instance.SpawnObject(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Bullet);
-                p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.BulletKnockback, currentGun.Range, currentGun.BulletSize,currentGun.BulletHealth);
-                p.layer = LayerMask.NameToLayer("PlayerProjectile");
-                p.transform.forward = _shootDir;
-
-                float acc = (100 - currentGun.Accuracy) / 2;
-                p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
-
-                if (currentGun.LifeSteal > 0)
-                {
-                    _statManager.Heal(currentGun.LifeSteal);
-                }
-                else if(currentGun.LifeSteal < 0)
-                {
-                    _statManager.TakeDamage(currentGun.LifeSteal);
-                }
-
-                // PLay normal sound only when slower gun
-
-                if (currentGun.FireRate >= 8)
-                {
-                    if (!_audioSource.isPlaying)
+                    if (ObjectPoolManager.Instance == null)
                     {
-                        _audioSource.PlayOneShot(machineGunClip);
+                        return;
                     }
-                } else
-                {
-                    _audioSource.PlayOneShot(currentGun.GunSound);
-                }
 
-                Invoke("SetCanShoot",1/currentGun.FireRate);
-            }
-            if (_isShooting)
-            {
-                Invoke("Shoot", 1 / currentGun.FireRate);
+                    GameObject p = ObjectPoolManager.Instance.SpawnObject(currentGun.Projectile, ShootingStartPoint.transform.position, Quaternion.identity, ObjectPoolManager.PoolType.Bullet);
+                    p.GetComponent<Projectile>().InitProjectile(currentGun.Damage, currentGun.BulletSpeed, currentGun.BulletKnockback, currentGun.Range, currentGun.BulletSize, currentGun.BulletHealth);
+                    p.layer = LayerMask.NameToLayer("PlayerProjectile");
+                    p.transform.forward = _shootDir;
+
+                    float acc = (100 - currentGun.Accuracy) / 2;
+                    p.transform.Rotate(Vector3.up, Random.Range(-acc, acc));
+
+                    if (currentGun.LifeSteal > 0)
+                    {
+                        _statManager.Heal(currentGun.LifeSteal);
+                    }
+                    else if (currentGun.LifeSteal < 0)
+                    {
+                        _statManager.TakeDamage(currentGun.LifeSteal);
+                    }
+
+                    // PLay normal sound only when slower gun
+
+                    if (currentGun.FireRate >= 8)
+                    {
+                        if (!_audioSource.isPlaying)
+                        {
+                            _audioSource.PlayOneShot(machineGunClip);
+                        }
+                    } else
+                    {
+                        _audioSource.PlayOneShot(currentGun.GunSound);
+                    }
+
+                    Invoke("SetCanShoot", 1 / currentGun.FireRate);
+                }
+                if (_isShooting)
+                {
+                    Invoke("Shoot", 1 / currentGun.FireRate);
+                }
             }
         }
-    }
 
-    public void SetCanShoot()
-    {
-        _canShoot = true;
-    }
-
+        public void SetCanShoot()
+        {
+            _canShoot = true;
+        }
+    
 }

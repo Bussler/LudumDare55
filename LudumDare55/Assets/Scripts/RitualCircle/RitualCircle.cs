@@ -53,7 +53,8 @@ public class RitualCircle : MonoBehaviour
 
     private void OnRitualCircleCompleted(Tuple<Vector3, float> circle) {
         // unitSphere.transform.position = circle.Item1;
-       
+         //unitSphere.transform.position = circle.Item1;
+
         RaycastHit[] itemHit = Physics.SphereCastAll(circle.Item1, circle.Item2 / 2, Vector3.up, mask);
 
         List<ObjectEffect> effects = new List<ObjectEffect>();
@@ -63,14 +64,21 @@ public class RitualCircle : MonoBehaviour
             if (item.transform.gameObject.GetComponent<RitualComponent>() != null)
             {
                 effects.Add(item.transform.gameObject.GetComponent<RitualComponent>().Effect);
+
+                if (item.collider.gameObject.GetComponent<EnemyController>() != null)
+                {
+                    EnemySpawner.Instance.OnEnemyDied();
+                }
+
                 ObjectPoolManager.Instance.DespawnObject(item.transform.gameObject);
                 PlayerStatManager.Instance.commitUsedBlood();
             }
         }
-
+      
         if (effects.Count > 0)
         {
             shootingComponent.EquipGun(effects);
+           
         }
 
         splineTrailGenerator.ResetSpline();
