@@ -979,7 +979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
-  _currentHealth: 75
+  _currentHealth: 100
   _maxBlood: 500
   _startBlood: 15
   _currentBlood: 0
