@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3374,6 +3374,10 @@ PrefabInstance:
       propertyPath: spline
       value: 
       objectReference: {fileID: 1125534156}
+    - target: {fileID: 1562463938325003173, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
+      propertyPath: _machineGunClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 225e5e4430d4d844fb289f53323c64ad, type: 3}
     - target: {fileID: 2693055430612970217, guid: 6bcda40f31bf8f64f8525ad217151fb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
