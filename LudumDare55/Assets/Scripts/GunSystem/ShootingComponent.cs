@@ -30,6 +30,8 @@ public class ShootingComponent : MonoBehaviour
     private MeshRenderer gunMesRenderer;
     private MeshFilter gunMeshFilterer;
 
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         _input = new MainControls();
@@ -57,6 +59,7 @@ public class ShootingComponent : MonoBehaviour
         ShootingStartPoint = GunObject.transform;
         gunMeshFilterer= GunObject.GetComponent<MeshFilter>();
         gunMesRenderer= GunObject.GetComponent<MeshRenderer>();
+        _audioSource = GetComponent<AudioSource>();
         SetGunMesh();
     }
 
@@ -110,6 +113,8 @@ public class ShootingComponent : MonoBehaviour
         }
         Invoke("DequipGun", currentGun.TimeLimit);
 
+        _audioSource.clip = g.GunSound;
+
         SetGunMesh();
         return g;
     }
@@ -132,6 +137,7 @@ public class ShootingComponent : MonoBehaviour
         }
 
         currentGun = basicGun;
+        _audioSource.clip = currentGun.GunSound;
         SetGunMesh();
     }
 
@@ -195,7 +201,8 @@ public class ShootingComponent : MonoBehaviour
                 {
                     _statManager.TakeDamage(currentGun.LifeSteal);
                 }
-               
+               _audioSource.PlayOneShot(currentGun.GunSound);
+
                 Invoke("SetCanShoot",1/currentGun.FireRate);
             }
             if (_isShooting)
