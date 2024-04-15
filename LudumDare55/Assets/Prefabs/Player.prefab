@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2423670192329447096}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.11, z: 1.4}
+  m_LocalPosition: {x: 0.96, y: 2.11, z: 1.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -981,7 +981,7 @@ MonoBehaviour:
   _maxHealth: 100
   _currentHealth: 100
   _maxBlood: 500
-  _startBlood: 15
+  _startBlood: 500
   _currentBlood: 0
   _bloodDrain: 2
   _movementSpeed: 9
@@ -1031,6 +1031,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e3991a550a39c3a44be5af0b4233e62b, type: 2}
   - {fileID: 11400000, guid: a328da35b73848d4aa9fd0536288241b, type: 2}
   - {fileID: 11400000, guid: 8d1aba8d361e3eb4088631b68956365f, type: 2}
+  - {fileID: 11400000, guid: 31e89d69d7d52af41b18e3a47b13117b, type: 2}
+  - {fileID: 11400000, guid: 661fc7f4d63800c468e9ae9c4d1b2dbd, type: 2}
   currentGun: {fileID: 0}
   ShootingStartPoint: {fileID: 3175225370333128138}
   player: {fileID: 3320409709385560147}

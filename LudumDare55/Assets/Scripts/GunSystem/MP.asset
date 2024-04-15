@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0805e59bd8cc246498455d9e4ff7f45a, type: 3}
   m_Name: MP
   m_EditorClassIdentifier: 
-  type: 0
-  Damage: 0
-  FireRate: 0
-  Accuracy: 50
-  TimeLimit: 0
-  Range: 0
-  BulletAmount: 0
-  BulletSpeed: 0
-  BulletSize: 0
-  BulletKnockback: 0
-  BulletHealth: 0
+  type: 5
+  Damage: 5
+  FireRate: 8
+  Accuracy: 85
+  TimeLimit: 10
+  Range: 6
+  BulletAmount: 1
+  BulletSpeed: 20
+  BulletSize: 0.3
+  BulletKnockback: 3
+  BulletHealth: 1
   LifeSteal: 0
-  Projectile: {fileID: 0}
+  Projectile: {fileID: 4695507485891376115, guid: b7ab460a2fbb87243bde0263f71fcd1b, type: 3}
   Effects: []
   gunSize: {x: 10, y: 10, z: 10}
   gunRotation: {x: -90, y: 0, z: 0}
