@@ -109,5 +109,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4c9424fe18551144c9a4f88c6bdd2665, type: 2}
   - {fileID: 11400000, guid: c43de0da03211f44a916e8c604cde8a8, type: 2}
   - {fileID: 11400000, guid: ceb511257025c7444830c6db6f202d5f, type: 2}
+  - {fileID: 11400000, guid: c95ec3883654ea645b1b1e4e7377ebef, type: 2}
+  - {fileID: 11400000, guid: 41b828cf2fa2713488e77245f39f8946, type: 2}
+  - {fileID: 11400000, guid: 4c9424fe18551144c9a4f88c6bdd2665, type: 2}
+  - {fileID: 11400000, guid: a68f004747481e940b1ae25c0e050f1c, type: 2}
   EffectsParticleSystems: []
   RandomOrderedEffects: []
