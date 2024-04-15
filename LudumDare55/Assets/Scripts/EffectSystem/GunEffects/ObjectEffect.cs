@@ -6,7 +6,7 @@ public class ObjectEffect : ScriptableObject
 {
     public int Change;
     public GameObject ParticleSystem;
-
+    public Color color;
     public virtual void ApplyEffect(Object obj)
     {
     }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Change: 4
   ParticleSystem: {fileID: 229494666943684544, guid: e189818a457a8104ba720c9d8ef85c10, type: 3}
+  color: {r: 1, g: 0.5098561, b: 0, a: 1}

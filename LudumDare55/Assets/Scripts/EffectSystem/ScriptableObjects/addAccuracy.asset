@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: addAccuracy
   m_EditorClassIdentifier: 
   Change: 20
-  ParticleSystem: {fileID: 8994497341092296265, guid: 5c3edf2dd826ace41992ecc40f0417b2, type: 3}
+  ParticleSystem: {fileID: 229494666943684544, guid: e189818a457a8104ba720c9d8ef85c10, type: 3}
+  color: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}

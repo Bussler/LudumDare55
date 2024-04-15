@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: addMovementSpeed
   m_EditorClassIdentifier: 
   Change: 5
-  ParticleSystem: {fileID: 2461891309415761645, guid: 8591ce9ffec038d408c4e67bd4e57177, type: 3}
+  ParticleSystem: {fileID: 229494666943684544, guid: e189818a457a8104ba720c9d8ef85c10, type: 3}
+  color: {r: 1, g: 0, b: 0.7879014, a: 1}

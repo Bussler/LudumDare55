@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: addTime
   m_EditorClassIdentifier: 
   Change: 10
-  ParticleSystem: {fileID: 5454058942328219970, guid: 71c3bfbb85cdd5442972a7a35cbb5be3, type: 3}
+  ParticleSystem: {fileID: 229494666943684544, guid: e189818a457a8104ba720c9d8ef85c10, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
